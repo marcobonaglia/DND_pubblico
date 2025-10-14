@@ -219,6 +219,169 @@
             text-decoration: underline;
         }
 
+        /* Nuove sezioni per contenuti */
+        .content-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .section-title {
+            font-size: 2.2em;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        /* Griglia avventure */
+        .adventure-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .adventure-card {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 12px;
+            padding: 25px;
+            border: 2px solid #ecf0f1;
+            transition: all 0.3s ease;
+        }
+
+        .adventure-card:hover {
+            border-color: #3498db;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.2);
+        }
+
+        .adventure-card h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .adventure-card p {
+            color: #7f8c8d;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .adventure-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        /* Griglia personaggi */
+        .character-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .character-card {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 12px;
+            padding: 20px;
+            border: 2px solid #ecf0f1;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .character-card:hover {
+            border-color: #e74c3c;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(231, 76, 60, 0.2);
+        }
+
+        .character-card h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .character-card p {
+            color: #7f8c8d;
+            margin-bottom: 15px;
+            font-size: 0.9em;
+        }
+
+        .character-links {
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Griglia gruppi */
+        .group-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .group-card {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 12px;
+            padding: 25px;
+            border: 2px solid #ecf0f1;
+            transition: all 0.3s ease;
+        }
+
+        .group-card:hover {
+            border-color: #9b59b6;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(155, 89, 182, 0.2);
+        }
+
+        .group-card h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .group-card p {
+            color: #7f8c8d;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .group-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        /* Bottoni piccoli */
+        .btn-small {
+            display: inline-block;
+            padding: 8px 16px;
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+            text-decoration: none;
+            border-radius: 15px;
+            font-weight: bold;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(52, 152, 219, 0.3);
+        }
+
+        .btn-small:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+            background: linear-gradient(45deg, #2980b9, #3498db);
+        }
+
+        .btn-small.btn-secondary {
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            box-shadow: 0 3px 10px rgba(231, 76, 60, 0.3);
+        }
+
+        .btn-small.btn-secondary:hover {
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+            background: linear-gradient(45deg, #c0392b, #e74c3c);
+        }
+
         @media (max-width: 768px) {
             h1 {
                 font-size: 2.2em;
@@ -236,6 +399,22 @@
             .btn {
                 width: 100%;
                 max-width: 300px;
+            }
+            
+            .adventure-grid,
+            .character-grid,
+            .group-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .adventure-links,
+            .group-links {
+                flex-direction: column;
+            }
+            
+            .btn-small {
+                width: 100%;
+                text-align: center;
             }
         }
     </style>
@@ -298,6 +477,116 @@
             </div>
         </div>
 
+        <!-- Sezione Avventure -->
+        <div id="avventure" class="content-section">
+            <h2 class="section-title">📚 Avventure Complete</h2>
+            <div class="adventure-grid">
+                <div class="adventure-card">
+                    <h3>🏰 Il Castello Oracolo Diamante</h3>
+                    <p>Avventura misteriosa con enigmi e esplorazione in un castello abbandonato.</p>
+                    <div class="adventure-links">
+                        <a href="avventure/Il_Castello_Oracolo_Diamante/castello_oracolo_diamante.html" class="btn-small">📖 Leggi HTML</a>
+                        <a href="avventure/Il_Castello_Oracolo_Diamante/README.md" class="btn-small btn-secondary">📋 Info</a>
+                    </div>
+                </div>
+                
+                <div class="adventure-card">
+                    <h3>🧀 La Consegna del Formaggio</h3>
+                    <p>Avventura comica e leggera perfetta per principianti e sessioni rilassanti.</p>
+                    <div class="adventure-links">
+                        <a href="avventure/La_Consegna_del_Formaggio/la_consegna_del_formaggio.html" class="btn-small">📖 Leggi HTML</a>
+                        <a href="avventure/La_Consegna_del_Formaggio/README.md" class="btn-small btn-secondary">📋 Info</a>
+                    </div>
+                </div>
+                
+                <div class="adventure-card">
+                    <h3>🌊 Le Cripte Sommerse di Thornbridge</h3>
+                    <p>Avventura acquatica con esplorazione di cripte sommerse e misteri antichi.</p>
+                    <div class="adventure-links">
+                        <a href="avventure/Le_Cripte_Sommerse_di_Thornbridge/Le_Cripte_Sommerse_di_Thornbridge.html" class="btn-small">📖 Leggi HTML</a>
+                        <a href="avventure/Le_Cripte_Sommerse_di_Thornbridge/Le_Cripte_Sommerse_di_Thornbridge.pdf" class="btn-small btn-secondary">📄 PDF</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sezione Personaggi -->
+        <div id="personaggi" class="content-section">
+            <h2 class="section-title">👥 Personaggi Pre-Generati</h2>
+            <div class="character-grid">
+                <div class="character-card">
+                    <h3>⚔️ Grommash Ferrocrudo</h3>
+                    <p><strong>Barbaro Mezzorco</strong> - Livello 1</p>
+                    <div class="character-links">
+                        <a href="personaggi/barbaro_grommash-ferrocrudo/barbaro_1_grommash-ferrocrudo.html" class="btn-small">📋 Scheda HTML</a>
+                    </div>
+                </div>
+                
+                <div class="character-card">
+                    <h3>🎵 Orion Cantastorie</h3>
+                    <p><strong>Bardo Umano</strong> - Livello 1</p>
+                    <div class="character-links">
+                        <a href="personaggi/bardo_orion-cantastorie/bardo_1_orion-cantastorie.html" class="btn-small">📋 Scheda HTML</a>
+                    </div>
+                </div>
+                
+                <div class="character-card">
+                    <h3>⛑️ Lyra Cuorepuro</h3>
+                    <p><strong>Chierico Elfo</strong> - Livello 1</p>
+                    <div class="character-links">
+                        <a href="personaggi/chierico_lyra-cuorepuro/chierico_1_lyra-cuorepuro.html" class="btn-small">📋 Scheda HTML</a>
+                    </div>
+                </div>
+                
+                <div class="character-card">
+                    <h3>🗡️ Ember Silenzio</h3>
+                    <p><strong>Ladro Halfling</strong> - Livello 1</p>
+                    <div class="character-links">
+                        <a href="personaggi/ladro_ember-silenzio/ladro_1_ember-silenzio.html" class="btn-small">📋 Scheda HTML</a>
+                    </div>
+                </div>
+                
+                <div class="character-card">
+                    <h3>🔮 Eldrin Stellamira</h3>
+                    <p><strong>Mago Gnomo</strong> - Livello 1</p>
+                    <div class="character-links">
+                        <a href="personaggi/mago_eldrin-stellamira/mago_1_eldrin-stellamira.html" class="btn-small">📋 Scheda HTML</a>
+                    </div>
+                </div>
+                
+                <div class="character-card">
+                    <h3>⚔️ Thorin Ferrogiusto</h3>
+                    <p><strong>Paladino Nano</strong> - Livello 1</p>
+                    <div class="character-links">
+                        <a href="personaggi/paladino_thorin-ferrogiusto/paladino_1_thorin-ferrogiusto.html" class="btn-small">📋 Scheda HTML</a>
+                    </div>
+                </div>
+                
+                <div class="character-card">
+                    <h3>🌟 Vex Shadowweaver</h3>
+                    <p><strong>Stregone Tiefling</strong> - Livello 1</p>
+                    <div class="character-links">
+                        <a href="personaggi/stregone_vex-shadowweaver/stregone_1_vex-shadowweaver.html" class="btn-small">📋 Scheda HTML</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sezione Gruppi -->
+        <div class="content-section">
+            <h2 class="section-title">🎭 Party e Gruppi</h2>
+            <div class="group-grid">
+                <div class="group-card">
+                    <h3>🌅 Guardiani del Crepuscolo</h3>
+                    <p>Party bilanciato con ruoli complementari, perfetto per iniziare una campagna.</p>
+                    <div class="group-links">
+                        <a href="gruppi/gruppo-guardiani-crepuscolo/gruppo_guardiani_crepuscolo.md" class="btn-small">📋 Descrizione</a>
+                        <a href="gruppi/party_sheet_template.html" class="btn-small btn-secondary">📄 Template Party</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="tech-stack">
             <h3 class="tech-title">📋 Formati Disponibili</h3>
             <div class="tech-items">
@@ -314,7 +603,7 @@
             <p class="footer-text">
                 🎲 <strong>Buon divertimento con le tue avventure!</strong><br>
                 Materiale pubblico gratuito per la comunità D&D italiana<br>
-                <a href="https://github.com/marco/DND_pubblico" class="github-link" target="_blank">Visita il repository pubblico</a>
+                <a href="https://github.com/marcobonaglia/DND_pubblico" class="github-link" target="_blank">Visita il repository pubblico</a>
             </p>
         </footer>
     </div>
