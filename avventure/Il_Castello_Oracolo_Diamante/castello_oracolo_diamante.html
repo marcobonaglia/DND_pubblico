@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Il Castello dell'Oracolo di Diamante - Avventura D&D 5e</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #2c2c2c;
+            background: #f5f5dc;
+            padding: 20px;
+        }
+
+        .adventure-container {
+            max-width: 210mm;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #8b0000;
+            text-align: center;
+            margin-bottom: 10px;
+            border-bottom: 3px solid #8b0000;
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            color: #8b0000;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #d4af37;
+            padding-bottom: 5px;
+        }
+
+        h3 {
+            font-size: 1.3em;
+            color: #a0522d;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        h4 {
+            font-size: 1.1em;
+            color: #654321;
+            margin-top: 15px;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-style: italic;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+
+        .info-box {
+            background: #faf0e6;
+            border: 2px solid #d4af37;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+
+        .info-box h3 {
+            margin-top: 0;
+            color: #8b0000;
+        }
+
+        .read-aloud {
+            background: #e6f3ff;
+            border-left: 5px solid #4682b4;
+            padding: 15px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+
+        .stat-block {
+            background: #fff8dc;
+            border: 2px solid #8b4513;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .stat-block h4 {
+            color: #8b0000;
+            margin-top: 0;
+            border-bottom: 1px solid #8b4513;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+
+        .treasure-box {
+            background: #fffacd;
+            border: 2px dashed #daa520;
+            padding: 12px;
+            margin: 15px 0;
+        }
+
+        .flowchart {
+            background: #f0f8ff;
+            border: 2px solid #4682b4;
+            padding: 20px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            white-space: pre;
+            overflow-x: auto;
+        }
+
+        .handout {
+            background: #fffef0;
+            border: 3px double #8b4513;
+            padding: 20px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        table th {
+            background: #8b0000;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+
+        table td {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        ul, ol {
+            margin-left: 30px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .divider {
+            border: 0;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #8b0000, transparent);
+            margin: 30px 0;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .adventure-container {
+                box-shadow: none;
+                max-width: 100%;
+            }
+
+            h2 {
+                page-break-after: avoid;
+            }
+
+            .stat-block, .read-aloud, .info-box {
+                page-break-inside: avoid;
+            }
+        }
+
+        .warning {
+            background: #ffe4e1;
+            border-left: 5px solid #dc143c;
+            padding: 10px;
+            margin: 15px 0;
+        }
+
+        strong {
+            color: #8b0000;
+        }
+
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="adventure-container">
+        <h1>Il Castello dell'Oracolo di Diamante</h1>
+        <p class="subtitle">Un'avventura D&D 5e per personaggi di 1° livello</p>
+
+        <hr class="divider">
+
+        <div class="info-box">
+            <h3>Informazioni Avventura</h3>
+            <ul>
+                <li><strong>Sistema di Gioco:</strong> D&D 5a Edizione</li>
+                <li><strong>Livello Consigliato:</strong> 1° livello</li>
+                <li><strong>Numero Giocatori:</strong> 4-5 + Dungeon Master</li>
+                <li><strong>Durata:</strong> 3 ore circa</li>
+                <li><strong>Ambientazione:</strong> Forgotten Realms, Costa della Spada, presso Phandalin</li>
+                <li><strong>Temi:</strong> Esplorazione, mistero, combattimento tattico</li>
+                <li><strong>Stile:</strong>
+                    <ul>
+                        <li>Investigazione: 4/10</li>
+                        <li>Combattimento: 5/10</li>
+                        <li>Enigmi: 1/10</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <h2>Sinossi</h2>
+        <p><em>Per secoli il castello dell'Oracolo di Diamante fu considerato perduto. Di recente, un gruppo di beholder ha fatto del castello la propria dimora. Si vocifera che un leggendario tomo, il Nakta, sia ancora nascosto tra le rovine.</em></p>
+
+        <p>I personaggi vengono assunti da <strong>Sildar Hallwinter</strong>, un agente dell'Alleanza dei Lord, per esplorare un castello recentemente scoperto nelle colline a nord di Phandalin. Un mercante locale ha avvistato strane luci e movimenti nelle rovine, e vecchie leggende parlano di un prezioso artefatto magico nascosto al suo interno: il <strong>Nakta</strong>, un tomo che si dice contenga antiche profezie.</p>
+
+        <h2>Background per il DM</h2>
+
+        <h3>Storia del Castello</h3>
+        <p>Il Castello dell'Oracolo di Diamante fu costruito circa 300 anni fa da un ordine di chierici e divinatori devoti a <strong>Savras</strong>, dio della divinazione e del fato. Il castello serviva come santuario dove i fedeli consultavano l'<strong>Oracolo di Diamante</strong>, un artefatto mistico in grado di rivelare frammenti del futuro.</p>
+
+        <p>Durante un'invasione orchesca, il castello cadde. I sopravvissuti nascosero il <strong>Nakta</strong> (un libro di profezie) prima di fuggire. Il castello fu abbandonato e dimenticato, coperto dalla vegetazione.</p>
+
+        <p>Recentemente, un gruppo di <strong>beholder minori</strong> (spectator) ha scoperto le rovine e le ha occupate, attratti dall'energia magica residua dell'Oracolo. Hanno anche risvegliato alcune creature non-morte che infestavano le cripte.</p>
+
+        <h3>L'Oracolo di Diamante</h3>
+        <p>L'Oracolo originale era un grande cristallo di diamante levitante. Ora è spezzato e privo di potere, ma il <strong>Nakta</strong> (il libro delle profezie) contiene ancora frammenti della sua saggezza. Chi lo possiede può consultarlo una volta al giorno per ricevere un indizio criptico sul futuro.</p>
+
+        <hr class="divider">
+
+        <h2>Hook Iniziale</h2>
+
+        <h3>Incontro con Sildar Hallwinter</h3>
+        <p><strong>Luogo:</strong> Locanda di Phandalin<br>
+        <strong>PNG:</strong> Sildar Hallwinter (umano, guerriero LB)</p>
+
+        <div class="read-aloud">
+            <p><strong>Box di Lettura:</strong></p>
+            <p>"Sildar Hallwinter, un uomo distinto sulla cinquantina con capelli grigi e una corazza ben tenuta, vi fa cenno di avvicinarvi al suo tavolo. La locanda è affollata, ma la sua voce è chiara e autorevole.</p>
+            <p>'Ho bisogno di avventurieri di fiducia per un compito delicato. Un mercante ha scoperto le rovine di un antico castello nelle colline a nord, il Castello dell'Oracolo di Diamante. Le leggende parlano di un artefatto magico nascosto al suo interno, ma il castello sembra ora abitato da creature pericolose. L'Alleanza dei Lord offre 100 monete d'oro per il recupero di qualsiasi artefatto magico e informazioni su chi - o cosa - abita ora quelle rovine. Che ne dite?'"</p>
+        </div>
+
+        <h4>Informazioni Aggiuntive da Sildar</h4>
+        <p>Se interrogato, Sildar può fornire:</p>
+        <ul>
+            <li>Il castello si trova a 3 ore di cammino a nord di Phandalin</li>
+            <li>Le leggende parlano di un "Oracolo di Diamante" e di un libro di profezie chiamato "Nakta"</li>
+            <li>Il mercante ha visto luci strane e sagome fluttuanti nelle finestre</li>
+            <li>Non è chiaro se ci siano ancora tesori o solo pericoli</li>
+        </ul>
+
+        <h4>Motivazioni Alternative</h4>
+        <p>Se i PG hanno bisogno di altre motivazioni:</p>
+        <ul>
+            <li><strong>Conoscenza arcana:</strong> Il Nakta contiene antichi segreti magici</li>
+            <li><strong>Ricchezza:</strong> Potrebbero esserci tesori dimenticati</li>
+            <li><strong>Gloria:</strong> Risolvere il mistero del castello perduto</li>
+            <li><strong>Dovere:</strong> Eliminare la minaccia per i viaggiatori della zona</li>
+        </ul>
+
+        <hr class="divider">
+
+        <h2>Viaggio al Castello</h2>
+        <p>Il viaggio dura 3 ore attraverso colline boscose.</p>
+
+        <div class="read-aloud">
+            <p><strong>Box di Lettura:</strong></p>
+            <p>"Il sentiero si snoda tra colline coperte di querce e pini. Dopo circa tre ore di cammino, la vegetazione si dirada e davanti a voi appare una collina su cui sorge un castello in rovina. Le mura esterne sono crollate in molti punti, coperte di edera e muschio. Una strana quiete aleggia nell'aria, rotta solo dal gracchiare di alcuni corvi."</p>
+        </div>
+
+        <h3>Incontro Casuale (Opzionale)</h3>
+        <p>Se vuoi aggiungere un incontro durante il viaggio:<br>
+        <strong>2 Lupi</strong> (MM pag. 341) attaccano il gruppo, affamati e disperati.</p>
+
+        <hr class="divider">
+
+        <h2>Mappa del Castello</h2>
+        <p>Il castello è composto da 4 aree principali (vedi mappa):</p>
+        <ol>
+            <li><strong>Ingresso e Sala dello Sciamano</strong> (Area 1)</li>
+            <li><strong>Piccola Camera con Porta Chiusa</strong> (Area 2)</li>
+            <li><strong>Camera con Mosaico di Pipistrello</strong> (Area 3)</li>
+            <li><strong>Grande Sala con Cassaforte Meccanica</strong> (Area 4)</li>
+        </ol>
+
+        <hr class="divider">
+
+        <h2>Area 1: Ingresso e Sala dello Sciamano</h2>
+
+        <h3>Descrizione Generale</h3>
+        <div class="read-aloud">
+            <p><strong>Box di Lettura:</strong></p>
+            <p>"Varcate le mura esterne crollate ed entrate in quella che un tempo era la sala d'ingresso del castello. Il soffitto è parzialmente crollato, lasciando intravedere il cielo. Al centro della stanza, seduto in posizione meditativa, c'è lo scheletro di un umanoide vestito con logori abiti cerimoniali. Nelle sue mani ossute stringe un rapier ornato e una piccola borsa di cuoio. Sul pavimento sono sparsi frammenti di ceramica e tessuti decomposti."</p>
+        </div>
+
+        <h3>Dettagli Esplorabili</h3>
+        <ul>
+            <li><strong>Lo Scheletro:</strong> Era uno sciamano o chierico. Non è animato (non-morto).
+                <ul>
+                    <li><strong>CD 12 Religione:</strong> Riconoscono i simboli di Savras (dio della divinazione) sulle vesti</li>
+                    <li><strong>CD 10 Indagare:</strong> Sembra morto cercando di fuggire, non in combattimento</li>
+                </ul>
+            </li>
+            <li><strong>Il Rapier:</strong> Rapier di ottima fattura (non magico, vale 50 mo)</li>
+            <li><strong>La Borsa:</strong> Contiene:
+                <ul>
+                    <li>15 mo</li>
+                    <li>23 ma</li>
+                    <li>1 pozione di guarigione (2d4+2 PF)</li>
+                    <li>Un piccolo diario (vedi sotto)</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>Il Diario dello Sciamano</h3>
+        <p>Il diario contiene annotazioni in Comune. Alcune pagine leggibili rivelano:</p>
+        <div class="handout">
+            <p>"...gli orchessi si avvicinano. L'Oracolo ha previsto la caduta, ma non abbiamo ascoltato. Il Nakta deve essere nascosto nella camera segreta dietro la grande porta. Solo la chiave della cassaforte potrà aprirla... Ho fallito nel proteggere questo luogo sacro..."</p>
+        </div>
+        <p><strong>Informazione Chiave:</strong> Esiste una camera segreta dietro una grande porta, protetta da una serratura che richiede la chiave della cassaforte.</p>
+
+        <h3>Incontro: 3 Scheletri Animati</h3>
+        <p>Dopo 1 minuto dall'ingresso dei PG, 3 <strong>Scheletri</strong> (MM pag. 272) emergono dai detriti agli angoli della stanza e attaccano.</p>
+        <p><strong>Tattica:</strong> Gli scheletri attaccano il bersaglio più vicino con le loro spade corte. Non sono intelligenti e combattono fino alla distruzione.</p>
+        <p><strong>Tesoro:</strong> Gli scheletri non hanno tesori.</p>
+
+        <hr class="divider">
+
+        <h2>Area 2: Piccola Camera con Porta Chiusa</h2>
+
+        <h3>Descrizione Generale</h3>
+        <div class="read-aloud">
+            <p><strong>Box di Lettura:</strong></p>
+            <p>"Questa piccola camera sembra essere stata un tempo una sala di guardia o un deposito. Le pareti sono di pietra nuda, umida per l'infiltrazione d'acqua. Sul muro sud si trova una massiccia porta di ferro, sigillata e con un buco della serratura ben visibile. La porta sembra integra, a differenza del resto del castello."</p>
+        </div>
+
+        <h3>La Porta Chiusa</h3>
+        <ul>
+            <li><strong>Materiale:</strong> Ferro rinforzato</li>
+            <li><strong>Serratura:</strong> Serratura a chiave (la chiave è nella cassaforte dell'Area 4)</li>
+            <li><strong>CD 20 Scassinare Serrature:</strong> Può essere aperta con attrezzi da ladro (molto difficile)</li>
+            <li><strong>CA 19, 27 PF:</strong> Può essere sfondata, ma fa molto rumore (allerta le creature nelle altre stanze)</li>
+        </ul>
+
+        <h3>Cosa C'è Dietro la Porta</h3>
+        <p>La porta conduce a una <strong>Camera Segreta</strong> (Area 2-Segreta):</p>
+        <div class="read-aloud">
+            <p><strong>Box di Lettura:</strong></p>
+            <p>"Oltre la porta si apre una piccola camera ottagonale. Al centro, su un piedistallo di marmo, giace un libro rilegato in pelle scura con una gemma di diamante incastonata nella copertina. L'aria qui è strana, carica di energia magica. Il libro sembra intatto, come se il tempo non lo avesse toccato."</p>
+        </div>
+
+        <h3>Il Nakta (Tesoro Principale)</h3>
+        <p>Questo è il <strong>Nakta</strong>, il libro delle profezie.</p>
+        <div class="treasure-box">
+            <ul>
+                <li><strong>Aspetto:</strong> Libro rilegato in pelle nera con diamante sulla copertina</li>
+                <li><strong>Peso:</strong> 1,5 kg</li>
+                <li><strong>Valore:</strong> 500 mo (per collezionisti) / inestimabile (per studiosi)</li>
+                <li><strong>Proprietà Magica:</strong>
+                    <ul>
+                        <li>Una volta al giorno, il possessore può consultare il libro e ricevere un indizio criptico sul futuro immediato (equivalente a <em>Augury</em>)</li>
+                        <li>Il DM fornisce un indizio in forma di profezia enigmatica</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <h4>Trappola Magica (Opzionale)</h4>
+        <ul>
+            <li><strong>CD 15 Indagare:</strong> Notano rune magiche sul piedistallo</li>
+            <li><strong>CD 13 Arcano:</strong> Le rune si attivano se il libro viene rimosso bruscamente</li>
+            <li><strong>Effetto:</strong> Se il libro viene preso senza disattivare le rune (CD 13 Arcano per disattivarle), un'<strong>onda di energia</strong> esplode (ogni creatura nella stanza: TS Destrezza CD 12, 2d6 danni da forza, dimezzati se superato)</li>
+        </ul>
+
+        <hr class="divider">
+
+        <h2>Area 3: Camera con Mosaico di Pipistrello</h2>
+
+        <h3>Descrizione Generale</h3>
+        <div class="read-aloud">
+            <p><strong>Box di Lettura:</strong></p>
+            <p>"Questa camera era probabilmente una sala cerimoniale. Il soffitto, sorprendentemente intatto, è decorato con un elaborato mosaico raffigurante un grande pipistrello stilizzato circondato da simboli arcani. Le ali del pipistrello si estendono per tutta la volta, e gli occhi sono rappresentati da due piccole gemme rosse che sembrano brillare debolmente. Il pavimento è coperto da polvere e detriti."</p>
+        </div>
+
+        <h3>Dettagli Esplorabili</h3>
+        <ul>
+            <li><strong>Il Mosaico:</strong>
+                <ul>
+                    <li><strong>CD 10 Indagare:</strong> Il mosaico è ben conservato, le gemme sugli occhi sono rubini (10 mo ciascuno)</li>
+                    <li><strong>CD 15 Arcano:</strong> Riconoscono simboli legati alla divinazione e ai sogni profetici</li>
+                    <li><strong>Rimozione gemme:</strong> Richiede un'<strong>arrampicata</strong> (CD 12 Atletica) o un modo creativo per raggiungerle. Se rimosse, il mosaico non ha effetti magici</li>
+                </ul>
+            </li>
+            <li><strong>Detriti:</strong> Rovistare nei detriti richiede 10 minuti
+                <ul>
+                    <li><strong>CD 12 Indagare:</strong> Trovano 2d6 monete d'argento e un piccolo idolo di pietra di Savras (valore: 5 mo)</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>Incontro: 1 Spectator</h3>
+        <p>Un <strong>Spectator</strong> (MM pag. 30) fluttua dalla camera nord, attratto dai rumori.</p>
+        <div class="read-aloud">
+            <p><strong>Box di Lettura (quando appare):</strong></p>
+            <p>"Una sfera fluttuante delle dimensioni di una zucca emerge dall'ombra. Il suo corpo è coperto da una pelle coriacea grigia, e quattro piccoli occhi su peduncoli si muovono indipendentemente, scrutando ognuno di voi. Un grande occhio centrale si apre, fissandovi con un'intelligenza aliena. 'Intrusi... questo dominio ora appartiene a noi... partite o perite...'"</p>
+        </div>
+
+        <h4>Tattica dello Spectator</h4>
+        <ul>
+            <li>Usa <em>Raggio di Confusione</em> per dividere il gruppo</li>
+            <li>Mantiene la distanza fluttuando</li>
+            <li>Usa <em>Raggio Paralizzante</em> sui guerrieri in mischia</li>
+            <li>Se ridotto sotto 10 PF, tenta di fuggire</li>
+        </ul>
+
+        <h4>Negoziazione (opzionale)</h4>
+        <ul>
+            <li>Lo Spectator può essere convinto a lasciarli passare con una prova di <strong>Persuasione CD 15</strong> o <strong>Intimidazione CD 17</strong></li>
+            <li>Accetta di andarsene se i PG promettono di lasciare "il tesoro della grande sala" (la cassaforte in Area 4)</li>
+        </ul>
+
+        <hr class="divider">
+
+        <h2>Area 4: Grande Sala con Cassaforte Meccanica</h2>
+
+        <h3>Descrizione Generale</h3>
+        <div class="read-aloud">
+            <p><strong>Box di Lettura:</strong></p>
+            <p>"Questa è la sala più grande del castello. Le pareti sono decorate con affreschi sbiaditi che raffigurano scene di divinazione: sacerdoti che leggono le stelle, oracoli che guardano in sfere di cristallo. Al centro della parete nord si trova una massiccia cassaforte meccanica, alta circa 2 metri, con intricati ingranaggi visibili attraverso piccole fessure. Sulla sua superficie sono incise rune arcane."</p>
+        </div>
+
+        <h3>La Cassaforte Meccanica</h3>
+        <ul>
+            <li><strong>Aspetto:</strong> Grande cassaforte di metallo con meccanismo a ingranaggi visibili</li>
+            <li><strong>Apertura Standard:</strong> CD 18 Scassinare Serrature (molto difficile, richiede attrezzi da ladro e tempo)</li>
+        </ul>
+
+        <h4>Puzzle della Cassaforte (Opzionale)</h4>
+        <p>Esaminando la cassaforte (<strong>CD 12 Indagare</strong>), i PG notano che ci sono <strong>4 leve</strong> numerate con simboli:</p>
+        <ul>
+            <li>Leva I: Sole</li>
+            <li>Leva II: Luna</li>
+            <li>Leva III: Stella</li>
+            <li>Leva IV: Occhio</li>
+        </ul>
+
+        <p><strong>Indizio:</strong> Un'iscrizione sulla cassaforte recita: <em>"Prima la luce del giorno, poi quella della notte, infine ciò che tutto vede"</em></p>
+
+        <p><strong>Soluzione:</strong> Tirare le leve nell'ordine: I (Sole), II (Luna), IV (Occhio). La leva III (Stella) non va toccata.</p>
+
+        <ul>
+            <li><strong>Successo:</strong> La cassaforte si apre</li>
+            <li><strong>Fallimento:</strong> Se l'ordine è sbagliato, la cassaforte emette un <strong>dardo avvelenato</strong> contro chi ha tentato l'apertura (Attacco a distanza +5, 1d4+3 perforante + TS Costituzione CD 12 o 2d4 veleno)</li>
+        </ul>
+
+        <h3>Contenuto della Cassaforte</h3>
+        <div class="treasure-box">
+            <p>All'interno si trovano:</p>
+            <ul>
+                <li><strong>La Chiave di Ferro</strong> (apre la porta dell'Area 2 - Camera Segreta)</li>
+                <li><strong>75 mo</strong></li>
+                <li><strong>1 Pozione di Arrampicata</strong> (DMG)</li>
+                <li><strong>1 Pergamena di Incantesimo:</strong> <em>Identify</em> (1° livello)</li>
+                <li>Un piccolo <strong>diamante</strong> (50 mo)</li>
+            </ul>
+        </div>
+
+        <h3>Incontro: 2 Zombie</h3>
+        <p>Quando i PG aprono la cassaforte, 2 <strong>Zombie</strong> (MM pag. 316) emergono dai detriti laterali, risvegliati dal rumore.</p>
+        <div class="read-aloud">
+            <p><strong>Box di Lettura:</strong></p>
+            <p>"Il rumore della cassaforte che si apre echeggia nella sala. Improvvisamente, dai cumuli di macerie agli angoli della stanza, emergono due figure decomposte. I loro occhi vuoti vi fissano mentre si trascinano verso di voi con movimenti scattanti, le bocche aperte in un silenzioso ringhio."</p>
+        </div>
+        <p><strong>Tattica:</strong> Gli zombie attaccano la creatura più vicina. Sono lenti (velocità 6 m) ma resistenti.</p>
+
+        <hr class="divider">
+
+        <h2>Diagramma di Flusso dell'Avventura</h2>
+        <div class="flowchart">
+[INIZIO - Phandalin]
+        |
+        v
+[Hook: Sildar Hallwinter offre la missione]
+        |
+        v
+[Viaggio al Castello - 3 ore]
+        |
+        v
+[AREA 1: Ingresso]
+  - Trovare lo Scheletro dello Sciamano
+  - Leggere il Diario (indizio sulla camera segreta)
+  - Combattimento: 3 Scheletri
+        |
+        v
+[SCELTA: Quale area esplorare?]
+    /              \
+   /                \
+[AREA 3]          [AREA 4]
+Mosaico           Cassaforte
+    |                |
+    v                v
+Spectator       2 Zombie + Chiave
+    |                |
+    \                /
+     \              /
+      v            v
+    [AREA 2: Porta Chiusa]
+    (serve la chiave dall'Area 4)
+              |
+              v
+    [Camera Segreta: IL NAKTA]
+    (attenzione alla trappola!)
+              |
+              v
+    [RITORNO A PHANDALIN]
+              |
+              v
+    [Ricompensa da Sildar]
+              |
+              v
+         [FINE]
+        </div>
+
+        <h3>Note sul Flusso</h3>
+        <ol>
+            <li>I PG iniziano sempre dall'<strong>Area 1</strong></li>
+            <li>Possono esplorare le <strong>Aree 3 e 4</strong> in qualsiasi ordine</li>
+            <li>Per accedere all'<strong>Area 2</strong> (Camera Segreta) serve la chiave dall'<strong>Area 4</strong></li>
+            <li>Il <strong>Nakta</strong> si trova nella Camera Segreta dell'Area 2</li>
+        </ol>
+
+        <hr class="divider">
+
+        <h2>PNG Principali</h2>
+
+        <h3>Sildar Hallwinter</h3>
+        <div class="stat-block">
+            <ul>
+                <li><strong>Razza/Classe:</strong> Umano, Guerriero 4° livello</li>
+                <li><strong>Allineamento:</strong> Legale Buono</li>
+                <li><strong>Aspetto:</strong> Uomo sulla cinquantina, capelli grigi, corazza ben tenuta</li>
+                <li><strong>Personalità:</strong> Professionale, serio ma giusto. Rispetta chi dimostra coraggio</li>
+                <li><strong>Motivazioni:</strong> Proteggere Phandalin e la Costa della Spada dalle minacce</li>
+                <li><strong>Informazioni:</strong> Conosce le leggende locali ma non dettagli specifici sul castello</li>
+                <li><strong>Ricompensa:</strong> 100 mo per il recupero del Nakta + 20 mo per ogni informazione rilevante sugli occupanti del castello</li>
+            </ul>
+        </div>
+
+        <h3>Lo Sciamano (Morto)</h3>
+        <div class="stat-block">
+            <ul>
+                <li><strong>Razza:</strong> Umano</li>
+                <li><strong>Ruolo Passato:</strong> Custode dell'Oracolo, Chierico di Savras</li>
+                <li><strong>Storia:</strong> Morto durante l'invasione orchesca 300 anni fa, cercando di fuggire con il rapier e alcune ricchezze</li>
+                <li><strong>Rilevanza:</strong> Il suo diario fornisce l'indizio chiave per trovare il Nakta</li>
+            </ul>
+        </div>
+
+        <hr class="divider">
+
+        <h2>Mostri e Avversari</h2>
+
+        <div class="stat-block">
+            <h4>Scheletro (3)</h4>
+            <table>
+                <tr>
+                    <th>Caratteristica</th>
+                    <th>Valore</th>
+                </tr>
+                <tr><td>Classe Armatura</td><td>13 (brandelli d'armatura)</td></tr>
+                <tr><td>Punti Ferita</td><td>13 (2d8+4)</td></tr>
+                <tr><td>Velocità</td><td>9 m</td></tr>
+            </table>
+            <p><strong>Caratteristiche:</strong> FOR 10 (+0), DES 14 (+2), COS 15 (+2), INT 6 (-2), SAG 8 (-1), CAR 5 (-3)</p>
+            <p><strong>Vulnerabilità ai Danni:</strong> contundenti</p>
+            <p><strong>Immunità ai Danni:</strong> veleno</p>
+            <p><strong>Immunità alle Condizioni:</strong> esaurimento, avvelenato</p>
+            <p><strong>Azioni:</strong></p>
+            <ul>
+                <li><strong>Spada corta:</strong> Attacco con arma da mischia: +4 al tiro per colpire, portata 1,5 m, un bersaglio. Colpito: 5 (1d6+2) danni perforanti</li>
+                <li><strong>Arco corto:</strong> Attacco con arma a distanza: +4 al tiro per colpire, gittata 24/96 m, un bersaglio. Colpito: 5 (1d6+2) danni perforanti</li>
+            </ul>
+        </div>
+
+        <div class="stat-block">
+            <h4>Spectator (1)</h4>
+            <table>
+                <tr>
+                    <th>Caratteristica</th>
+                    <th>Valore</th>
+                </tr>
+                <tr><td>Classe Armatura</td><td>14 (armatura naturale)</td></tr>
+                <tr><td>Punti Ferita</td><td>39 (6d8+12)</td></tr>
+                <tr><td>Velocità</td><td>0 m, volare 9 m (levitazione)</td></tr>
+            </table>
+            <p><strong>Caratteristiche:</strong> FOR 8 (-1), DES 14 (+2), COS 14 (+2), INT 13 (+1), SAG 14 (+2), CAR 11 (+0)</p>
+            <p><strong>Abilità:</strong> Percezione +6</p>
+            <p><strong>Sensi:</strong> Scurovisione 36 m, Percezione passiva 16</p>
+            <p><strong>Linguaggi:</strong> Sottocomune, telepatia 36 m</p>
+            <p><strong>Azioni:</strong></p>
+            <ul>
+                <li><strong>Morso:</strong> Attacco con arma da mischia: +1 al tiro per colpire, portata 1,5 m, un bersaglio. Colpito: 2 (1d6-1) danni perforanti</li>
+                <li><strong>Raggi Oculari:</strong> Lo Spectator spara due raggi magici a caso (tira 1d4 per ogni raggio):
+                    <ol>
+                        <li><strong>Raggio di Confusione:</strong> TS Saggezza CD 13 o confusione</li>
+                        <li><strong>Raggio Paralizzante:</strong> TS Costituzione CD 13 o paralizzato per 1 minuto</li>
+                        <li><strong>Raggio della Paura:</strong> TS Saggezza CD 13 o spaventato per 1 minuto</li>
+                        <li><strong>Raggio della Ferita:</strong> +5 al tiro per colpire, 16 (3d10) danni necrotici</li>
+                    </ol>
+                </li>
+            </ul>
+            <p><strong>Reazioni:</strong></p>
+            <ul>
+                <li><strong>Riflesso Magico:</strong> Se lo Spectator supera un TS contro un incantesimo, può redirigere l'incantesimo verso un'altra creatura entro 9 m</li>
+            </ul>
+        </div>
+
+        <div class="stat-block">
+            <h4>Zombie (2)</h4>
+            <table>
+                <tr>
+                    <th>Caratteristica</th>
+                    <th>Valore</th>
+                </tr>
+                <tr><td>Classe Armatura</td><td>8</td></tr>
+                <tr><td>Punti Ferita</td><td>22 (3d8+9)</td></tr>
+                <tr><td>Velocità</td><td>6 m</td></tr>
+            </table>
+            <p><strong>Caratteristiche:</strong> FOR 13 (+1), DES 6 (-2), COS 16 (+3), INT 3 (-4), SAG 6 (-2), CAR 5 (-3)</p>
+            <p><strong>Tiri Salvezza:</strong> Saggezza +0</p>
+            <p><strong>Immunità ai Danni:</strong> veleno</p>
+            <p><strong>Immunità alle Condizioni:</strong> avvelenato</p>
+            <p><strong>Sensi:</strong> Scurovisione 18 m, Percezione passiva 8</p>
+            <p><strong>Capacità Speciali:</strong></p>
+            <ul>
+                <li><strong>Tenacia Non Morta:</strong> Se ridotto a 0 PF, TS Costituzione CD 5 + danni subiti. Se superato, resta a 1 PF (non funziona con danni radiosi o colpi critici)</li>
+            </ul>
+            <p><strong>Azioni:</strong></p>
+            <ul>
+                <li><strong>Schianto:</strong> Attacco con arma da mischia: +3 al tiro per colpire, portata 1,5 m, un bersaglio. Colpito: 4 (1d6+1) danni contundenti</li>
+            </ul>
+        </div>
+
+        <hr class="divider">
+
+        <h2>Tesori e Ricompense</h2>
+
+        <h3>Tesori nell'Avventura</h3>
+        <div class="treasure-box">
+            <p><strong>Area 1</strong> (Scheletro dello Sciamano):</p>
+            <ul>
+                <li>Rapier (50 mo)</li>
+                <li>15 mo, 23 ma</li>
+                <li>1 Pozione di Guarigione (2d4+2 PF)</li>
+                <li>Diario (chiave narrativa)</li>
+            </ul>
+
+            <p><strong>Area 2</strong> (Camera Segreta):</p>
+            <ul>
+                <li><strong>Il Nakta</strong> (valore inestimabile, oggetto della missione)</li>
+            </ul>
+
+            <p><strong>Area 3</strong> (Mosaico):</p>
+            <ul>
+                <li>2 rubini (10 mo ciascuno)</li>
+                <li>2d6 ma (rovistando nei detriti)</li>
+                <li>Idolo di pietra (5 mo)</li>
+            </ul>
+
+            <p><strong>Area 4</strong> (Cassaforte):</p>
+            <ul>
+                <li>Chiave di Ferro (apre Area 2)</li>
+                <li>75 mo</li>
+                <li>1 Pozione di Arrampicata</li>
+                <li>Pergamena: <em>Identify</em></li>
+                <li>Diamante (50 mo)</li>
+            </ul>
+
+            <p><strong>Totale Tesori:</strong></p>
+            <ul>
+                <li><strong>Monete:</strong> ~95 mo + 25-35 ma</li>
+                <li><strong>Gemme:</strong> ~75 mo valore</li>
+                <li><strong>Oggetti Magici:</strong> Nakta, 2 Pozioni, 1 Pergamena</li>
+                <li><strong>Armi:</strong> Rapier</li>
+            </ul>
+        </div>
+
+        <h3>Ricompensa da Sildar</h3>
+        <ul>
+            <li><strong>100 mo</strong> per la consegna del Nakta</li>
+            <li><strong>20 mo</strong> per le informazioni sullo Spectator e gli non-morti</li>
+            <li><strong>Bonus:</strong> Se hanno riportato anche altri artefatti o informazioni particolarmente utili, Sildar può offrire un <strong>+10% sulla ricompensa</strong></li>
+        </ul>
+
+        <h3>Esperienza</h3>
+        <table>
+            <tr>
+                <th>Incontro/Obiettivo</th>
+                <th>XP</th>
+            </tr>
+            <tr><td>3 Scheletri</td><td>150 XP (50 ciascuno)</td></tr>
+            <tr><td>1 Spectator</td><td>200 XP</td></tr>
+            <tr><td>2 Zombie</td><td>100 XP (50 ciascuno)</td></tr>
+            <tr><td>Recupero del Nakta</td><td>100 XP</td></tr>
+            <tr><td>Esplorazione completa</td><td>50 XP</td></tr>
+            <tr><td>Puzzle cassaforte</td><td>25 XP</td></tr>
+            <tr><td><strong>TOTALE</strong></td><td><strong>625 XP</strong></td></tr>
+        </table>
+        <p><strong>Per 4 giocatori:</strong> ~156 XP ciascuno<br>
+        <strong>Per 5 giocatori:</strong> ~125 XP ciascuno</p>
+
+        <hr class="divider">
+
+        <h2>Conseguenze e Sviluppi Futuri</h2>
+
+        <h3>Se i PG Hanno Successo</h3>
+        <ul>
+            <li>Sildar è molto soddisfatto e li considera affidabili per future missioni</li>
+            <li>Il Nakta può essere:
+                <ul>
+                    <li>Consegnato all'Alleanza dei Lord (ricompensa completa)</li>
+                    <li>Studiato dal gruppo (accesso a <em>Augury</em> 1/giorno, ma niente ricompensa)</li>
+                    <li>Venduto a un collezionista o mago (500 mo, ma Sildar sarà deluso)</li>
+                </ul>
+            </li>
+            <li>L'Alleanza dei Lord chiede periodicamente ai PG di consultare il Nakta per questioni importanti</li>
+        </ul>
+
+        <h3>Se i PG Falliscono o Fuggono</h3>
+        <ul>
+            <li>Lo Spectator e gli non-morti rimangono una minaccia</li>
+            <li>Sildar potrebbe assumere altri avventurieri</li>
+            <li>Il Nakta rimane nascosto</li>
+        </ul>
+
+        <h3>Hook per Avventure Future</h3>
+        <ol>
+            <li><strong>Una Profezia Oscura:</strong> Consultando il Nakta, i PG ricevono una profezia inquietante che preannuncia un pericolo imminente per Phandalin</li>
+            <li><strong>Il Ritorno degli Spectator:</strong> Lo Spectator sconfitto era solo un avanguardia. Altri della sua specie cercano il castello</li>
+            <li><strong>L'Ordine di Savras:</strong> I discendenti dell'ordine che costruì il castello chiedono la restituzione del Nakta</li>
+            <li><strong>L'Oracolo Spezzato:</strong> Frammenti del cristallo dell'Oracolo originale sono sparsi nella regione. Riunirli potrebbe ripristinare il suo potere</li>
+        </ol>
+
+        <hr class="divider">
+
+        <h2>Suggerimenti per il DM</h2>
+
+        <h3>Regolare la Difficoltà</h3>
+        <div class="warning">
+            <p><strong>Per gruppi più deboli:</strong></p>
+            <ul>
+                <li>Riduci i PF dei mostri del 25%</li>
+                <li>Lo Spectator può essere convinto a fuggire più facilmente (CD 13 invece di 15)</li>
+                <li>Rimuovi 1 Zombie dall'Area 4</li>
+            </ul>
+        </div>
+
+        <div class="info-box">
+            <p><strong>Per gruppi più forti:</strong></p>
+            <ul>
+                <li>Aggiungi 1 Scheletro all'Area 1</li>
+                <li>Lo Spectator combatte fino alla morte</li>
+                <li>Aggiungi una trappola a pozzo coperto (CD 15 Percezione, 2d6 danni da caduta) in un corridoio</li>
+            </ul>
+        </div>
+
+        <h3>Atmosfera</h3>
+        <ul>
+            <li>Descrivi il castello come malinconico e dimenticato</li>
+            <li>Sottolinea i segni della battaglia antica (ossa, armi arrugginite)</li>
+            <li>Usa i rumori ambientali per creare tensione: vento che ulula, legno che scricchiola, acqua che gocciola</li>
+        </ul>
+
+        <h3>Ritmo</h3>
+        <ul>
+            <li><strong>Atto 1</strong> (30 min): Hook, viaggio, Area 1</li>
+            <li><strong>Atto 2</strong> (90 min): Esplorazione Aree 3-4, combattimenti principali</li>
+            <li><strong>Atto 3</strong> (60 min): Apertura Area 2, recupero Nakta, ritorno e ricompensa</li>
+        </ul>
+
+        <h3>Note sui PNG</h3>
+        <ul>
+            <li><strong>Sildar</strong> dovrebbe essere interpretato come un mentore professionale ma non invadente</li>
+            <li>Se i PG consultano il Nakta durante l'avventura, fornisci un indizio criptico ma utile:
+                <ul>
+                    <li><em>"Il passato guarda dal soffitto, gli occhi rossi vedono il valore nascosto"</em> (riferimento al mosaico)</li>
+                    <li><em>"Ciò che vedi aprirà ciò che cerchi"</em> (riferimento alla chiave nella cassaforte)</li>
+                </ul>
+            </li>
+        </ul>
+
+        <hr class="divider">
+
+        <h2>Appendice A: Handout</h2>
+
+        <h3>Handout 1: Estratto del Diario dello Sciamano</h3>
+        <p><em>(Da consegnare ai giocatori quando trovano il diario)</em></p>
+        <div class="handout">
+            <p>...gli orchessi si avvicinano. L'Oracolo ha previsto la caduta, 
+            ma non abbiamo ascoltato. Il Nakta deve essere nascosto nella 
+            camera segreta dietro la grande porta. Solo la chiave della 
+            cassaforte potrà aprirla...</p>
+            <p>Ho fallito nel proteggere questo luogo sacro. Che Savras 
+            perdoni la mia debolezza. Forse, un giorno, qualcuno degno 
+            troverà il Nakta e userà la sua saggezza per un bene maggiore...</p>
+        </div>
+
+        <h3>Handout 2: Iscrizione sulla Cassaforte</h3>
+        <p><em>(Da mostrare quando esaminano la cassaforte)</em></p>
+        <div class="handout">
+            <p style="text-align: center; border: 2px solid #8b4513; padding: 15px;">
+                <strong>Prima la luce del giorno,<br>
+                Poi quella della notte,<br>
+                Infine ciò che tutto vede</strong>
+            </p>
+            <p style="text-align: center; margin-top: 15px;">
+                [Leva I: ☼]  [Leva II: ☾]<br>
+                [Leva III: ★]  [Leva IV: ⦿]
+            </p>
+        </div>
+
+        <hr class="divider">
+
+        <h2>Appendice B: Mappe</h2>
+        <p><em>(Vedi immagine allegata: castle_of_the_diamond_oracle.png)</em></p>
+
+        <h3>Legenda Mappa</h3>
+        <ol>
+            <li><strong>Ingresso e Sala dello Sciamano:</strong> Resti di uno sciamano, oro e un rapier nelle sue mani</li>
+            <li><strong>Piccola Camera:</strong> Porta chiusa che conduce alla camera segreta</li>
+            <li><strong>Camera del Mosaico:</strong> Mosaico di pipistrello sul soffitto</li>
+            <li><strong>Grande Sala:</strong> Cassaforte meccanica con chiave</li>
+        </ol>
+
+        <hr class="divider">
+
+        <h2>Conclusione</h2>
+        <p><em>Il Castello dell'Oracolo di Diamante</em> offre un'avventura compatta ma ricca di esplorazione, combattimenti tattici e un mistero da risolvere. Il recupero del Nakta rappresenta solo l'inizio: le profezie contenute nel tomo potrebbero guidare i personaggi verso avventure future sempre più grandi.</p>
+
+        <p style="text-align: center; font-style: italic; margin-top: 30px;">
+            <strong>Che Savras illumini il loro cammino!</strong>
+        </p>
+
+        <hr class="divider">
+
+        <p style="text-align: center; margin-top: 40px;">
+            <strong>Fine dell'Avventura</strong><br>
+            <em>Creata per D&D 5a Edizione</em><br>
+            <em>Per personaggi di 1° livello</em><br>
+            <em>Durata: 3 ore circa</em>
+        </p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Consegna del Formaggio - Avventura D&D 5e</title>
+    <style>
+        @media print {
+            body { margin: 0; padding: 0; }
+            .page-break { page-break-before: always; }
+            header { page-break-after: avoid; }
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 210mm;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        
+        header {
+            text-align: center;
+            border-bottom: 3px solid #8b0000;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            color: #8b0000;
+            margin-bottom: 10px;
+            font-family: 'Palatino', serif;
+        }
+        
+        h2 {
+            font-size: 1.8em;
+            color: #4a0000;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+        }
+        
+        h3 {
+            font-size: 1.4em;
+            color: #6a0000;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        
+        h4 {
+            font-size: 1.2em;
+            color: #8b0000;
+            margin-top: 15px;
+            margin-bottom: 8px;
+        }
+        
+        .subtitle {
+            font-size: 1.2em;
+            color: #666;
+            font-style: italic;
+        }
+        
+        .info-box {
+            background: #f9f9f9;
+            border-left: 4px solid #8b0000;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        
+        .read-aloud {
+            background: #e8f4f8;
+            border: 2px solid #3498db;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        
+        .stat-block {
+            background: #fff9e6;
+            border: 2px solid #d4af37;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        
+        .npc-box {
+            background: #f0e6ff;
+            border: 2px solid #9370db;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .treasure-box {
+            background: #fff9e6;
+            border: 2px solid #ffd700;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .diagram {
+            background: #f5f5f5;
+            border: 1px dashed #666;
+            padding: 15px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            white-space: pre;
+        }
+        
+        ul, ol {
+            margin-left: 30px;
+            margin-bottom: 15px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        strong {
+            color: #8b0000;
+        }
+        
+        .checklist {
+            list-style-type: none;
+            margin-left: 0;
+        }
+        
+        .checklist li:before {
+            content: "☐ ";
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        th {
+            background: #8b0000;
+            color: white;
+        }
+        
+        .page-break {
+            margin-top: 40px;
+        }
+        
+        hr {
+            border: none;
+            border-top: 2px solid #8b0000;
+            margin: 30px 0;
+        }
+        
+        .icon {
+            display: inline-block;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🧀 La Consegna del Formaggio</h1>
+            <p class="subtitle">Avventura One-Shot per D&D 5a Edizione</p>
+        </header>
+        
+        <img src="img/copertina_negozio_formaggi.png" alt="Negozio di formaggi" style="max-height: 400px;">
+        
+        <hr>
+        
+        <div class="info-box">
+            <h2>📋 Informazioni Generali</h2>
+            <p><strong>Durata:</strong> 3 ore (4-5 scene)</p>
+            <p><strong>Livello personaggi:</strong> 1</p>
+            <p><strong>Giocatori:</strong> 4-5 + Dungeon Master</p>
+            <p><strong>Ambientazione:</strong> Phandalin, Forgotten Realms</p>
+            <p><strong>Temi:</strong> Investigazione leggera, combattimento, problem solving</p>
+            
+            <h4>Bilanciamento:</h4>
+            <ul>
+                <li>Investigazione: 3/10</li>
+                <li>Combattimento: 4/10</li>
+                <li>Enigmi/Abilità: 3/10</li>
+            </ul>
+        </div>
+        
+        <h2>🎯 Sinossi</h2>
+        <p>I personaggi vengono ingaggiati da Elsa Greenbarrel, proprietaria della Casera di Phandalin, per consegnare un carico prezioso di formaggi stagionati al Sindaco di Neverwinter per un banchetto importante. Quella che doveva essere una semplice consegna si trasforma in un'avventura quando i PG scoprono che il carro è stato assaltato da creature inaspettate: un gruppo di Kobold golosi che hanno sviluppato un'ossessione per il formaggio stagionato.</p>
+        
+        <div class="page-break"></div>
+        
+        <h2>🎭 PNG Principali</h2>
+        
+        <div class="npc-box">
+            <h3>Elsa Greenbarrel</h3>
+            <p><strong>Ruolo:</strong> Proprietaria della Casera di Phandalin</p>
+            <p><strong>Razza:</strong> Halfling</p>
+            <p><strong>Allineamento:</strong> Legale Buono</p>
+            
+            <p><strong>Descrizione:</strong> Una halfling robusta sulla cinquantina, con le mani callose dal lavoro e un sorriso sempre pronto. Indossa un grembiule macchiato di caglio e ha i capelli raccolti in una crocchia pratica.</p>
+            
+            <p><strong>Personalità:</strong></p>
+            <ul>
+                <li>Orgogliosa del suo lavoro e dei suoi formaggi</li>
+                <li>Generosa ma pratica</li>
+                <li>Parla con entusiasmo dei suoi prodotti</li>
+            </ul>
+            
+            <div class="read-aloud">
+                <p><strong>Dialogo di introduzione:</strong></p>
+                <p>"Ah, finalmente! Siete gli avventurieri che cercavo! Vedete, ho un problema... anzi, un'opportunità! Il Sindaco di Neverwinter ha ordinato i miei migliori formaggi per un banchetto, ma il mio solito trasportatore si è ammalato. Pagate voi 50 monete d'oro per portare il carico sano e salvo a Neverwinter? È a solo mezzo giorno di viaggio, e i miei formaggi sono ben confezionati!"</p>
+            </div>
+        </div>
+        
+        <div class="npc-box">
+            <h3>Glim "Puzzolente"</h3>
+            <p><strong>Ruolo:</strong> Leader dei Kobold ladri di formaggio</p>
+            <p><strong>Razza:</strong> Kobold</p>
+            <p><strong>Allineamento:</strong> Caotico Neutrale</p>
+            
+            <p><strong>Descrizione:</strong> Un kobold più grosso della media, con squame marrone-rossastre e un odore pungente di formaggio andato a male. Indossa un collare fatto di cortecce di formaggio stagionato.</p>
+            
+            <p><strong>Personalità:</strong></p>
+            <ul>
+                <li>Astuto ma vigliacco</li>
+                <li>Ossessionato dal formaggio</li>
+                <li>Disposto a negoziare se messo alle strette</li>
+            </ul>
+        </div>
+        
+        <div class="page-break"></div>
+        
+        <h2>📍 Struttura dell'Avventura</h2>
+        
+        <div class="diagram">INIZIO: Phandalin → Casera di Elsa
+         ↓
+SCENA 1: L'Incarico → Accettare la missione
+         ↓
+SCENA 2: La Partenza → Viaggio verso Neverwinter
+         ↓
+SCENA 3: Il Carro Rovesciato → [INVESTIGAZIONE]
+         ↓
+    Prove di traccia/Sopravvivenza
+         ↓
+SCENA 4: La Tana dei Kobold → [SCELTA]
+         ├→ Negoziare con Kobold
+         ├→ Infiltrazione furtiva
+         └→ Combattimento diretto
+         ↓
+SCENA 5: Il Recupero → [COMBATTIMENTO o DIPLOMAZIA]
+         ↓
+CONCLUSIONE: Ritorno e Ricompensa</div>
+        
+        <div class="page-break"></div>
+        
+        <h2>🎬 Scene Dettagliate</h2>
+        
+        <h3>SCENA 1: L'Incarico alla Casera</h3>
+        <p><strong>Luogo:</strong> Casera di Elsa Greenbarrel, Phandalin</p>
+        <p><strong>Durata:</strong> 15-20 minuti</p>
+        
+        <div class="read-aloud">
+            <p><strong>Box Testuale da Leggere:</strong></p>
+            <p><em>Entrando nella Casera di Elsa, vi avvolge un profumo intenso e pungente di formaggio stagionato. Scaffali di legno lungo le pareti sostengono dozzine di forme di formaggio di varie dimensioni, alcune coperte di cera rossa, altre con muffe verdastre che testimoniano la loro lunga stagionatura. Al centro della stanza, una halfling robusta sta confezionando con cura una grande forma in un panno di lino.</em></p>
+            <p><em>Alzando lo sguardo, vi sorride: "Ah, finalmente! Siete gli avventurieri che cercavo!"</em></p>
+        </div>
+        
+        <h4>Sviluppo:</h4>
+        <ol>
+            <li>Elsa spiega la situazione e offre 50 mo per la consegna</li>
+            <li>I PG possono negoziare (CD 12 Persuasione per ottenere 60 mo)</li>
+            <li>Elsa carica il carro con 12 forme di formaggio, del valore complessivo di 200 mo</li>
+        </ol>
+        
+        <div class="page-break"></div>
+        
+        <h3>SCENA 2: La Partenza</h3>
+        <p><strong>Luogo:</strong> Strada da Phandalin a Neverwinter</p>
+        <p><strong>Durata:</strong> 10 minuti</p>
+        
+        <img src="img/scena_1_phandalin.png" alt="Strada di Phandalin" style="max-height: 300px;">
+        
+        <div class="read-aloud">
+            <p><strong>Box Testuale da Leggere:</strong></p>
+            <p><em>La strada che porta a Neverwinter si snoda dolcemente tra campi coltivati e piccoli boschi. Il sole del mattino è piacevole, e Toby il mulo procede con passo sicuro, trascinando il carro carico di formaggi. L'odore pungente dei formaggi stagionati vi accompagna, impossibile da ignorare.</em></p>
+            <p><em>Dopo circa un'ora di viaggio, la strada entra in una zona più boscosa. Gli alberi si infittiscono ai lati, creando zone d'ombra. È in questo punto che Toby si ferma improvvisamente, nitrendo nervosamente.</em></p>
+        </div>
+        
+        <h4>Prove di Abilità:</h4>
+        <ul>
+            <li><strong>Percezione Passiva 12+:</strong> I PG notano tracce di lotta sulla strada</li>
+            <li><strong>Percezione Attiva CD 10:</strong> Vedono un carro rovesciato 30 metri avanti</li>
+            <li><strong>Percezione Attiva CD 15:</strong> Notano piccole impronte di kobold nel bosco</li>
+            <li><strong>Addestrare Animali CD 10:</strong> Calmare Toby</li>
+        </ul>
+        
+        <div class="page-break"></div>
+        
+        <h3>SCENA 3: Il Carro Rovesciato - INVESTIGAZIONE</h3>
+        <p><strong>Luogo:</strong> Strada, zona boscosa</p>
+        <p><strong>Durata:</strong> 20-30 minuti</p>
+        
+        <img src="img/scena_3_carro_rovesciato.png" alt="Carro Rovesciato" style="max-height: 300px;">
+        
+        <div class="read-aloud">
+            <p><strong>Box Testuale da Leggere:</strong></p>
+            <p><em>Avvicinandovi, vedete un carro simile al vostro, rovesciato su un lato. Le ruote girano ancora lentamente. Attorno sono sparse casse rotte e, sorprendentemente, diverse forme di formaggio con morsi evidenti. Il tessuto che copriva il carico è strappato in più punti. Non c'è traccia del conducente o del mulo che trainava il carro.</em></p>
+            <p><em>Dall'interno del bosco, sentite strani versi acuti e quello che sembra il rumore di creature che masticano.</em></p>
+        </div>
+        
+        <h4>Punti d'Interesse:</h4>
+        <ul>
+            <li><strong>Il Carro:</strong> Sopravvivenza CD 12 per identificare 6-8 creature piccole</li>
+            <li><strong>I Formaggi:</strong> Investigazione CD 10 per trovare scaglie di kobold</li>
+            <li><strong>Le Tracce:</strong> Sopravvivenza CD 10 per seguirle nel bosco</li>
+        </ul>
+        
+        <div class="page-break"></div>
+        
+        <h3>SCENA 4: La Tana dei Kobold</h3>
+        <p><strong>Luogo:</strong> Piccola grotta nel bosco</p>
+        <p><strong>Durata:</strong> 30-40 minuti</p>
+        
+        <img src="img/scena_4_tana_kobold.png" alt="Tana dei Kobold" style="max-height: 300px;">
+        
+        <div class="read-aloud">
+            <p><strong>Box Testuale da Leggere:</strong></p>
+            <p><em>Le tracce vi conducono per circa venti minuti attraverso il bosco, fino a un piccolo affioramento roccioso. Tra le rocce si apre l'imboccatura di una grotta, larga abbastanza per farvi passare chinati. Un odore intenso di formaggio marcio esce dalla grotta, mescolato all'odore caratteristico dei kobold: un mix di terra umida e zolfo.</em></p>
+            <p><em>Dall'interno sentite voci acute che gracchiano in draconico, intervallate da versi di soddisfazione e rutti.</em></p>
+        </div>
+        
+        <h4>Approcci Possibili:</h4>
+        
+        <h5>A. Infiltrazione Furtiva</h5>
+        <ul>
+            <li>Furtività CD 13</li>
+            <li>Percezione CD 10 per individuare guardie</li>
+            <li><strong>Successo:</strong> Recupero senza combattimento</li>
+        </ul>
+        
+        <h5>B. Negoziazione</h5>
+        <ul>
+            <li>Persuasione CD 14 per scambio pacifico</li>
+            <li>Intimidazione CD 12 per spaventarli</li>
+            <li><strong>Successo:</strong> Kobold accettano scambio</li>
+        </ul>
+        
+        <h5>C. Combattimento Diretto</h5>
+        <p>Procede a Scena 5</p>
+        
+        <div class="page-break"></div>
+        
+        <h3>SCENA 5: Il Confronto Finale</h3>
+        <p><strong>Luogo:</strong> Camera del Deposito</p>
+        <p><strong>Durata:</strong> 30-40 minuti</p>
+        
+        <img src="img/scena_5_combattimento_kobold.png" alt="Combattimento con i Kobold" style="max-height: 300px;">
+        
+        <div class="read-aloud">
+            <p><strong>Box Testuale da Leggere:</strong></p>
+            <p><em>Irrompendo nella camera più ampia, vedete una scena quasi comica: quattro kobold sono seduti in cerchio attorno a un mucchio di forme di formaggio, alcune già mezzo mangiate. Stanno discutendo animatamente in draconico, gesticolando verso le loro prede. Al centro, un kobold più grande degli altri tiene stretto un pezzo di formaggio come fosse un tesoro.</em></p>
+            <p><em>Al vostro arrivo, tutti si girano di scatto. Il leader emette un grido acuto: "Intrusssi! Proteggere il tesssoro puzzzzolente!"</em></p>
+        </div>
+        
+        <div class="stat-block">
+            <h4>Kobold Standard</h4>
+            <p><strong>Piccolo umanoide (kobold), legale malvagio</strong></p>
+            <p><strong>CA</strong> 12 | <strong>PF</strong> 5 (2d6-2) | <strong>Velocità</strong> 9 m</p>
+            <p><strong>FOR</strong> 7 (-2) | <strong>DES</strong> 15 (+2) | <strong>COS</strong> 9 (-1)</p>
+            <p><strong>INT</strong> 8 (-1) | <strong>SAG</strong> 7 (-2) | <strong>CAR</strong> 8 (-1)</p>
+            
+            <p><strong>Sensi:</strong> Scurovisione 18 m, Percezione passiva 8</p>
+            <p><strong>Linguaggi:</strong> Comune, Draconico</p>
+            <p><strong>GS:</strong> 1/8 (25 PE)</p>
+            
+            <p><strong>Tattiche di Branco:</strong> Vantaggio agli attacchi se alleato entro 1,5 m</p>
+            <p><strong>Sensibilità alla Luce Solare:</strong> Svantaggio in luce solare diretta</p>
+            
+            <p><strong>AZIONI:</strong></p>
+            <p><strong>Pugnale:</strong> +4 al colpire, portata 1,5 m. Danni: 4 (1d4+2) perforanti</p>
+            <p><strong>Fionda:</strong> +4 al colpire, gittata 9/36 m. Danni: 4 (1d4+2) contundenti</p>
+        </div>
+        
+        <div class="stat-block">
+            <h4>Glim "Puzzolente" (Leader Kobold)</h4>
+            <p><strong>Piccolo umanoide (kobold), caotico neutrale</strong></p>
+            <p><strong>CA</strong> 13 | <strong>PF</strong> 12 (4d6-2) | <strong>Velocità</strong> 9 m</p>
+            <p><strong>FOR</strong> 8 (-1) | <strong>DES</strong> 16 (+3) | <strong>COS</strong> 10 (0)</p>
+            <p><strong>INT</strong> 10 (0) | <strong>SAG</strong> 8 (-1) | <strong>CAR</strong> 10 (0)</p>
+            
+            <p><strong>Sensi:</strong> Scurovisione 18 m, Percezione passiva 9</p>
+            <p><strong>Linguaggi:</strong> Comune, Draconico</p>
+            <p><strong>GS:</strong> 1/4 (50 PE)</p>
+            
+            <p><strong>Odore Nauseante:</strong> Creature entro 1,5 m: TS Costituzione CD 10 o svantaggio</p>
+            
+            <p><strong>AZIONI:</strong></p>
+            <p><strong>Spada Corta:</strong> +5 al colpire, portata 1,5 m. Danni: 5 (1d6+3) perforanti</p>
+            <p><strong>Lancio Formaggio Marcio:</strong> +5 al colpire, gittata 6/18 m. Danni: 3 (1d4+2) contundenti + TS Cost. CD 11 o avvelenato</p>
+        </div>
+        
+        <h4>Tattiche dei Kobold:</h4>
+        <ol>
+            <li><strong>Round 1:</strong> Glim ordina attacco mentre si ritira</li>
+            <li><strong>Round 2:</strong> Usano Tattiche di Branco sul PG più debole</li>
+            <li><strong>Round 3:</strong> Glim si arrende se sotto 6 PF</li>
+            <li><strong>Round 4:</strong> Fuggono se 2+ morti</li>
+        </ol>
+        
+        <div class="treasure-box">
+            <h4>💰 Tesoro Recuperabile:</h4>
+            <ul>
+                <li>8 forme di formaggio (delle 12 rubate, 4 mangiate)</li>
+                <li>23 monete di rame</li>
+                <li>1 gemma di quarzo (10 mo)</li>
+                <li>1 pozione di cura (2d4+2 PF)</li>
+                <li>Tessuti strappati ma recuperabili</li>
+            </ul>
+        </div>
+        
+        <div class="page-break"></div>
+        
+        <h3>SCENA 6: Il Ritorno e la Ricompensa</h3>
+        <p><strong>Luogo:</strong> Phandalin, Casera di Elsa</p>
+        <p><strong>Durata:</strong> 10-15 minuti</p>
+        
+        <div class="read-aloud">
+            <p><strong>Box Testuale da Leggere:</strong></p>
+            <p><em>Tornando a Phandalin con i formaggi recuperati, Elsa vi accoglie con un sorriso radioso. Esamina il carico, sospira vedendo i danni, ma annuisce soddisfatta.</em></p>
+            <p><em>"Ce l'avete fatta! Non sono tutti perfetti, ma la maggior parte sono ancora vendibili. E soprattutto, avete protetto la mia reputazione! Il Sindaco non sarà deluso. Ecco la vostra ricompensa, ben meritata!"</em></p>
+        </div>
+        
+        <div class="treasure-box">
+            <h4>🎁 Ricompense</h4>
+            
+            <h5>Base (6-8 forme recuperate):</h5>
+            <ul>
+                <li>50 monete d'oro</li>
+                <li>2 forme di formaggio pregiato (5 mo ciascuna)</li>
+                <li>Reputazione positiva a Phandalin</li>
+            </ul>
+            
+            <h5>Bonus (8-10 forme in buone condizioni):</h5>
+            <ul>
+                <li>70 monete d'oro totali</li>
+                <li>3 forme di formaggio pregiato</li>
+                <li>Sconto 20% servizi futuri da Elsa</li>
+            </ul>
+            
+            <h5>Eccellente (10+ forme perfette):</h5>
+            <ul>
+                <li>100 monete d'oro totali</li>
+                <li>4 forme di formaggio pregiato</li>
+                <li>Lettera di raccomandazione per il Sindaco</li>
+                <li>Contatto permanente per future missioni</li>
+            </ul>
+        </div>
+        
+        <div class="info-box">
+            <h4>📊 Esperienza</h4>
+            <ul>
+                <li>Completamento avventura: 200 PE per PG</li>
+                <li>Per kobold sconfitto: 50 PE</li>
+                <li>Risoluzione non violenta: +100 PE</li>
+                <li>Recupero completo: +50 PE</li>
+            </ul>
+            <p><strong>Totale PE possibili:</strong> 300-450 PE per giocatore</p>
+        </div>
+        
+        <div class="page-break"></div>
+        
+        <h2>💡 Note per il Dungeon Master</h2>
+        
+        <h3>Adattamenti di Difficoltà</h3>
+        
+        <h4>Se i giocatori sono in difficoltà:</h4>
+        <ul>
+            <li>Riduci i PF dei kobold a 3</li>
+            <li>Glim si arrende prima</li>
+            <li>Aggiungi indizi più evidenti</li>
+        </ul>
+        
+        <h4>Se i giocatori dominano facilmente:</h4>
+        <ul>
+            <li>Aggiungi 2 kobold extra</li>
+            <li>Glim ha una pozione di invisibilità</li>
+            <li>Introduci una trappola (rete, CD 13 Destrezza)</li>
+        </ul>
+        
+        <h3>Consigli di Interpretazione</h3>
+        
+        <h4>Elsa Greenbarrel:</h4>
+        <ul>
+            <li>Usa accento rustico e caloroso</li>
+            <li>Parla con passione dei formaggi</li>
+            <li>Mostra gratitudine sincera</li>
+        </ul>
+        
+        <h4>Glim "Puzzolente":</h4>
+        <ul>
+            <li>Parla con sibilanti esagerate ("ssss")</li>
+            <li>È codardo ma astuto</li>
+            <li>Usa umorismo fisico (rutti, odori)</li>
+        </ul>
+        
+        <h4>Atmosfera Generale:</h4>
+        <ul>
+            <li>Mantieni tono leggero e avventuroso</li>
+            <li>L'avventura deve essere divertente, non epica</li>
+            <li>Enfatizza elementi comici</li>
+        </ul>
+        
+        <div class="page-break"></div>
+        
+        <h2>📚 Appendice</h2>
+        
+        <h3>Mappa della Tana dei Kobold</h3>
+        <div class="diagram">        N
+        ↑
+        
+[Ingresso 3x3 m]
+        |
+        |
+[Camera Guardie 4x4 m]
+   [G] [G]
+        |
+        |
+[Corridoio 1x6 m]
+        |
+        |
+[Camera Deposito 6x8 m]
+  [K][K]  [F][F]
+     [Glim]
+  [K][K]  [F][F]
+        |
+        |
+[Camera Tesoro 3x4 m]
+   [Casse e Formaggio]
+   
+Legenda:
+G = Guardia Kobold
+K = Kobold
+F = Forme di formaggio</div>
+        
+        <h3>✅ Checklist per il DM</h3>
+        
+        <h4>Preparazione pre-sessione:</h4>
+        <ul class="checklist">
+            <li>Leggere l'intera avventura</li>
+            <li>Preparare statistiche dei kobold</li>
+            <li>Stampare mappa della tana</li>
+            <li>Preparare token/miniature</li>
+            <li>Avere dadi pronti</li>
+            <li>Preparare ricompense</li>
+            <li>Preparare descrizioni vocali</li>
+        </ul>
+        
+        <h4>Durante la sessione:</h4>
+        <ul class="checklist">
+            <li>Iniziare con il gancio</li>
+            <li>Dare indizi chiari</li>
+            <li>Permettere soluzioni creative</li>
+            <li>Tracciare PF e iniziativa</li>
+            <li>Distribuire ricompense ed esperienza</li>
+            <li>Chiedere feedback ai giocatori</li>
+        </ul>
+        
+        <hr>
+        
+        <footer style="text-align: center; padding: 20px; color: #666; font-size: 0.9em;">
+            <p><strong>Fine dell'Avventura</strong></p>
+            <p><em>Avventura creata per D&D 5a Edizione</em></p>
+            <p style="margin-top: 10px; font-size: 0.8em;">
+                Questa è un'avventura fan-made per uso personale e non commerciale.<br>
+                D&D, Forgotten Realms e tutti i termini correlati sono proprietà di Wizards of the Coast LLC.
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

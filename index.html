@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎲 D&D 5e - Materiale Pubblico per Dungeon Master e Giocatori</title>
+    <meta name="description" content="Materiale pubblico pronto all'uso per Dungeon Master e giocatori di D&D 5a Edizione. Avventure, personaggi e risorse gratuite.">
+    <meta name="keywords" content="D&D, Dungeons and Dragons, 5e, personaggi, avventure, DM, Dungeon Master, materiale gratuito, risorse pubbliche">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 40px 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .subtitle {
+            font-size: 1.3em;
+            color: #7f8c8d;
+            margin-bottom: 20px;
+        }
+
+        .description {
+            font-size: 1.1em;
+            color: #34495e;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .feature-title {
+            font-size: 1.5em;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .feature-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #ecf0f1;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .feature-list li:before {
+            content: "✓";
+            color: #27ae60;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+
+        .cta-section {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-title {
+            font-size: 2.2em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(52, 152, 219, 0.4);
+            background: linear-gradient(45deg, #2980b9, #3498db);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+        }
+
+        .btn-secondary:hover {
+            box-shadow: 0 8px 25px rgba(231, 76, 60, 0.4);
+            background: linear-gradient(45deg, #c0392b, #e74c3c);
+        }
+
+        .tech-stack {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .tech-title {
+            font-size: 1.8em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .tech-items {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .tech-item {
+            background: linear-gradient(45deg, #9b59b6, #8e44ad);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            box-shadow: 0 3px 10px rgba(155, 89, 182, 0.3);
+        }
+
+        footer {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .footer-text {
+            color: #7f8c8d;
+            font-size: 1.1em;
+        }
+
+        .github-link {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .github-link:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2em;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎲 D&D 5e - Materiale Pubblico</h1>
+            <p class="subtitle">Avventure, personaggi e risorse gratuite per Dungeon Master e giocatori di D&D 5a Edizione</p>
+            <p class="description">
+                Una collezione di materiale pubblico pronto all'uso per le tue sessioni di Dungeons & Dragons 5e. 
+                Avventure complete, personaggi pre-generati e risorse gratuite per arricchire le tue campagne.
+            </p>
+        </header>
+
+        <div class="features">
+            <div class="feature-card">
+                <span class="feature-icon">👥</span>
+                <h3 class="feature-title">Personaggi Pre-Generati</h3>
+                <ul class="feature-list">
+                    <li>Schede personaggio complete e pronte all'uso</li>
+                    <li>Diverse classi e razze per ogni livello</li>
+                    <li>Formattazione HTML ottimizzata per stampa</li>
+                    <li>Personaggi bilanciati per party</li>
+                    <li>Background e storie già sviluppate</li>
+                </ul>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">🎭</span>
+                <h3 class="feature-title">Party Pre-Confezionati</h3>
+                <ul class="feature-list">
+                    <li>Gruppi bilanciati pronti per l'avventura</li>
+                    <li>Ruoli complementari (tank, support, control)</li>
+                    <li>Schede party unificate e stampabili</li>
+                    <li>Diverse combinazioni di classi</li>
+                    <li>Livelli adattabili alle tue campagne</li>
+                </ul>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">📚</span>
+                <h3 class="feature-title">Avventure Complete</h3>
+                <ul class="feature-list">
+                    <li>Avventure complete con trame sviluppate</li>
+                    <li>Mappe e risorse grafiche incluse</li>
+                    <li>Formato HTML stampabile e navigabile</li>
+                    <li>Adattabili a diversi livelli di party</li>
+                    <li>Materiale di supporto per il DM</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2 class="cta-title">🚀 Esplora il Materiale</h2>
+            <p>Scopri le avventure complete, i personaggi pre-generati e le risorse gratuite disponibili per arricchire le tue sessioni di D&D 5e.</p>
+            <div class="cta-buttons">
+                <a href="#avventure" class="btn">📚 Avventure</a>
+                <a href="#personaggi" class="btn btn-secondary">👥 Personaggi</a>
+            </div>
+        </div>
+
+        <div class="tech-stack">
+            <h3 class="tech-title">📋 Formati Disponibili</h3>
+            <div class="tech-items">
+                <span class="tech-item">HTML Stampabile</span>
+                <span class="tech-item">PDF Pronti</span>
+                <span class="tech-item">Mappe PNG</span>
+                <span class="tech-item">Schede Personaggio</span>
+                <span class="tech-item">Materiale DM</span>
+                <span class="tech-item">Gratuito</span>
+            </div>
+        </div>
+
+        <footer>
+            <p class="footer-text">
+                🎲 <strong>Buon divertimento con le tue avventure!</strong><br>
+                Materiale pubblico gratuito per la comunità D&D italiana<br>
+                <a href="https://github.com/marco/DND_pubblico" class="github-link" target="_blank">Visita il repository pubblico</a>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

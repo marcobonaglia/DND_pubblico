@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grommash Ferrocrudo - Barbaro 1° Livello (Versione Stampa)</title>
+    <style>
+        /* Print-Optimized Styles - Black and White */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: white;
+            color: black;
+            font-size: 10pt;
+            line-height: 1.3;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .character-sheet {
+            max-width: 210mm; /* A4 width */
+            margin: 0 auto;
+            background: white;
+            border: 2px solid #000;
+            padding: 0;
+        }
+
+        /* Header Section */
+        .character-header {
+            background: #000;
+            color: white;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .character-portrait {
+            display: none; /* Hidden for print */
+        }
+
+        .character-info {
+            flex: 1;
+        }
+
+        .character-name {
+            font-size: 18pt;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .character-details {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .detail-item {
+            background: white;
+            color: black;
+            border: 1px solid #000;
+            padding: 5px 8px;
+        }
+
+        .detail-label {
+            font-weight: bold;
+            font-size: 8pt;
+        }
+
+        .detail-value {
+            font-weight: bold;
+            font-size: 10pt;
+        }
+
+        /* Main Stats Section */
+        .main-stats {
+            background: white;
+            padding: 10px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            border-bottom: 2px solid #000;
+        }
+
+        .stat-block {
+            background: white;
+            border: 2px solid #000;
+            padding: 8px;
+            text-align: center;
+        }
+
+        .stat-value {
+            color: #000;
+            font-size: 14pt;
+            font-weight: bold;
+        }
+
+        .stat-label {
+            color: #000;
+            font-size: 8pt;
+            font-weight: bold;
+        }
+
+        .stat-modifier {
+            color: #000;
+            font-size: 10pt;
+            font-weight: bold;
+        }
+
+        /* Section Titles */
+        .section-title {
+            color: #000;
+            font-size: 12pt;
+            font-weight: bold;
+            text-align: left;
+            margin: 15px 0 10px 0;
+            border-bottom: 2px solid #000;
+            padding-bottom: 5px;
+        }
+
+        .subsection-title {
+            color: #000;
+            font-size: 10pt;
+            font-weight: bold;
+            border-bottom: 1px solid #000;
+            margin-bottom: 8px;
+        }
+
+        /* Ability Scores Section */
+        .ability-scores {
+            background: white;
+            padding: 10px;
+        }
+
+        .ability-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 8px;
+        }
+
+        .ability-score {
+            background: white;
+            border: 2px solid #000;
+            padding: 8px;
+            text-align: center;
+        }
+
+        .ability-name {
+            color: #000;
+            font-size: 8pt;
+            font-weight: bold;
+        }
+
+        .ability-value {
+            color: #000;
+            font-size: 12pt;
+            font-weight: bold;
+        }
+
+        .ability-modifier {
+            color: #000;
+            font-size: 10pt;
+            font-weight: bold;
+        }
+
+        .ability-base {
+            color: #000;
+            font-size: 7pt;
+        }
+
+        /* Saves and Skills Section */
+        .saves-skills {
+            background: white;
+            padding: 10px;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 15px;
+        }
+
+        .save-list, .skill-list {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .save-item, .skill-item {
+            background: white;
+            border: 1px solid #000;
+            padding: 4px 6px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .save-item.proficient, .skill-item.proficient {
+            background: #f0f0f0;
+            border: 2px solid #000;
+        }
+
+        .save-item.proficient::before, .skill-item.proficient::before {
+            content: '✓';
+            color: #000;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .save-name, .skill-name {
+            color: #000;
+            font-weight: bold;
+            font-size: 9pt;
+        }
+
+        .save-bonus, .skill-bonus {
+            color: #000;
+            font-weight: bold;
+            font-size: 9pt;
+        }
+
+        /* Combat Section */
+        .combat-section {
+            background: white;
+            padding: 10px;
+        }
+
+        .attack-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .attack-item {
+            background: white;
+            border: 2px solid #000;
+            padding: 8px;
+        }
+
+        .attack-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+
+        .attack-name {
+            color: #000;
+            font-size: 10pt;
+            font-weight: bold;
+        }
+
+        .attack-bonus {
+            color: #000;
+            background: white;
+            border: 1px solid #000;
+            padding: 2px 6px;
+            font-weight: bold;
+        }
+
+        .attack-details {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 3px;
+        }
+
+        .attack-damage, .attack-range {
+            color: #000;
+            font-weight: bold;
+            font-size: 9pt;
+        }
+
+        .attack-properties {
+            color: #000;
+            font-size: 8pt;
+            font-style: italic;
+        }
+
+        /* Equipment Section */
+        .equipment-section {
+            background: white;
+            padding: 10px;
+        }
+
+        .equipment-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .equipment-category {
+            background: white;
+            border: 1px solid #000;
+            padding: 8px;
+        }
+
+        .equipment-list {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .equipment-item {
+            background: white;
+            border: 1px solid #000;
+            padding: 3px 5px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .equipment-name {
+            color: #000;
+            font-weight: bold;
+            font-size: 9pt;
+        }
+
+        .equipment-details {
+            color: #000;
+            font-size: 8pt;
+        }
+
+        /* Features Section */
+        .features-section {
+            background: white;
+            padding: 10px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .feature-category {
+            background: white;
+            border: 1px solid #000;
+            padding: 8px;
+        }
+
+        .feature-list {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .feature-item {
+            background: white;
+            border: 1px solid #000;
+            padding: 4px 6px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .feature-name {
+            color: #000;
+            font-weight: bold;
+            font-size: 9pt;
+        }
+
+        .feature-details {
+            color: #000;
+            font-size: 8pt;
+            text-align: right;
+        }
+
+        /* Background Section */
+        .background-section {
+            background: white;
+            padding: 10px;
+        }
+
+        .background-info {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+
+        .background-item {
+            background: white;
+            border: 1px solid #000;
+            padding: 6px;
+        }
+
+        .background-label {
+            color: #000;
+            font-weight: bold;
+            font-size: 8pt;
+        }
+
+        .background-value {
+            color: #000;
+            font-size: 9pt;
+        }
+
+        /* Description Section */
+        .description-section {
+            background: white;
+            padding: 10px;
+        }
+
+        .description-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .description-category {
+            background: white;
+            border: 1px solid #000;
+            padding: 8px;
+        }
+
+        .description-list {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .description-item {
+            background: white;
+            border: 1px solid #000;
+            padding: 3px 5px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .description-label {
+            color: #000;
+            font-weight: bold;
+            font-size: 8pt;
+        }
+
+        .description-value {
+            color: #000;
+            font-size: 8pt;
+            text-align: right;
+        }
+
+        /* Story Section */
+        .story-section {
+            background: white;
+            padding: 10px;
+        }
+
+        .story-content {
+            background: white;
+            border: 1px solid #000;
+            padding: 8px;
+        }
+
+        .story-text {
+            color: #000;
+            font-size: 9pt;
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+
+        .story-details {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+
+        .story-item {
+            background: white;
+            border: 1px solid #000;
+            padding: 4px 6px;
+        }
+
+        .story-label {
+            color: #000;
+            font-weight: bold;
+            font-size: 8pt;
+        }
+
+        .story-value {
+            color: #000;
+            font-size: 8pt;
+        }
+
+        /* Notes Section */
+        .notes-section {
+            background: white;
+            padding: 10px;
+        }
+
+        .notes-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .notes-category {
+            background: white;
+            border: 1px solid #000;
+            padding: 8px;
+        }
+
+        .notes-list {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .notes-item {
+            background: white;
+            border: 1px solid #000;
+            padding: 3px 5px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .notes-label {
+            color: #000;
+            font-weight: bold;
+            font-size: 8pt;
+        }
+
+        .notes-value {
+            color: #000;
+            font-size: 8pt;
+            text-align: right;
+        }
+
+        /* Print-specific styles */
+        @media print {
+            @page {
+                size: A4;
+                margin: 1cm;
+            }
+            
+            body {
+                padding: 0;
+            }
+            
+            .character-sheet {
+                max-width: none;
+                margin: 0;
+                border: none;
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .character-details {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .main-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .ability-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .saves-skills {
+                grid-template-columns: 1fr;
+            }
+            
+            .equipment-grid,
+            .features-grid,
+            .description-grid,
+            .notes-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="character-sheet">
+        <!-- Header Section -->
+        <header class="character-header">
+            <div class="character-portrait">
+                <div class="portrait-placeholder">
+                    <span class="portrait-text">Grommash</span>
+                </div>
+            </div>
+            <div class="character-info">
+                <h1 class="character-name">Grommash Ferrocrudo</h1>
+                <div class="character-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Classe e Livello</span>
+                        <span class="detail-value">Barbaro 1</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Razza</span>
+                        <span class="detail-value">Mezzorco</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Allineamento</span>
+                        <span class="detail-value">Caotico Buono</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Esperienza</span>
+                        <span class="detail-value">0</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Stats Section -->
+        <section class="main-stats">
+            <div class="stat-block">
+                <div class="stat-value">15</div>
+                <div class="stat-label">Punti Ferita</div>
+                <div class="stat-modifier">+2</div>
+            </div>
+            <div class="stat-block">
+                <div class="stat-value">14</div>
+                <div class="stat-label">Classe Armatura</div>
+                <div class="stat-modifier">+2</div>
+            </div>
+            <div class="stat-block">
+                <div class="stat-value">9m</div>
+                <div class="stat-label">Velocità</div>
+                <div class="stat-modifier">+2</div>
+            </div>
+            <div class="stat-block">
+                <div class="stat-value">+2</div>
+                <div class="stat-label">Iniziativa</div>
+                <div class="stat-modifier">+2</div>
+            </div>
+        </section>
+
+        <!-- Ability Scores Section -->
+        <section class="ability-scores">
+            <h2 class="section-title">Caratteristiche</h2>
+            <div class="ability-grid">
+                <div class="ability-score">
+                    <div class="ability-name">Forza</div>
+                    <div class="ability-value">17</div>
+                    <div class="ability-modifier">+3</div>
+                    <div class="ability-base">Base: 15</div>
+                </div>
+                <div class="ability-score">
+                    <div class="ability-name">Destrezza</div>
+                    <div class="ability-value">14</div>
+                    <div class="ability-modifier">+2</div>
+                    <div class="ability-base">Base: 14</div>
+                </div>
+                <div class="ability-score">
+                    <div class="ability-name">Costituzione</div>
+                    <div class="ability-value">14</div>
+                    <div class="ability-modifier">+2</div>
+                    <div class="ability-base">Base: 13</div>
+                </div>
+                <div class="ability-score">
+                    <div class="ability-name">Intelligenza</div>
+                    <div class="ability-value">8</div>
+                    <div class="ability-modifier">-1</div>
+                    <div class="ability-base">Base: 8</div>
+                </div>
+                <div class="ability-score">
+                    <div class="ability-name">Saggezza</div>
+                    <div class="ability-value">12</div>
+                    <div class="ability-modifier">+1</div>
+                    <div class="ability-base">Base: 12</div>
+                </div>
+                <div class="ability-score">
+                    <div class="ability-name">Carisma</div>
+                    <div class="ability-value">10</div>
+                    <div class="ability-modifier">+0</div>
+                    <div class="ability-base">Base: 10</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Saving Throws and Skills -->
+        <section class="saves-skills">
+            <div class="saving-throws">
+                <h3 class="subsection-title">Tiri Salvezza</h3>
+                <div class="save-list">
+                    <div class="save-item proficient">
+                        <span class="save-name">Forza</span>
+                        <span class="save-bonus">+5</span>
+                    </div>
+                    <div class="save-item">
+                        <span class="save-name">Destrezza</span>
+                        <span class="save-bonus">+2</span>
+                    </div>
+                    <div class="save-item proficient">
+                        <span class="save-name">Costituzione</span>
+                        <span class="save-bonus">+4</span>
+                    </div>
+                    <div class="save-item">
+                        <span class="save-name">Intelligenza</span>
+                        <span class="save-bonus">-1</span>
+                    </div>
+                    <div class="save-item">
+                        <span class="save-name">Saggezza</span>
+                        <span class="save-bonus">+1</span>
+                    </div>
+                    <div class="save-item">
+                        <span class="save-name">Carisma</span>
+                        <span class="save-bonus">+0</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="skills">
+                <h3 class="subsection-title">Abilità</h3>
+                <div class="skill-list">
+                    <div class="skill-item">
+                        <span class="skill-name">Acrobazia (Des)</span>
+                        <span class="skill-bonus">+2</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Addestrare Animali (Sag)</span>
+                        <span class="skill-bonus">+1</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Arcano (Int)</span>
+                        <span class="skill-bonus">-1</span>
+                    </div>
+                    <div class="skill-item proficient">
+                        <span class="skill-name">Atletica (For)</span>
+                        <span class="skill-bonus">+5</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Furtività (Des)</span>
+                        <span class="skill-bonus">+2</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Indagare (Int)</span>
+                        <span class="skill-bonus">-1</span>
+                    </div>
+                    <div class="skill-item proficient">
+                        <span class="skill-name">Intimidire (Car)</span>
+                        <span class="skill-bonus">+2</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Intrattenere (Car)</span>
+                        <span class="skill-bonus">+0</span>
+                    </div>
+                    <div class="skill-item proficient">
+                        <span class="skill-name">Intuizione (Sag)</span>
+                        <span class="skill-bonus">+3</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Medicina (Sag)</span>
+                        <span class="skill-bonus">+1</span>
+                    </div>
+                    <div class="skill-item proficient">
+                        <span class="skill-name">Natura (Int)</span>
+                        <span class="skill-bonus">+1</span>
+                    </div>
+                    <div class="skill-item proficient">
+                        <span class="skill-name">Percezione (Sag)</span>
+                        <span class="skill-bonus">+3</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Persuasione (Car)</span>
+                        <span class="skill-bonus">+0</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Rapidità di Mano (Des)</span>
+                        <span class="skill-bonus">+2</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Religione (Int)</span>
+                        <span class="skill-bonus">-1</span>
+                    </div>
+                    <div class="skill-item proficient">
+                        <span class="skill-name">Sopravvivenza (Sag)</span>
+                        <span class="skill-bonus">+3</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Storia (Int)</span>
+                        <span class="skill-bonus">-1</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Combat Section -->
+        <section class="combat-section">
+            <h2 class="section-title">Combattimento</h2>
+            <div class="attacks">
+                <h3 class="subsection-title">Attacchi</h3>
+                <div class="attack-list">
+                    <div class="attack-item">
+                        <div class="attack-header">
+                            <span class="attack-name">Ascia da guerra</span>
+                            <span class="attack-bonus">+5</span>
+                        </div>
+                        <div class="attack-details">
+                            <span class="attack-damage">1d8+3 tagliente</span>
+                            <span class="attack-range">1,5 m</span>
+                        </div>
+                        <div class="attack-properties">a due mani</div>
+                    </div>
+                    <div class="attack-item">
+                        <div class="attack-header">
+                            <span class="attack-name">Giavellotti (4)</span>
+                            <span class="attack-bonus">+5</span>
+                        </div>
+                        <div class="attack-details">
+                            <span class="attack-damage">1d6+3 perforante</span>
+                            <span class="attack-range">9/36 m</span>
+                        </div>
+                        <div class="attack-properties">lanciabile</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Equipment Section -->
+        <section class="equipment-section">
+            <h2 class="section-title">Equipaggiamento</h2>
+            <div class="equipment-grid">
+                <div class="equipment-category">
+                    <h3 class="subsection-title">Armi</h3>
+                    <div class="equipment-list">
+                        <div class="equipment-item">
+                            <span class="equipment-name">Ascia da guerra</span>
+                            <span class="equipment-details">(1d8+3)</span>
+                        </div>
+                        <div class="equipment-item">
+                            <span class="equipment-name">Giavellotti</span>
+                            <span class="equipment-details">(1d6+3)</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="equipment-category">
+                    <h3 class="subsection-title">Armature</h3>
+                    <div class="equipment-list">
+                        <div class="equipment-item">
+                            <span class="equipment-name">Armatura di cuoio</span>
+                            <span class="equipment-details">(CA 12+2)</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="equipment-category">
+                    <h3 class="subsection-title">Inventario</h3>
+                    <div class="equipment-list">
+                        <div class="equipment-item">
+                            <span class="equipment-name">Monete</span>
+                            <span class="equipment-details">12 oro, 8 argento</span>
+                        </div>
+                        <div class="equipment-item">
+                            <span class="equipment-name">Oggetti Comuni</span>
+                            <span class="equipment-details">Zaino, razioni (4gg), otre d'acqua, corda di canapa, torce (10)</span>
+                        </div>
+                        <div class="equipment-item">
+                            <span class="equipment-name">Pozioni</span>
+                            <span class="equipment-details">1 pozione guarigione (2d4+2)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features-section">
+            <h2 class="section-title">Caratteristiche Speciali</h2>
+            <div class="features-grid">
+                <div class="feature-category">
+                    <h3 class="subsection-title">Tratti Razziali</h3>
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <span class="feature-name">Velocità</span>
+                            <span class="feature-details">9 m</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-name">Sensi</span>
+                            <span class="feature-details">Scurovisione 18m, Percezione Passiva 13</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-name">Linguaggi</span>
+                            <span class="feature-details">Comune, Orchesco</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-name">Attacco Selvaggio</span>
+                            <span class="feature-details">vantaggio su un attacco al turno</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-name">Resistenza Relentless</span>
+                            <span class="feature-details">1/giorno rimanere a 1 PF</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-category">
+                    <h3 class="subsection-title">Caratteristiche di Classe</h3>
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <span class="feature-name">Dadi Vita</span>
+                            <span class="feature-details">1d12</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-name">Competenze</span>
+                            <span class="feature-details">armature leggere, medie, scudi, armi semplici e da guerra</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-name">Rabbia (2/riposo lungo)</span>
+                            <span class="feature-details">+2 danni, resistenza a taglienti/perforanti/contundenti</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-name">Difesa Senza Armatura</span>
+                            <span class="feature-details">CA = 10 + Des + Cos</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Background Section -->
+        <section class="background-section">
+            <h2 class="section-title">Background</h2>
+            <div class="background-info">
+                <div class="background-item">
+                    <span class="background-label">Background</span>
+                    <span class="background-value">Fuorilegge</span>
+                </div>
+                <div class="background-item">
+                    <span class="background-label">Competenze</span>
+                    <span class="background-value">Atletica, Intimidire</span>
+                </div>
+                <div class="background-item">
+                    <span class="background-label">Tratto</span>
+                    <span class="background-value">Contatti nella malavita</span>
+                </div>
+                <div class="background-item">
+                    <span class="background-label">Ideale</span>
+                    <span class="background-value">Libertà e indipendenza</span>
+                </div>
+                <div class="background-item">
+                    <span class="background-label">Legame</span>
+                    <span class="background-value">Un compagno tradito da vendicare</span>
+                </div>
+                <div class="background-item">
+                    <span class="background-label">Difetto</span>
+                    <span class="background-value">Troppo impulsivo</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Description Section -->
+        <section class="description-section">
+            <h2 class="section-title">Descrizione</h2>
+            <div class="description-grid">
+                <div class="description-category">
+                    <h3 class="subsection-title">Aspetto Fisico</h3>
+                    <div class="description-list">
+                        <div class="description-item">
+                            <span class="description-label">Età</span>
+                            <span class="description-value">28</span>
+                        </div>
+                        <div class="description-item">
+                            <span class="description-label">Altezza</span>
+                            <span class="description-value">1,85 m</span>
+                        </div>
+                        <div class="description-item">
+                            <span class="description-label">Peso</span>
+                            <span class="description-value">95 kg</span>
+                        </div>
+                        <div class="description-item">
+                            <span class="description-label">Occhi</span>
+                            <span class="description-value">Rosso scuro</span>
+                        </div>
+                        <div class="description-item">
+                            <span class="description-label">Capelli</span>
+                            <span class="description-value">Neri, lunghi e arruffati</span>
+                        </div>
+                        <div class="description-item">
+                            <span class="description-label">Pelle</span>
+                            <span class="description-value">Verde oliva</span>
+                        </div>
+                        <div class="description-item">
+                            <span class="description-label">Caratteristiche Distintive</span>
+                            <span class="description-value">Cicatrici di battaglia, zanne prominenti</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="description-category">
+                    <h3 class="subsection-title">Personalità</h3>
+                    <div class="description-list">
+                        <div class="description-item">
+                            <span class="description-label">Tratti di Personalità</span>
+                            <span class="description-value">Protettivo, leale, impulsivo</span>
+                        </div>
+                        <div class="description-item">
+                            <span class="description-label">Ideali</span>
+                            <span class="description-value">Onore tra compagni</span>
+                        </div>
+                        <div class="description-item">
+                            <span class="description-label">Legami</span>
+                            <span class="description-value">Il gruppo di avventurieri</span>
+                        </div>
+                        <div class="description-item">
+                            <span class="description-label">Difetti</span>
+                            <span class="description-value">Rabbia incontrollabile</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Story Section -->
+        <section class="story-section">
+            <h2 class="section-title">Storia Personale</h2>
+            <div class="story-content">
+                <p class="story-text">
+                    Grommash è fuggito dalla sua tribù orchesco dopo aver rifiutato di partecipare a un raid contro innocenti. 
+                    Ora cerca di dimostrare che i mezzorchi possono essere eroi.
+                </p>
+                <div class="story-details">
+                    <div class="story-item">
+                        <span class="story-label">Motivazione</span>
+                        <span class="story-value">Redimere il nome dei mezzorchi</span>
+                    </div>
+                    <div class="story-item">
+                        <span class="story-label">Obiettivi</span>
+                        <span class="story-value">Trovare un posto dove appartenere</span>
+                    </div>
+                    <div class="story-item">
+                        <span class="story-label">Segreti</span>
+                        <span class="story-value">Ha ancora legami con la sua tribù originale</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Notes Section -->
+        <section class="notes-section">
+            <h2 class="section-title">Note Aggiuntive</h2>
+            <div class="notes-grid">
+                <div class="notes-category">
+                    <h3 class="subsection-title">Informazioni per il Master</h3>
+                    <div class="notes-list">
+                        <div class="notes-item">
+                            <span class="notes-label">Allineamento Giocatore</span>
+                            <span class="notes-value">Grommash protegge i deboli ma odia le regole</span>
+                        </div>
+                        <div class="notes-item">
+                            <span class="notes-label">Stile di Gioco Preferito</span>
+                            <span class="notes-value">Combattimento, protezione, ruolo</span>
+                        </div>
+                        <div class="notes-item">
+                            <span class="notes-label">Obiettivi a Lungo Termine</span>
+                            <span class="notes-value">Diventare un eroe leggendario</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="notes-category">
+                    <h3 class="subsection-title">Note del Giocatore</h3>
+                    <div class="notes-list">
+                        <div class="notes-item">
+                            <span class="notes-label">Nome del gruppo</span>
+                            <span class="notes-value">I Guardiani del Crepuscolo</span>
+                        </div>
+                        <div class="notes-item">
+                            <span class="notes-label">Spazio per Appunti</span>
+                            <span class="notes-value">[Vuoto]</span>
+                        </div>
+                        <div class="notes-item">
+                            <span class="notes-label">Storia della Campagna</span>
+                            <span class="notes-value">[Vuota]</span>
+                        </div>
+                        <div class="notes-item">
+                            <span class="notes-label">Relazioni con Altri PG</span>
+                            <span class="notes-value">[Vuote]</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

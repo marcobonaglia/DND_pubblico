@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D&D Party Sheet Template</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Crimson Text', serif;
+            background: white;
+            color: black;
+            padding: 10px;
+            line-height: 1.4;
+            font-size: 12px;
+        }
+        
+        .party-sheet {
+            max-width: 210mm;
+            margin: 0 auto;
+            background: white;
+            border: 2px solid black;
+            border-radius: 5px;
+            overflow: hidden;
+            min-height: 297mm;
+        }
+        
+        .header {
+            background: #f0f0f0;
+            padding: 15px;
+            text-align: center;
+            border-bottom: 2px solid black;
+        }
+        
+        .party-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8em;
+            font-weight: 600;
+            color: black;
+            margin-bottom: 5px;
+        }
+        
+        .party-motto {
+            font-size: 1em;
+            font-style: italic;
+            color: black;
+        }
+        
+        .content {
+            padding: 15px;
+        }
+        
+        .section {
+            margin-bottom: 15px;
+            background: white;
+            border: 1px solid black;
+            border-radius: 5px;
+            padding: 10px;
+        }
+        
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2em;
+            color: black;
+            margin-bottom: 8px;
+            text-align: center;
+            border-bottom: 1px solid black;
+            padding-bottom: 5px;
+        }
+        
+        .members-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .members-list, .places-section, .fame-section {
+            background: white;
+            border: 1px solid black;
+            border-radius: 5px;
+            padding: 10px;
+        }
+        
+        .members-list h3, .places-section h3, .fame-section h3 {
+            font-size: 1em;
+            margin-bottom: 8px;
+            text-align: center;
+            border-bottom: 1px solid black;
+            padding-bottom: 3px;
+        }
+        
+        .member-line, .place-line, .fame-line {
+            display: flex;
+            align-items: center;
+            padding: 3px 0;
+            border-bottom: 1px solid #ccc;
+        }
+        
+        .member-line:last-child, .place-line:last-child, .fame-line:last-child {
+            border-bottom: none;
+        }
+        
+        .member-number {
+            width: 20px;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+        
+        .member-name-line, .place-name-line, .fame-name-line {
+            flex: 1;
+            border-bottom: 1px solid black;
+            height: 16px;
+        }
+        
+        .resources-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .coins-section, .items-section, .other-section {
+            background: white;
+            border: 1px solid black;
+            border-radius: 5px;
+            padding: 10px;
+        }
+        
+        .coin-row, .item-row, .other-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 4px 0;
+            border-bottom: 1px solid #ccc;
+        }
+        
+        .coin-row:last-child, .item-row:last-child, .other-row:last-child {
+            border-bottom: none;
+        }
+        
+        .coin-label, .item-label, .other-label {
+            color: black;
+            font-weight: 600;
+            flex: 1;
+        }
+        
+        .coin-line, .item-line, .other-line {
+            border-bottom: 1px solid black;
+            flex: 1;
+            margin-left: 10px;
+            height: 20px;
+        }
+        
+        
+        .notes-area {
+            background: white;
+            border: 1px solid black;
+            border-radius: 5px;
+            padding: 10px;
+            min-height: 290px;
+            font-family: 'Crimson Text', serif;
+            font-size: 0.9em;
+            line-height: 1.4;
+            color: black;
+        }
+        
+        .print-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            color: black;
+            border: 2px solid black;
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-family: 'Cinzel', serif;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .print-button:hover {
+            background: #f0f0f0;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+            
+            .party-sheet {
+                box-shadow: none;
+                border: 2px solid black;
+            }
+            
+            .print-button {
+                display: none;
+            }
+            
+            .section {
+                break-inside: avoid;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="print-button" onclick="window.print()">🖨️ Stampa</button>
+    
+    <div class="party-sheet">
+        <div class="header">
+            <h1 class="party-title">_____________________________</h1>
+            <p class="party-motto">"________________________________"</p>
+        </div>
+        
+        <div class="content">
+            <!-- Membri del Party -->
+            <div class="section">
+                <h2 class="section-title">👥 Informazioni sul Party</h2>
+                <div class="members-section">
+                    <div class="members-list">
+                        <h3>👤 Lista Membri</h3>
+                        <div class="member-line">
+                            <span class="member-number">1.</span>
+                            <div class="member-name-line"></div>
+                        </div>
+                        <div class="member-line">
+                            <span class="member-number">2.</span>
+                            <div class="member-name-line"></div>
+                        </div>
+                        <div class="member-line">
+                            <span class="member-number">3.</span>
+                            <div class="member-name-line"></div>
+                        </div>
+                        <div class="member-line">
+                            <span class="member-number">4.</span>
+                            <div class="member-name-line"></div>
+                        </div>
+                        <div class="member-line">
+                            <span class="member-number">5.</span>
+                            <div class="member-name-line"></div>
+                        </div>
+                        <div class="member-line">
+                            <span class="member-number">6.</span>
+                            <div class="member-name-line"></div>
+                        </div>
+                    </div>
+                    <div class="places-section">
+                        <h3>🗺️ Luoghi Visitati</h3>
+                        <div class="place-line">
+                            <div class="place-name-line"></div>
+                        </div>
+                        <div class="place-line">
+                            <div class="place-name-line"></div>
+                        </div>
+                        <div class="place-line">
+                            <div class="place-name-line"></div>
+                        </div>
+                        <div class="place-line">
+                            <div class="place-name-line"></div>
+                        </div>
+                        <div class="place-line">
+                            <div class="place-name-line"></div>
+                        </div>
+                        <div class="place-line">
+                            <div class="place-name-line"></div>
+                        </div>
+                    </div>
+                    <div class="fame-section">
+                        <h3>⭐ Fama</h3>
+                        <div class="fame-line">
+                            <div class="fame-name-line"></div>
+                        </div>
+                        <div class="fame-line">
+                            <div class="fame-name-line"></div>
+                        </div>
+                        <div class="fame-line">
+                            <div class="fame-name-line"></div>
+                        </div>
+                        <div class="fame-line">
+                            <div class="fame-name-line"></div>
+                        </div>
+                        <div class="fame-line">
+                            <div class="fame-name-line"></div>
+                        </div>
+                        <div class="place-line">
+                            <div class="place-name-line"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Risorse Condivise -->
+            <div class="section">
+                <h2 class="section-title">💰 Risorse Condivise</h2>
+                <div class="resources-grid">
+                    <div class="coins-section">
+                        <h3 style="color: black; margin-bottom: 10px; text-align: center;">🪙 Monete</h3>
+                        <div class="coin-row">
+                            <span class="coin-label">Rame (CP)</span>
+                            <div class="coin-line"></div>
+                        </div>
+                        <div class="coin-row">
+                            <span class="coin-label">Argento (SP)</span>
+                            <div class="coin-line"></div>
+                        </div>
+                        <div class="coin-row">
+                            <span class="coin-label">Elettro (EP)</span>
+                            <div class="coin-line"></div>
+                        </div>
+                        <div class="coin-row">
+                            <span class="coin-label">Oro (GP)</span>
+                            <div class="coin-line"></div>
+                        </div>
+                        <div class="coin-row">
+                            <span class="coin-label">Platino (PP)</span>
+                            <div class="coin-line"></div>
+                        </div>
+                    </div>
+                    <div class="items-section">
+                        <h3 style="color: black; margin-bottom: 10px; text-align: center;">✨ Oggetti Magici</h3>
+                        <div class="item-row">
+                            <div class="item-line"></div>
+                        </div>
+                        <div class="item-row">
+                            <div class="item-line"></div>
+                        </div>
+                        <div class="item-row">
+                            <div class="item-line"></div>
+                        </div>
+                        <div class="item-row">
+                            <div class="item-line"></div>
+                        </div>
+                        <div class="item-row">
+                            <div class="item-line"></div>
+                        </div>
+                    </div>
+                    <div class="other-section">
+                        <h3 style="color: black; margin-bottom: 10px; text-align: center;">📦 Altro</h3>
+                        <div class="other-row">
+                            <span class="other-label">Carri</span>
+                            <div class="other-line"></div>
+                        </div>
+                        <div class="other-row">
+                            <span class="other-label">Cavalli</span>
+                            <div class="other-line"></div>
+                        </div>
+                        <div class="other-row">
+                            <span class="other-label">Provviste</span>
+                            <div class="other-line"></div>
+                        </div>
+                        <div class="other-row">
+                            <span class="other-label">Altro</span>
+                            <div class="other-line"></div>
+                        </div>
+                        <div class="other-row">
+                            <span class="other-label">Altro</span>
+                            <div class="other-line"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <!-- Note di Sessione -->
+            <div class="section">
+                <h2 class="section-title">📝 Note di Gioco</h2>
+                <div class="notes-area">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
