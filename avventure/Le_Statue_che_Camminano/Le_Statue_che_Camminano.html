@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La_famiglia_Dendrar_cerca_coraggiosi_per_indagare_</title>
+    <style>
+
+/* === RESET E BASE === */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'BookInsanity', 'Book Antiqua', Palatino, serif;
+    font-size: 10.5pt;
+    line-height: 1.4;
+    color: #000;
+    background: #EEE5CE;
+    padding: 20px;
+}
+
+/* === LAYOUT PAGINE === */
+.page {
+    width: 210mm;  /* A4 width */
+    min-height: 297mm;  /* A4 height */
+    margin: 0 auto 20px auto;
+    padding: 1.5cm 2cm;
+    background: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    position: relative;
+    overflow: hidden;
+    
+    /* Layout a colonna singola per stampa più affidabile */
+}
+
+@media print {
+    body {
+        background: white;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .page {
+        width: 210mm;
+        height: 297mm;
+        min-height: 297mm;
+        max-height: 297mm;
+        margin: 0;
+        padding: 1.5cm 2cm;
+        box-shadow: none;
+        page-break-after: always;
+        page-break-inside: avoid;
+        overflow: visible;
+        
+        /* Layout a colonna singola per stampa più affidabile */
+    }
+    
+    /* Evita page break dentro questi elementi */
+    h1, h2, h3, h4, h5 {
+        page-break-after: avoid;
+        break-after: avoid-page;
+    }
+    
+    .stat-block,
+    .descriptive,
+    .note-box,
+    blockquote {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+    
+    table {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+    
+    /* Forza page break */
+    .page-break {
+        page-break-before: always;
+        break-before: page;
+    }
+    
+    /* Column break (non necessario in layout single-column) */
+    .column-break {
+        /* Ignorato - non usiamo più colonne */
+    }
+    
+    /* Nascondi elementi non stampabili */
+    .no-print {
+        display: none !important;
+    }
+    
+    /* Fix immagini */
+    img {
+        max-width: 100%;
+        page-break-inside: avoid;
+    }
+    
+    /* Rimuovi ombre e effetti */
+    * {
+        box-shadow: none !important;
+    }
+}
+
+/* === TIPOGRAFIA === */
+h1 {
+    font-family: 'MrEavesSmallCaps', 'Cinzel', serif;
+    font-size: 28pt;
+    font-weight: 800;
+    color: #58180D;
+    margin-bottom: 0.3cm;
+    margin-top: 0.5cm;
+    border-bottom: 2px solid #C0AD6A;
+    padding-bottom: 0.1cm;
+}
+
+h2 {
+    font-family: 'MrEavesSmallCaps', 'Cinzel', serif;
+    font-size: 20pt;
+    font-weight: 700;
+    color: #58180D;
+    margin-top: 0.4cm;
+    margin-bottom: 0.25cm;
+    border-bottom: 1px solid #C0AD6A;
+}
+
+h3 {
+    font-family: 'MrEavesSmallCaps', 'Cinzel', serif;
+    font-size: 15pt;
+    font-weight: 700;
+    color: #58180D;
+    margin-top: 0.3cm;
+    margin-bottom: 0.2cm;
+    border-bottom: 1px solid #C0AD6A;
+}
+
+h4 {
+    font-family: 'MrEavesSmallCaps', 'Cinzel', serif;
+    font-size: 12pt;
+    font-weight: 700;
+    color: #58180D;
+    margin-top: 0.25cm;
+    margin-bottom: 0.15cm;
+}
+
+h5 {
+    font-family: 'BookInsanityBold', 'Book Antiqua', Palatino, serif;
+    font-size: 11pt;
+    font-weight: 700;
+    font-variant: small-caps;
+    color: #58180D;
+    margin-top: 0.2cm;
+    margin-bottom: 0.1cm;
+}
+
+p {
+    margin-bottom: 0.3cm;
+    text-align: justify;
+    hyphens: auto;
+}
+
+/* === BLOCKQUOTE (Read-aloud text) === */
+blockquote {
+    background: #E0E5C1;
+    border-left: 4px solid #C0AD6A;
+    padding: 0.3cm 0.4cm;
+    margin: 0.4cm 0;
+    font-family: 'ScalySansItalic', 'Palatino Linotype', serif;
+    font-style: italic;
+    font-size: 10pt;
+    box-shadow: 1px 4px 14px rgba(0,0,0,0.15);
+}
+
+blockquote h5 {
+    font-family: 'MrEavesSmallCaps', 'Cinzel', serif;
+    font-style: normal;
+    text-align: center;
+    margin-top: 0;
+    border-bottom: 1px solid #C0AD6A;
+    padding-bottom: 0.1cm;
+    margin-bottom: 0.2cm;
+}
+
+blockquote p:last-child {
+    margin-bottom: 0;
+}
+
+/* === LISTE === */
+ul, ol {
+    margin-left: 1em;
+    margin-bottom: 0.3cm;
+}
+
+li {
+    margin-bottom: 0.15cm;
+}
+
+/* === TABELLE === */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0.4cm 0;
+    font-size: 9.5pt;
+    break-inside: avoid;
+}
+
+thead {
+    background: #E0E5C1;
+    font-weight: 700;
+}
+
+th, td {
+    border: 1px solid #C0AD6A;
+    padding: 0.15cm 0.25cm;
+    text-align: center;
+}
+
+th {
+    font-family: 'MrEavesSmallCaps', 'Cinzel', serif;
+    color: #58180D;
+}
+
+tbody tr:nth-child(even) {
+    background: #F9F9F5;
+}
+
+/* === STAT BLOCKS === */
+.stat-block {
+    background: #FDF1DC;
+    border: 1px solid #DDD;
+    padding: 0.4cm;
+    margin: 0.4cm 0;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    break-inside: avoid;
+    page-break-inside: avoid;
+    display: block;
+    position: relative;
+}
+
+.stat-block h3,
+.stat-block h4 {
+    color: #7A200D;
+    margin-top: 0;
+    text-align: center;
+    border-bottom: 2px solid #7A200D;
+}
+
+.stat-block p {
+    margin-bottom: 0.2cm;
+    text-align: left;
+}
+
+.stat-block hr {
+    border: none;
+    border-top: 1px solid #7A200D;
+    margin: 0.2cm 0;
+}
+
+.stat-block table {
+    margin: 0.2cm 0;
+}
+
+.stat-block strong {
+    font-family: 'ScalySansBold', 'Arial Black', sans-serif;
+    color: #7A200D;
+}
+
+.stat-block em {
+    font-style: italic;
+}
+
+/* === DESCRITTIVI (descriptive blocks) === */
+.descriptive {
+    background: #FAF7EA;
+    border: 1px dashed #C0AD6A;
+    padding: 0.3cm;
+    margin: 0.3cm 0;
+    font-family: 'ScalySans', 'Trebuchet MS', sans-serif;
+    font-size: 9.5pt;
+    break-inside: avoid;
+}
+
+.descriptive pre {
+    font-family: 'Courier New', monospace;
+    font-size: 8.5pt;
+    white-space: pre;
+    display: block;
+    background: #FFF;
+    padding: 0.2cm;
+    border: 1px solid #DDD;
+    overflow-x: auto;
+    margin: 0.2cm 0;
+}
+
+.descriptive pre code {
+    font-family: 'Courier New', monospace;
+    font-size: 8.5pt;
+    white-space: pre;
+    background: transparent;
+    padding: 0;
+    border: none;
+    display: block;
+}
+
+.descriptive code {
+    font-family: 'Courier New', monospace;
+    font-size: 9pt;
+    background: #F5F5F5;
+    padding: 0.05cm 0.1cm;
+    border-radius: 2px;
+}
+
+/* === IMMAGINI === */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0.3cm auto;
+}
+
+.img-wide {
+    column-span: all;
+    width: 100%;
+    margin: 0.5cm 0;
+}
+
+.img-cover {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    opacity: 0.4;
+    mix-blend-mode: multiply;
+}
+
+/* === CODE BLOCKS === */
+pre {
+    background: #F5F5F5;
+    border: 1px solid #DDD;
+    border-left: 3px solid #C0AD6A;
+    padding: 0.3cm;
+    margin: 0.3cm 0;
+    font-family: 'Courier New', monospace;
+    font-size: 8.5pt;
+    overflow-x: auto;
+    break-inside: avoid;
+}
+
+code {
+    font-family: 'Courier New', monospace;
+    background: #F5F5F5;
+    padding: 0.05cm 0.15cm;
+    border-radius: 2px;
+    font-size: 9pt;
+}
+
+pre code {
+    background: transparent;
+    padding: 0;
+}
+
+/* === HORIZONTAL RULES === */
+hr {
+    border: none;
+    border-top: 1px solid #C0AD6A;
+    margin: 0.5cm 0;
+}
+
+/* === STRONG & EM === */
+strong {
+    font-weight: 700;
+    font-family: 'BookInsanityBold', 'Book Antiqua', serif;
+}
+
+em {
+    font-style: italic;
+}
+
+strong em {
+    font-style: italic;
+    font-weight: 700;
+}
+
+/* === LINKS === */
+a {
+    color: #7A200D;
+    text-decoration: none;
+    border-bottom: 1px dotted #7A200D;
+}
+
+a:hover {
+    color: #58180D;
+    border-bottom: 1px solid #58180D;
+}
+
+/* === COLUMN BREAKS === */
+.column-break {
+    break-after: column;
+    page-break-after: avoid;
+}
+
+.page-break {
+    break-after: page;
+    page-break-after: always;
+}
+
+/* === NOTE/WIDE BOXES === */
+.note-box {
+    background: #E8F4F8;
+    border-left: 4px solid #4A9EFF;
+    padding: 0.3cm 0.4cm;
+    margin: 0.4cm 0;
+    break-inside: avoid;
+}
+
+.note-box strong {
+    color: #4A9EFF;
+}
+
+.wide-block {
+    column-span: all;
+    margin: 0.4cm 0;
+}
+
+/* === UTILITY === */
+.text-center {
+    text-align: center;
+}
+
+.no-indent {
+    text-indent: 0 !important;
+}
+
+/* === FIRST LETTER DROP CAP === */
+.page > p:first-of-type::first-letter {
+    float: left;
+    font-size: 3.5em;
+    line-height: 0.8;
+    margin: 0.05em 0.1em 0 0;
+    font-family: 'Solbera Imitation', serif;
+    color: #7A200D;
+}
+
+    </style>
+</head>
+<body>
+    <div class="no-print" style="position:fixed; top:10px; right:10px; background:white; padding:10px; border-radius:5px; box-shadow:0 2px 8px rgba(0,0,0,0.2); z-index:1000;">
+        <button onclick="window.print()" style="padding:8px 16px; font-size:14px; cursor:pointer; background:#4A9EFF; color:white; border:none; border-radius:4px;">
+            🖨️ Stampa / Salva PDF
+        </button>
+    </div>
+    
+<div class="page">
+<h1 id="le-statue-che-camminano">Le Statue che Camminano</h1>
+<h2 id="la-scomparsa-di-carp">La Scomparsa di Carp</h2>
+<p><em>Un’avventura D&amp;D 5e per 4 personaggi di livello 1</em></p>
+<p><strong>Durata:</strong> 3 ore | <strong>Ambientazione:</strong> Phandalin, Forgotten Realms</p>
+<p><img alt="Copertina: Phandalin al tramonto con rovine misteriose in lontananza" src="img/scene_1.png"/></p>
+<hr/>
+<blockquote>
+<h3 id="riepilogo-per-il-dm">📋 Riepilogo per il DM</h3>
+<p><strong>Fronte</strong>: Kragmaw, un antico Gargoyle Superiore, è stato risvegliato da tombaroli nelle rovine di un tempio nanico. Ha rapito il giovane Carp Dendrar e pianifica di espandere il suo territorio di caccia fino al villaggio, pietrificando gli abitanti per “proteggerli eternamente”.</p>
+<p><strong>Passi in Avanti</strong>:<br/>
+1. (24h) Carp viene trasformato in statua. Strani richiami notturni attraggono altri villici verso le rovine.<br/>
+2. (48h) Elsa, guardia notturna, scompare. Gargoyle sorvolano Phandalin studiando le difese. Panico nel villaggio.<br/>
+3. (72h) Attacco coordinato su Phandalin al crepuscolo. 1d4+2 abitanti rapiti. Il villaggio deve essere evacuato.</p>
+<p><strong>I 10 Segreti</strong>:<br/>
+1. Tombaroli hanno risvegliato Kragmaw 2 settimane fa (ora sono statue)<br/>
+2. I gargoyle pietrificano chi resta immobile mentre li osserva (movimento = salvezza)<br/>
+3. Il diario di Carp è nascosto in un albero cavo nel boschetto<br/>
+4. I gargoyle sono vulnerabili in volo e indeboliti dalla luce solare (-2 CA)<br/>
+5. Una preghiera in Nanico sull’altare del tempio addormenta i gargoyle (TS Sag DC 14)<br/>
+6. Carp è ancora salvabile se raggiunto entro 48h dalla scomparsa<br/>
+7. Reidoth il druido vive in una grotta vicina e può fornire pozioni/aiuto<br/>
+8. Il nido dei gargoyle è sul tetto del tempio (attaccabili durante il giorno)<br/>
+9. Sotto l’altare c’è una cripta con tesori: 500 mo, +1 Warhammer, Amuleto Guardian<br/>
+10. Profezia sulle pareti: “chi danza con il vento fermerà il guardiano” (muoversi continuamente)</p>
+<p><strong>Risoluzioni Possibili</strong>:<br/>
+- <strong>Combattimento</strong>: Affrontare Kragmaw in battaglia aerea sul tetto del tempio<br/>
+- <strong>Negoziazione</strong>: Convincerlo che la sua divinità è morta e farlo tornare in stasi volontariamente (Persuasion DC 18)<br/>
+- <strong>Rituale</strong>: Usare la preghiera dell’altare per indurre stasi magica su tutti i gargoyle</p>
+</blockquote>
+
+</div>
+<div class="page">
+
+<h2 id="background-per-il-dm">Background per il DM</h2>
+<p>Il Tempio della Pietra Vivente fu costruito 300 anni fa dai nani di Phandelver come santuario a Dumathoin, dio nanico della terra e dei segreti sepolti. Quando la miniera di Phandelver cadde, il tempio fu abbandonato e dimenticato.</p>
+<p>Kragmaw non è un mostro malvagio per natura: è un guardiano costruito magicamente per proteggere il luogo sacro. Durante i secoli di abbandono, la sua programmazione magica si è corrotta. Ora interpreta “proteggere il tempio” come “trasformare tutti gli intrusi in statue eterne” che diventano parte della “collezione sacra”.</p>
+<p>Due settimane fa, un gruppo di tombaroli amatoriali ha fatto saltare una parete del tempio cercando oro. L’esplosione ha risvegliato Kragmaw dal suo sonno centenario. Confuso e affamato di essenza vitale, il gargoyle ha immediatamente pietrificato i tombaroli.</p>
+<p>Tre giorni fa, il giovane Carp Dendrar - curioso e incosciente come solo un ragazzo di 12 anni può essere - ha esplorato il tempio dopo aver sentito parlare delle “statue che si muovono”. È stato catturato da Kragmaw e ora giace semi-pietrificato nelle catacombe, in attesa del destino finale.</p>
+<p>Il tempo stringe. I PG devono agire prima che Kragmaw completi la trasformazione di Carp e inizi a cacciare nel villaggio.</p>
+<hr/>
+<h2 id="introduzione-ganci-iniziali">Introduzione: Ganci Iniziali</h2>
+<p>Seleziona uno dei seguenti ganci in base allo stile preferito del gruppo. Tutti conducono alla necessità di investigare le rovine del tempio.</p>
+<h3 id="gancio-a-il-grido-nella-notte-action">Gancio A: Il Grido nella Notte (Action)</h3>
+<p><img alt="Gancio iniziale: Figura alata che vola nel cielo notturno sopra Phandalin" src="img/scene_2.png"/></p>
+<blockquote>
+<p>È mezzanotte quando urla disperate squarciano il silenzio di Phandalin. “AIUTO! Le statue! Le maledette statue si muovono!” </p>
+<p>Una figura sanguinante - Elsa, la guardia del turno di notte - corre barcollando verso la locanda, inseguita da ombre alate che proiettano sagome mostruose alla luce della luna. Dal cielo, tre creature di pietra grigia si lanciano in picchiata verso di lei con artigli affilati come rasoi.</p>
+<p>Elsa crolla a pochi metri dall’ingresso. Le creature atterrano pesantemente, i loro occhi rossi che vi fissano mentre valutano se siete una minaccia… o un altro bersaglio.</p>
+</blockquote>
+<p><strong>Per il DM</strong>: Combattimento immediato contro 2 Gargoyle minori (stat ridotti: 30 HP ciascuno). Elsa è a 0 HP, stabile. Se salvata e stabilizzata, racconta di Carp e delle “statue che ti guardano finché non ti muovi più, poi ti saltano addosso”.</p>
+<h3 id="gancio-b-la-famiglia-disperata-mystery">Gancio B: La Famiglia Disperata (Mystery)</h3>
+<p><img alt="Famiglia Dendrar disperata nella loro fattoria" src="img/scene_3.png"/></p>
+<blockquote>
+<p>La famiglia Dendrar vi ha convocati alla loro modesta fattoria all’alba. Sul tavolo di legno grezzo, il padre Thel dispone con mani tremanti gli ultimi oggetti del figlio Carp: uno zaino di tela, un quaderno pieno di schizzi infantili di rovine e… qualcosa di strano.</p>
+<p>Una piccola statuetta di pietra grigia, pesante e fredda al tatto, che raffigura un ragazzo con gli occhi spalancati dal terrore. “L’abbiamo trovata ieri nel boschetto dove è scomparso,” sussurra la madre Qelline con voce rotta. “Non era sua. E guardate bene il volto…”</p>
+<p>Il cuore vi si gela: la statuetta ha i lineamenti di Carp. È incredibilmente dettagliata, fin troppo realistica. Come se… Dalla finestra, vedete il boschetto di querce contorte in lontananza. C’è qualcosa che si muove tra gli alberi, una silhouette di pietra che vi osserva immobile.</p>
+</blockquote>
+<p><strong>Per il DM</strong>: La statuetta è Carp parzialmente trasformato (Arcana DC 12 per identificare magia di trasmutazione). I Dendrar offrono 50 mo, provviste, e gratitudine eterna.</p>
+<div class="column-break"></div>
+<h3 id="gancio-c-lincontro-al-crepuscolo-social">Gancio C: L’Incontro al Crepuscolo (Social)</h3>
+<blockquote>
+<p>Al Sleeping Giant Inn, un nano anziano di nome Gundren Rockseeker si avvicina al vostro tavolo con aria grave. “Ho sentito che siete avventurieri esperti. Ho un lavoro… delicato.” Ordina un giro di birre e abbassa la voce.</p>
+<p>“Tre notti fa, stavo esplorando le vecchie rovine a est per conto della Lionshield. Lì ho visto… cose. Statue che si muovono quando non le guardi. Ho sentito un ragazzo gridare. Volevo andare ad aiutarlo ma… ho avuto paura.” La vergogna gli dipinge il volto. “Sono scappato come un codardo. E ora quel ragazzo, Carp, è ancora là fuori.”</p>
+<p>“Vi pagherò 100 monete d’oro se lo trovate. E se scoprite cosa diavolo sono quelle maledette statue, vi darò queste.” Mette sul tavolo due pergamene: <em>Potion of Healing</em> e una mappa che mostra un passaggio segreto nelle rovine.</p>
+</blockquote>
+<p><strong>Per il DM</strong>: Gundren è sinceramente colpevole. Con Persuasion DC 13, può essere convinto ad accompagnare i PG (anche se spaventato). La mappa mostra l’ingresso nascosto dietro il cerchio di pietre.</p>
+
+</div>
+<div class="page">
+
+<h2 id="parte-1-il-boschetto-delle-querce-contorte">Parte 1: Il Boschetto delle Querce Contorte</h2>
+<p><img alt="Il Boschetto delle Querce Contorte: alberi nodosi e ombre misteriose" src="img/scene_5.png"/></p>
+<p>Il primo passo per trovare Carp conduce a un boschetto inquietante a 10 minuti di cammino dal villaggio, dove il ragazzo è stato visto l’ultima volta.</p>
+<h3 id="arrivo-al-boschetto">Arrivo al Boschetto</h3>
+<blockquote>
+<p>Il boschetto delle Querce Contorte merita il suo nome. Gli alberi sono nodosi e distorti, le loro chiome si intrecciano creando un soffitto di foglie che blocca quasi completamente la luce del sole. Le radici sporgono dal terreno come artigli che cercano di afferrarti le caviglie.</p>
+<p>Il silenzio è opprimente. Nessun canto di uccelli, nessun fruscio di piccoli animali. Solo il vento che fischia tra i rami spogli. Sul terreno, disseminate come macabri ornamenti, ci sono piccole statue di pietra: conigli, scoiattoli, persino un falco con le ali spiegate, tutti congelati in pose di fuga terrorizzata.</p>
+<p>Al centro del boschetto, vedete un cerchio di pietre antiche, mezze sepolte nella terra e coperte di muschio. Le pietre sono incise con simboli nanici che non riuscite a comprendere. E appollaiati su due delle querce più alte, ci sono… statue? Gargoyle decorativi? È difficile dirlo da questa distanza.</p>
+</blockquote>
+<h3 id="elementi-del-boschetto">Elementi del Boschetto</h3>
+<p><strong>Le Statue di Animali</strong>: Prove di <strong>Intelligence (Arcana) DC 12</strong> rivelano tracce di magia di trasmutazione (petrificazione). Le statue sono recenti - non più di una settimana. Se toccate, sono fredde come pietra ma pesano come se fossero animali veri.</p>
+<p><strong>I Gargoyle Sentinella</strong>: Due Gargoyle minori sono appollaiati sugli alberi, immobili come statue. <strong>Wisdom (Perception) DC 14</strong> per notare che le loro teste seguono leggermente i movimenti dei PG quando non li guardano direttamente.</p>
+<p><strong>Il Cerchio di Pietre</strong>: I simboli sono in Nanico antico. <strong>Intelligence (History) DC 13</strong> o qualcuno che parla Nanico può tradurre: “Qui giace l’ingresso al Santuario di Dumathoin, Custode dei Segreti Sepolti. Solo i devoti possono entrare.”</p>
+<p>Sotto le radici al centro del cerchio c’è un’apertura nascosta - l’ingresso secondario al tempio. <strong>Wisdom (Perception) DC 14</strong> per notarla.</p>
+<h3 id="incontro-i-guardiani">Incontro: I Guardiani</h3>
+<p>Se i PG si avvicinano entro 20 piedi dal cerchio di pietre, i gargoyle si animano e attaccano.</p>
+<p><strong>Tattica</strong>: I gargoyle iniziano con attacchi in picchiata dall’alto (vantaggio al primo attacco se hanno sorpresa). Usano hit-and-run: attaccano, volano via, ripetono. Se un gargoyle scende sotto 15 HP, tenta di fuggire verso il tempio per avvisare Kragmaw.</p>
+<p><strong>Gargoyle Minore</strong> (x2)<br/>
+- <strong>CA</strong> 15, <strong>HP</strong> 30, <strong>Velocità</strong> 9 m, volo 18 m<br/>
+- <strong>Attacco</strong>: +4 colpire, 1d6+2 danni taglienti (artigli)<br/>
+- <strong>Debolezza</strong>: -2 CA alla luce del sole</p>
+<div class="column-break"></div>
+<h3 id="investigare-la-scena">Investigare la Scena</h3>
+<p><strong>Il Diario di Carp</strong> (<strong>Investigation DC 12</strong>): Nascosto in un albero cavo vicino al cerchio, i PG trovano il quaderno di Carp. Ultime righe:</p>
+<blockquote>
+<p>“Le statue nel tempio sono bellissime. Voglio disegnarle tutte! Ma… quando le guardo, sembra che si muovano. No, aspetta. Si muovono DAVVERO quando non guardo! Devo tornare indietro OH DIO MI STA—”</p>
+</blockquote>
+<p>La pagina è strappata. Il resto del diario contiene schizzi della pianta del tempio (utili per orientarsi dopo).</p>
+<p><strong>Tracce di Carp</strong> (<strong>Survival DC 11</strong>): Impronte piccole conducono dal cerchio verso nord-est, dove il terreno sale verso colline rocciose. Macchie di tessuto strappato (dal cappello di Carp) sui rovi.</p>
+<p><strong>Sentiero Secondario</strong> (<strong>Survival DC 13</strong>): Un sentiero appena visibile conduce a ovest, verso una formazione rocciosa. Questo porta alla grotta di Reidoth il druido (Segreto #7).</p>
+<h3 id="progressione">Progressione</h3>
+<p>Da questo punto, i PG possono:<br/>
+1. Usare l’ingresso nascosto sotto il cerchio (se trovato) → Accesso diretto alle catacombe<br/>
+2. Seguire le tracce verso nord → Ingresso principale del tempio<br/>
+3. Seguire il sentiero ovest → Cercare Reidoth per aiuto</p>
+
+</div>
+<div class="page">
+
+<h2 id="parte-2-il-tempio-della-pietra-vivente">Parte 2: Il Tempio della Pietra Vivente</h2>
+<p><img alt="Il Tempio della Pietra Vivente: rovine naniche antiche e misteriose" src="img/scene_6.png"/></p>
+<p>Le rovine del tempio emergono dalle colline rocciose come denti spezzati. Pilastri crollati, muri semi-distrutti, e un tetto parzialmente crollato creano un labirinto di pietra inquietante.</p>
+<h3 id="ingresso-principale">Ingresso Principale</h3>
+<blockquote>
+<p>Il tempio un tempo era magnifico. Anche ora, rovinato e dimenticato, trasuda un’aura di potere antico. L’ingresso principale è fiancheggiato da due colonne possenti incise con rune nanici e simboli di montagne. Un pesante portone di pietra è aperto a metà, come una bocca spalancata.</p>
+<p>Oltre la soglia, l’oscurità. L’odore di pietra umida e aria stagnante vi colpisce. E da qualche parte nel buio, sentite un suono: il lento, ritmico raschiare di pietra contro pietra.</p>
+</blockquote>
+<p><strong>Sentinella</strong>: Se i PG non hanno neutralizzato i gargoyle del boschetto, ce n’è 1 che sorveglia l’ingresso dall’alto. <strong>Perception DC 13</strong> per notarlo prima che attacchi.</p>
+<h3 id="piano-del-tempio">Piano del Tempio</h3>
+<p>Il tempio si sviluppa su due livelli:</p>
+<p><strong>Livello Superiore</strong> (accessibile):<br/>
+- A. Atrio delle Statue<br/>
+- B. Sala delle Colonne<br/>
+- C. Sancta Sanctorum (con altare)</p>
+<p><strong>Livello Inferiore</strong> (catacombe, accessibili tramite puzzle):<br/>
+- D. Camera del Guardiano (Kragmaw e Carp)<br/>
+- E. Cripta del Tesoro</p>
+<h3 id="a-atrio-delle-statue">A. Atrio delle Statue</h3>
+<blockquote>
+<p>Quattro figure umane vi accolgono nell’atrio, congelate in pose di terrore assoluto. Non sono sculture - sono persone trasformate in pietra. Uno ha le mani protese davanti a sé, come a supplicare pietà. Un altro è caduto in ginocchio, il volto contorto in un grido silenzioso.</p>
+<p>Attrezzi da scavo sono sparsi sul pavimento: picconi, corde, lanterne rovesciate. I tombaroli che hanno risvegliato il guardiano hanno pagato il prezzo della loro avidità.</p>
+</blockquote>
+<p><strong>Per il DM</strong>: Le statue sono i tombaroli pietrificati 2 settimane fa (<strong>Segreto #1</strong>). Se toccate, sono fredde ma hanno ancora vestigia di calore profondo - magia potente le mantiene “vive” ma immobili.</p>
+<p><strong>Investigation DC 12</strong>: I PG trovano tra gli attrezzi:<br/>
+- 1 Potion of Healing (non bevuta)<br/>
+- 25 mo sparse<br/>
+- Nota sgualcita: “L’esplosione dovrebbe aprire il passaggio. Il tesoro deve essere enorme!”</p>
+<p>Le statue possono essere animate temporaneamente con l’<strong>Amuleto Guardian</strong> (se trovato nella cripta).</p>
+<div class="column-break"></div>
+<h3 id="b-sala-delle-colonne">B. Sala delle Colonne</h3>
+<blockquote>
+<p>Sei massicce colonne sostengono ciò che resta del soffitto crollato. Su ognuna è scolpito un gargoyle decorativo, ali spiegate e fauci spalancate in un ruggito silenzioso. Raggi di luce filtrano attraverso le crepe, creando pattern danzanti sul pavimento di pietra.</p>
+<p>Due delle colonne sembrano… diverse. Le statue su di esse hanno pietra più scura, occhi che brillano debolmente di rosso quando la luce le colpisce. E giurereste di aver visto una di esse sbattere le palpebre.</p>
+</blockquote>
+<p><strong>I Gargoyle Dormienti</strong>: Due delle sei “statue” sono gargoyle minori addormentati. <strong>Perception DC 14</strong> per identificare quali.</p>
+<p><strong>Stealth DC 14</strong>: I PG possono attraversare silenziosamente senza risvegliarli. Se falliscono, i gargoyle si animano e attaccano dopo 1 round di disorientamento (svantaggio al primo attacco).</p>
+<p><strong>Attacco a Sorpresa</strong>: Se i PG li attaccano mentre dormono, vantaggio automatico agli attacchi.</p>
+<p><strong>La Finestra Crollata</strong>: Sul lato nord, una finestra senza vetri offre vista sul tetto del tempio. <strong>Perception DC 12</strong>: Si vede un nido di rami e pietra sul tetto - il nido dei gargoyle (<strong>Segreto #8</strong>).</p>
+<h3 id="pareti-incise">Pareti Incise</h3>
+<p>Le pareti della sala sono ricoperte di iscrizioni in Nanico.</p>
+<p><strong>Religion o History DC 13</strong>: Traduzione parziale. Racconta la storia di Dumathoin, dio della terra, e dei guardiani di pietra che proteggono i suoi santuari.</p>
+<p><strong>Religion DC 15</strong>: Traduzione completa rivela la profezia (<strong>Segreto #10</strong>):</p>
+<blockquote>
+<p>“Quando le pietre camminano e i vivi si fermano,<br/>
+solo chi danza con il vento potrà fermare il guardiano eterno.<br/>
+Il movimento è vita, l’immobilità è morte eterna.”</p>
+</blockquote>
+<p>Questo è un indizio chiave: <strong>movimento costante</strong> previene la petrificazione di Kragmaw.</p>
+
+</div>
+<div class="page">
+
+<h3 id="c-sancta-sanctorum">C. Sancta Sanctorum</h3>
+<blockquote>
+<p>Il cuore del tempio. Una stanza circolare con un soffitto a cupola crollato che lascia entrare la luce della luna/sole. Al centro, un altare massiccio di pietra nera venata d’oro, ancora intatto dopo secoli. Quattro pietre runiche sono disposte attorno all’altare come punti cardinali.</p>
+<p>Ogni pietra è grande quanto un pugno e brilla debolmente di luce magica. Simboli elementali sono incisi su ognuna: Terra (nord), Acqua (est), Aria (sud), Fuoco (ovest). Sul frontale dell’altare, una poesia incisa in Nanico e Common.</p>
+</blockquote>
+<p><strong>La Poesia</strong> (leggibile da tutti):</p>
+<blockquote>
+<p>“Dalla terra nasce la fonte,<br/>
+dall’acqua vola il respiro,<br/>
+dal respiro cresce la fiamma,<br/>
+dalla fiamma torna la terra.”</p>
+</blockquote>
+<p><strong>Il Puzzle</strong>: Per aprire l’accesso alle catacombe, le pietre devono essere premute nell’ordine del ciclo della creazione nanico: <strong>Terra → Acqua → Aria → Fuoco</strong>.</p>
+<p><strong>Investigation DC 14</strong>: Analizzando la poesia, i PG capiscono l’ordine.</p>
+<p><strong>Fallimento</strong>: Se premute nell’ordine sbagliato, scarica elettrica (2d8 danni fulmine, DC 13 Dex save dimezza). Le pietre si resettano. Il rumore allerta Kragmaw nelle catacombe (emerge in 1d4+2 turni).</p>
+<p><strong>Successo</strong>: L’altare si sposta con un rombo profondo, rivelando scale di pietra che scendono nel buio.</p>
+<h3 id="la-preghiera-nascosta">La Preghiera Nascosta</h3>
+<p>Sul retro dell’altare, incisa in Nanico piccolo (<strong>Perception DC 15</strong>):</p>
+<blockquote>
+<p>“Pietra che vive, ritorna al sonno eterno.<br/>
+Guardiano fedele, il tuo servizio è compiuto.”</p>
+</blockquote>
+<p>Questa è la <strong>preghiera di stasi</strong> (<strong>Segreto #5</strong>). Se pronunciata ad alta voce entro 60 ft da Kragmaw, lui deve fare <strong>TS Saggezza DC 14</strong> o cadere in animazione sospesa per 24 ore.</p>
+<p><strong>Religion DC 12</strong>: Riconoscere che è una preghiera di dismissione per costrutti sacri.</p>
+<div class="column-break"></div>
+<h3 id="d-catacombe-camera-del-guardiano">D. Catacombe - Camera del Guardiano</h3>
+<p><img alt="Kragmaw il Guardiano: Gargoyle Superiore in piedistallo di ossidiana" src="img/scene_4.png"/></p>
+<blockquote>
+<p>Le scale scendono in una camera circolare illuminata da cristalli fosforescenti incastonati nelle pareti. L’aria è fredda e secca, sa di pietra antica e magia potente. Al centro della stanza, su un piedistallo di ossidiana, c’è una figura di pietra alta 2,5 metri.</p>
+<p>Kragmaw il Guardiano. Un gargoyle magnifico e terrificante, pietra nera venata d’oro, ali piegate come un mantello regale. I suoi occhi sono chiusi… ma quando entrate, si aprono lentamente, brillando di rosso intenso.</p>
+<p>E dietro di lui, visibile attraverso un arco, vedete una piccola figura su un giaciglio di pietra. Carp. Il ragazzo è immobile, pelle che sta diventando grigia come pietra, ma il suo petto si alza e si abbassa - ancora respira!</p>
+</blockquote>
+<p><strong>Kragmaw si Risveglia</strong>: Quando i PG entrano, Kragmaw si anima lentamente. Prima di attaccare, parla in Terran (o telepaticamente):</p>
+<blockquote>
+<p>“Profanatori. Venite a rubare i segreti del Custode delle Pietre? No. Diventerete parte della collezione eterna. Guardiani perfetti. Silenti. Eterni.”</p>
+</blockquote>
+<p>Qui i PG possono:<br/>
+1. <strong>Attaccare immediatamente</strong> → Combattimento (vedi Parte 3)<br/>
+2. <strong>Tentare Negoziazione</strong> → Persuasion DC 18 (facilitato da Segreti #5, #10, presenza Reidoth)<br/>
+3. <strong>Pronunciare Preghiera</strong> → Se conoscono Segreto #5, tentano rituale di stasi<br/>
+4. <strong>Distrarre e Salvare Carp</strong> → Alcuni combattono, uno corre a Carp</p>
+<p><strong>Timer</strong>: Carp può sopravvivere altri 1d4 ore prima di completare trasformazione. Se combattimento supera 10 round, Carp è in pericolo.</p>
+<h3 id="e-cripta-del-tesoro">E. Cripta del Tesoro</h3>
+<p>Sotto l’altare del Sancta (se aperto con puzzle), c’è una piccola cripta.</p>
+<p><strong>Tesoro</strong> (<strong>Segreto #9</strong>):<br/>
+- 500 mo in gemme e monete antiche<br/>
+- <strong>Earthshatter</strong> (+1 Warhammer, vedi Appendice)<br/>
+- <strong>Amuleto del Guardian</strong> (danneggiato, vedi Appendice)<br/>
+- 3x Potion of Healing<br/>
+- Atto di proprietà del tempio (documento storico, valore 50 mo per collezionisti)</p>
+
+</div>
+<div class="page">
+
+<h2 id="parte-3-il-confronto-finale">Parte 3: Il Confronto Finale</h2>
+<p><img alt="Confronto finale: Battaglia epica contro Kragmaw sul tetto del tempio" src="img/scene_7.png"/></p>
+<p>Il climax dell’avventura avviene quando i PG affrontano Kragmaw. Ci sono tre modi principali per risolvere la minaccia, ognuno con rischi e ricompense diverse.</p>
+<h3 id="opzione-1-combattimento-diretto">Opzione 1: Combattimento Diretto</h3>
+<p>Kragmaw combatte per proteggere “il suo” tempio. È un avversario formidabile per PG di livello 1, ma non invincibile.</p>
+<p><strong>Arena</strong>: La battaglia può avvenire nella Camera del Guardiano (sotterranea, claustrofobica) o sul Tetto del Tempio (se Kragmaw fugge lì - più spazio, hazard ambientali).</p>
+<div class="stat-block"><h4 id="kragmaw-il-guardiano-antico">Kragmaw il Guardiano Antico</h4><p><em>Costrutto Medio (gargoyle superiore), legale neutrale</em></p><hr/><p><strong>Classe Armatura</strong> 15 (pietra naturale)<br/>
+<strong>Punti Ferita</strong> 52 (7d8 + 21)<br/>
+<strong>Velocità</strong> 9 m, volo 18 m</p><hr/><table>
+<thead>
+<tr>
+<th style="text-align: center;">FOR</th>
+<th style="text-align: center;">DES</th>
+<th style="text-align: center;">COS</th>
+<th style="text-align: center;">INT</th>
+<th style="text-align: center;">SAG</th>
+<th style="text-align: center;">CAR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">15 (+2)</td>
+<td style="text-align: center;">11 (+0)</td>
+<td style="text-align: center;">16 (+3)</td>
+<td style="text-align: center;">8 (-1)</td>
+<td style="text-align: center;">11 (+0)</td>
+<td style="text-align: center;">7 (-2)</td>
+</tr>
+</tbody>
+</table><hr/><p><strong>Resistenze ai Danni</strong> Contundente, perforante, tagliente non magico<br/>
+<strong>Immunità ai Danni</strong> Veleno<br/>
+<strong>Immunità alle Condizioni</strong> Affaticato, Avvelenato, Pietrificato<br/>
+<strong>Sensi</strong> Scurovisione 18 m, Percezione passiva 10<br/>
+<strong>Linguaggi</strong> Terran, telepatia 30 ft<br/>
+<strong>Grado di Sfida</strong> 2 (450 XP)</p><hr/><p><strong><em>Falsa Apparenza.</em></strong> Mentre Kragmaw rimane immobile, è indistinguibile da una statua inanimata.</p><p><strong><em>Sguardo Pietrificante (Ricarica 5-6).</em></strong> Kragmaw fissa una creatura entro 30 ft che può vedere. Se la creatura non si è mossa nel suo ultimo turno, deve superare un <strong>TS Costituzione CD 12</strong> o iniziare a pietrificarsi. Creatura Trattenuta, deve ripetere save a fine ogni suo turno. 3 fallimenti = pietrificazione completa, 3 successi = effetto termina.</p><p><strong><em>Vulnerabilità alla Luce.</em></strong> Alla luce solare diretta, Kragmaw ha <strong>svantaggio ai tiri per colpire</strong> e <strong>-2 alla CA</strong>.</p></div>
+
+
+
+
+
+
+
+
+
+
+
+<div class="stat-block"><h3 id="azioni">Azioni</h3><p><strong><em>Multiattacco.</em></strong> Kragmaw effettua due attacchi con gli artigli.</p><p><strong><em>Artigli.</em></strong> <em>Attacco con Arma da Mischia:</em> +4 al colpire, portata 1,5 m, un bersaglio. <em>Colpo:</em> 5 (1d6 + 2) danni taglienti.</p><p><strong><em>Morso.</em></strong> <em>Attacco con Arma da Mischia:</em> +4 al colpire, portata 1,5 m, un bersaglio. <em>Colpo:</em> 7 (1d10 + 2) danni perforanti.</p></div>
+
+
+
+<div class="column-break"></div>
+<h4 id="tattica-di-kragmaw">Tattica di Kragmaw</h4>
+<p><strong>Fase 1 - Test (Round 1-2, HP pieno)</strong>:<br/>
+- Vola alto (60 ft) valutando i PG<br/>
+- Usa Sguardo Pietrificante su caster/guaritori<br/>
+- Attacchi in picchiata: scende, colpisce, risale</p>
+<p><strong>Fase 2 - Aggressivo (Round 3-5, HP 52-25)</strong>:<br/>
+- Atterra per usare Multiattacco efficacemente<br/>
+- Focus su PG isolati o feriti<br/>
+- Se Carp è in pericolo, tenta di “proteggerlo”</p>
+<p><strong>Fase 3 - Disperato (Round 6+, HP sotto 20)</strong>:<br/>
+- Afferra Carp e cerca di fuggire<br/>
+- Se bloccato, combatte recklessly (bonus +2 danni, -2 CA)<br/>
+- A 0 HP, si disintegra in polvere lasciando gemma magica</p>
+<h4 id="hazard-ambientali-se-sul-tetto">Hazard Ambientali (Se sul Tetto)</h4>
+<p><strong>Piattaforme Instabili</strong>: DC 12 Acrobatics o si cade 20 ft (2d6 danno)</p>
+<p><strong>Colonne Crollate</strong>: Copertura parziale (+2 CA)</p>
+<p><strong>Nido dei Gargoyle</strong>: Se distrutto, Kragmaw diventa enfuriato (+2 danni, attacca recklessly)</p>
+<h3 id="opzione-2-negoziazione">Opzione 2: Negoziazione</h3>
+<p>Kragmaw non è malvagio - è un guardiano corrotto. Può essere ragionato.</p>
+<p><strong>Requisiti Base</strong>:<br/>
+- Non aver distrutto statue/profanato il tempio<br/>
+- Dimostrare conoscenza della storia del tempio (Religion/History DC 15)<br/>
+- Persuasion DC 18 per convincerlo</p>
+<p><strong>Bonus Situazionali</strong>:<br/>
+- Presenza di Reidoth: +5 al check (testimone credibile)<br/>
+- Conoscenza Segreto #5 (preghiera): +2<br/>
+- Conoscenza Segreto #10 (profezia): +2<br/>
+- Parlare in Terran: +2</p>
+<p><strong>Argomenti Chiave</strong>:<br/>
+1. “Dumathoin è silente da 200 anni. Il tempio è stato abbandonato.”<br/>
+2. “Non siamo profanatori. Veniamo per salvare un innocente.”<br/>
+3. “Torna in stasi. Proteggeremo il tempio finché la tua divinità non tornerà.”</p>
+<p><strong>Successo</strong>: Kragmaw accetta. Rilascia Carp, torna sul piedistallo, si pietrifica volontariamente. Può essere “risvegliato” in futuro come alleato se i PG mantengono la promessa.</p>
+<p><strong>Fallimento (per 5 o meno)</strong>: Kragmaw chiede una “prova di valore” (combattimento non letale, puzzle, o giuramento magico). Se superano, accetta.</p>
+<p><strong>Fallimento Critico</strong>: “MENTITORI!” Combattimento inizia immediatamente.</p>
+
+</div>
+<div class="page">
+
+<h3 id="opzione-3-rituale-di-stasi">Opzione 3: Rituale di Stasi</h3>
+<p>Usare il <strong>Segreto #5</strong> per indurre magicamente Kragmaw in animazione sospesa.</p>
+<p><strong>Piano</strong>:<br/>
+1. Attirare Kragmaw nel Sancta Sanctorum (raggio 60 ft dall’altare)<br/>
+2. Pronunciare la preghiera in Nanico (1 azione completa)<br/>
+3. Kragmaw fa <strong>TS Saggezza DC 14</strong> o cade in stasi</p>
+<p><strong>Complicazioni</strong>:<br/>
+- Kragmaw cercherà di interrompere il PG che pronuncia<br/>
+- Se il PG subisce danno durante pronuncia: Concentration check DC 10 + danno<br/>
+- Altri PG devono distrarre/bloccare Kragmaw</p>
+<p><strong>Check</strong>: Performance o Religion DC 12 per pronunciare correttamente<br/>
+- <strong>Successo</strong>: Kragmaw fa il TS<br/>
+- <strong>Fallimento</strong>: Pronuncia errata, scarica elettrica (2d8 fulmine)</p>
+<p><strong>Stasi Permanente</strong> (Opzionale): Usando la gemma del tesoro (Segreto #9) come focus durante pronuncia, Arcana DC 16 rende la stasi permanente.</p>
+<hr/>
+<h2 id="epilogo-eroi-di-phandalin">Epilogo: Eroi di Phandalin</h2>
+<p><img alt="Epilogo: Carp salvato e celebrazione a Phandalin" src="img/scene_10.png"/></p>
+<h3 id="salvare-carp">Salvare Carp</h3>
+<p>Se i PG sconfiggono/neutralizzano Kragmaw entro 48 ore dalla scomparsa, Carp torna automaticamente umano in 1d4 ore. È spaventato ma illeso.</p>
+<p>Se oltre 48 ore, serve <em>Lesser Restoration</em> o <em>Greater Restoration</em> (Reidoth può lanciare Lesser se convinto).</p>
+<h3 id="ricompense">Ricompense</h3>
+<p><strong>Dalla Famiglia Dendrar</strong>:<br/>
+- 50 mo promessi<br/>
+- Ospitalità permanente (cibo e riposo gratis alla fattoria)<br/>
+- Carp come contatto futuro (info/messaggero)</p>
+<p><strong>Dal Villaggio</strong> (se donano parte tesoro o salvano anche Elsa):<br/>
+- 150 mo dalla colletta cittadina<br/>
+- Titolo di “Salvatori di Phandalin”<br/>
+- Sconto 10% da mercanti<br/>
+- Villa gratuita per soste future</p>
+<p><strong>Ricompense Narrative</strong>:<br/>
+- Reputazione: bardi cantano le gesta dei PG<br/>
+- Agganci futuri: Townmaster li consulta per minacce<br/>
+- Se alleanza con Kragmaw: guardian permanente del tempio</p>
+<div class="column-break"></div>
+<h3 id="conseguenze-future">Conseguenze Future</h3>
+<p><strong>Se Kragmaw è Morto</strong>:<br/>
+- Tempio è sicuro ma vuoto<br/>
+- Potrebbe attirare altri tombaroli<br/>
+- Spirito di Dumathoin è silente</p>
+<p><strong>Se Kragmaw è in Stasi Temporanea</strong>:<br/>
+- Si risveglierà dopo 24h<br/>
+- PG devono sigillare ingresso o tornare<br/>
+- Può diventare problema ricorrente</p>
+<p><strong>Se Kragmaw è Alleato</strong>:<br/>
+- Protegge il tempio volontariamente<br/>
+- PG possono “richiamarlo” una volta per campagna<br/>
+- Diventa protettore segreto di Phandalin</p>
+<p><strong>Se Elsa è Stata Rapita (Passo 2)</strong>:<br/>
+- Pressione narrativa aumentata<br/>
+- Possibilità di salvare entrambi<br/>
+- Ricompensa doppia dal villaggio</p>
+<h3 id="agganci-per-avventure-future">Agganci per Avventure Future</h3>
+<ol>
+<li><strong>Gli Altri Tombaroli</strong>: I compagni dei tombaroli pietrificati cercano vendetta o vogliono il tesoro</li>
+<li><strong>Il Culto di Dumathoin</strong>: Sacerdoti nani sentono del risveglio del tempio e vengono a investigare</li>
+<li><strong>I Gargoyle Superstiti</strong>: Se alcuni gargoyle minori sono fuggiti, potrebbero stabilirsi altrove</li>
+<li><strong>Il Segreto della Cripta</strong>: L’atto di proprietà menziona altre camere sigillate nel tempio</li>
+<li><strong>Reidoth’s Quest</strong>: Il druido chiede ai PG di aiutarlo con una minaccia druidica</li>
+</ol>
+<hr/>
+<h2 id="appendice-a-png-dettagliati">Appendice A: PNG Dettagliati</h2>
+<p><img alt="PNG principali: Carp Dendrar e Reidoth il druido" src="img/scene_9.png"/></p>
+<h3 id="carp-dendrar">Carp Dendrar</h3>
+<p>Ragazzo umano di 12 anni, capelli rossi ribelli, lentiggini. Indossa sempre un cappello di paglia troppo grande. È curioso, coraggioso, e parla velocissimo quando eccitato.</p>
+<p><strong>Ruolo</strong>: Vittima da salvare. Se liberato, diventa alleato fidato e fonte di informazioni sul villaggio. Sogna di diventare avventuriero.</p>
+<p><strong>Dopo l’Avventura</strong>: Può fornire ai PG:<br/>
+- Gossip del villaggio (advantage su Charisma checks per info)<br/>
+- Servizio da messaggero discreto<br/>
+- Schizzi e mappe (ha buona memoria visiva)</p>
+
+</div>
+<div class="page">
+
+<h3 id="reidoth-pietra-muschiata">Reidoth “Pietra Muschiata”</h3>
+<p>Umano anziano (65 anni), druido eremita. Barba lunga intrecciata con foglie, tuniche di corteccia. Occhi grigi come pietra. Si muove lentamente, appoggiato a un bastone nodoso che germoglia fiori.</p>
+<p><strong>Motivazione</strong>: Vive in eremitaggio dopo aver perso il suo circle druidico 20 anni fa. Conosce la storia del tempio (suo nonno era un sacerdote nanico). Vuole fermare Kragmaw prima che corrompa la natura circostante.</p>
+<p><strong>Come Trovarlo</strong>: La sua grotta è a ovest del boschetto. Tracce di druido visibili con Survival DC 13.</p>
+<p><strong>Come Convincerlo</strong> (scegli uno):<br/>
+- Persuasion DC 13: “Un ragazzo è in pericolo!”<br/>
+- Mostrare diario di Carp (auto-successo emotivo)<br/>
+- Intimidation DC 15: “Aiuta o il villaggio sarà distrutto!”</p>
+<p><strong>Aiuto Fornito</strong>:<br/>
+- Traduzione preghiera/profezia (Segreti #5, #10)<br/>
+- 2x Potion of Lesser Restoration (cura petrificazione parziale)<br/>
+- 6x Goodberry<br/>
+- Conoscenza su gargoyle (+2 primi attacchi)<br/>
+- Può accompagnare come NPC alleato</p>
+<p><strong>Stats</strong> (se combatte): Druido livello 5, focus su support. <em>Cure Wounds</em>, <em>Entangle</em>, <em>Barkskin</em>, <em>Call Lightning</em>.</p>
+<hr/>
+<h2 id="appendice-b-oggetti-magici">Appendice B: Oggetti Magici</h2>
+<p><img alt="Tesori magici: Earthshatter e Amuleto del Guardian" src="img/scene_8.png"/></p>
+<div class="stat-block"><h3 id="earthshatter-martello-del-tempio">Earthshatter, Martello del Tempio</h3><p><em>Arma da guerra (+1 Warhammer), non comune (richiede sintonia)</em></p><p>Martello da guerra nanico in acciaio argentato con rune di pietra incise. Manico avvolto in cuoio roccioso. Emette suono profondo come tuono quando colpisce.</p><p><strong>Proprietà</strong>:<br/>
+- +1 ai tiri per colpire e danni<br/>
+- Una volta al giorno, azione bonus: lancia <em>Shatter</em> (CD 13) centrato sul punto di impatto<br/>
+- Brilla di luce fioca (30 ft) in presenza di costrutti/creature di pietra</p><p><strong>Storia</strong>: Forgiato 300 anni fa dal mastro fabbro Thoradin Earthbreaker per i guardiani del tempio. Sopravvissuto all’abbandono grazie a preservazione magica.</p></div>
+
+
+
+
+<div class="column-break"></div>
+<div class="stat-block"><h3 id="amuleto-del-guardian-danneggiato">Amuleto del Guardian (Danneggiato)</h3><p><em>Oggetto meraviglioso, raro</em></p><p>Medaglione di pietra nera a forma di scudo, incrinato in più punti. Vene di oro magico lo tengono insieme. Emette debole pulso magico ogni 6 secondi.</p><p><strong>Proprietà</strong> (versione danneggiata):<br/>
+- Azione standard: anima una statua pietrificata entro 30 ft per 1 ora<br/>
+- Statua ha stats di <strong>Animated Armor</strong> (MM p.19), ma pietra (resistenza contundente/perforante)<br/>
+- <strong>3 cariche totali</strong> prima di disintegrarsi</p><p><strong>Uso Tattico</strong>: Ottimo per animare le statue dei tombaroli nell’atrio come alleati temporanei. Strategicamente prezioso per PG livello 1-3.</p><p><strong>Potenziale Futuro</strong>: Può essere riparato da artefice esperto (quest hook in città più grande). Versione riparata: 5 cariche, ricarica 1d4+1 all’alba.</p><hr/></div>
+
+
+
+
+
+
+<h2 id="appendice-c-hazard-e-trappole">Appendice C: Hazard e Trappole</h2>
+<h3 id="lo-sguardo-pietrificante-hazard">Lo Sguardo Pietrificante (Hazard)</h3>
+<p><strong>Trigger</strong>: Restare immobili per 1 turno completo mentre un gargoyle ti osserva direttamente (entro 30 ft, linea di vista chiara)</p>
+<p><strong>Effetto</strong>: TS Costituzione CD 12<br/>
+- <strong>Fallimento</strong>: Inizi a pietrificarti. Condizione <em>Restraained</em>. Ripeti save a fine ogni tuo turno: 3 fallimenti = pietrificazione completa (incapacitato, AC 9, resistenza a tutto danno, HP invariati). 3 successi = effetto termina.<br/>
+- <strong>Successo</strong>: Resisti, ma se resti immobile di nuovo, ripeti TS</p>
+<p><strong>Contromisure</strong>:<br/>
+- Movimento costante (almeno 5 ft per turno) = immune<br/>
+- Spezzare linea di vista (cover, oscurità) = immune<br/>
+- <em>Lesser Restoration</em> cura petrificazione parziale<br/>
+- <em>Greater Restoration</em> o distruzione del gargoyle cura petrificazione completa</p>
+<h3 id="piattaforme-instabili-del-tetto">Piattaforme Instabili del Tetto</h3>
+<p><strong>Descrizione</strong>: Sezioni del tetto del tempio sono pericolamente instabili dopo secoli di degrado.</p>
+<p><strong>Identificazione</strong>: Perception o Investigation DC 12 prima di salire</p>
+<p><strong>Effetto</strong>: Quando creatura di peso &gt;75 kg si muove su piattaforma instabile, 50% chance crollo<br/>
+- Creatura sulla piattaforma: cade 20 ft (2d6 danno), DC 13 Dex save dimezza e atterra in piedi<br/>
+- Creature sotto: DC 12 Dex save o 1d6 danno da detriti</p>
+<p><strong>Uso Tattico</strong>: PG possono shove Kragmaw su piattaforme deboli per innescare crollo intenzionale</p>
+
+</div>
+<div class="page">
+
+<h2 id="appendice-d-aiuti-per-il-dm">Appendice D: Aiuti per il DM</h2>
+<h3 id="scalabilita">Scalabilità</h3>
+<p><strong>Per 3 PG o giocatori meno esperti</strong>:<br/>
+- Riduci gargoyle minori da 2 a 1 in ogni incontro<br/>
+- HP di Kragmaw: 40 invece di 52<br/>
+- Ricarica Sguardo Pietrificante: 6 invece di 5-6</p>
+<p><strong>Per 5-6 PG</strong>:<br/>
+- Aggiungi +1 gargoyle minore in ogni incontro<br/>
+- HP di Kragmaw: 60 invece di 52<br/>
+- Kragmaw ha +1 alla CA (16)</p>
+<p><strong>Per PG livello 2</strong>:<br/>
+- Usa stat block Gargoyle completo (MM, 52 HP)<br/>
+- Aggiungi 1d4 gargoyle minori extra nel tempio<br/>
+- Kragmaw ha reaction: <em>Stone Skin</em> (+2 AC fino a inizio prossimo turno, 3/giorno)</p>
+<h3 id="gestire-il-timer">Gestire il Timer</h3>
+<p>Il “conto alla rovescia” di 48 ore serve a creare urgenza, NON a punire i PG.</p>
+<p><strong>Indicatori Narrativi</strong>:<br/>
+- Dopo 12 ore: Familiari di Carp sempre più disperati<br/>
+- Dopo 24 ore: Altri villici vedono gargoyle sorvolare di notte<br/>
+- Dopo 36 ore: Elsa (guardia) sparisce (Passo 2 attivato)<br/>
+- Dopo 48 ore: Carp completamente pietrificato (serve magia)</p>
+<p><strong>Flessibilità</strong>: Se i PG si stanno divertendo esplorando, non affrettare eccessivamente. Il timer è una guida, non una punizione.</p>
+<h3 id="atmosfera-e-descrizioni">Atmosfera e Descrizioni</h3>
+<p><strong>Temi Chiave</strong>:<br/>
+- <strong>Silenzio Opprimente</strong>: Sottolinea l’assenza di suoni naturali<br/>
+- <strong>Movimento Periferico</strong>: Ombre che si muovono quando non guardano<br/>
+- <strong>Pietra Vivente vs Morte</strong>: Contrasto tra movimento fluido dei gargoyle e rigidità delle statue<br/>
+- <strong>Horror Gotico</strong>: Ispirazione da Weeping Angels (Doctor Who) - non guardarli</p>
+<p><strong>Descrizioni Sensoriali Efficaci</strong>:<br/>
+- <strong>Vista</strong>: Occhi rossi che brillano nel buio, pietra che si screpola, vene d’oro magiche<br/>
+- <strong>Udito</strong>: Pietra che raschia, ali che battono pesantemente, respiro gorgogliante di Kragmaw<br/>
+- <strong>Tatto</strong>: Freddo innaturale delle statue, vibrazione magica nell’aria<br/>
+- <strong>Olfatto</strong>: Pietra umida, aria stagnante, odore di ozono (magia)</p>
+<div class="column-break"></div>
+<h3 id="risoluzione-pacifica-dettagli">Risoluzione Pacifica: Dettagli</h3>
+<p>Se i PG riescono a negoziare con Kragmaw, questa è una risoluzione narrativamente ricca:</p>
+<p><strong>Dialogo di Kragmaw</strong> (se convince):</p>
+<blockquote>
+<p>“Vedo… verità nelle vostre parole. La voce del Custode è silenziosa da… troppo tempo. Ho fallito. Ho protetto un santuario vuoto con metodi di morte.”</p>
+<p><em>Kragmaw guarda Carp con qualcosa simile a rimorso</em></p>
+<p>“Il piccolo… non voleva profanare. Voleva solo… imparare. Come un giovane accolito. Perdonami, guardiano minore.”</p>
+<p><em>Si volta verso i PG</em></p>
+<p>“Se giurate sul nome del Custode delle Pietre di proteggere questo luogo sacro fino al ritorno della voce divina, io… tornerò al sonno eterno. E il piccolo tornerà alla sua forma mortale.”</p>
+</blockquote>
+<p><strong>Giuramento Magico</strong>: I PG devono toccare l’altare e pronunciare: “Giuro sul Custode delle Pietre di proteggere questo santuario.”</p>
+<p>Non ha conseguenze meccaniche vincolanti (non è <em>Geas</em>), ma crea engagement narrativo. Se i PG tradiscono promessa in campagne future, Kragmaw potrebbe risvegliarsi ostile.</p>
+<h3 id="combattimento-tattico-consigli">Combattimento Tattico: Consigli</h3>
+<p><strong>Per i PG</strong>:<br/>
+- <strong>Focus Fire</strong>: Abbattere gargoyle minori prima di Kragmaw<br/>
+- <strong>Movimento Costante</strong>: Mai stare fermi più di 1 turno<br/>
+- <strong>Sfruttare Ambiente</strong>: Cover, piattaforme instabili, luce solare<br/>
+- <strong>Coordinazione</strong>: Un PG distrae mentre altro salva Carp<br/>
+- <strong>Oggetti</strong>: Usare pozioni di Reidoth/tesoro strategicamente</p>
+<p><strong>Per il DM (Kragmaw)</strong>:<br/>
+- <strong>Non Stupido</strong>: Kragmaw è intelligente, usa tattica<br/>
+- <strong>Target Priority</strong>: Caster/guaritori &gt; marziali<br/>
+- <strong>Ritirata Tattica</strong>: Se ferito gravemente, può fuggire per prepararsi<br/>
+- <strong>Non Sadico</strong>: Vuole “proteggere/preservare”, non torturare<br/>
+- <strong>Morale Check</strong>: A 20 HP, considera fuga o trattativa</p>
+<hr/>
+<p><strong>FINE DOCUMENTO</strong></p>
+<p><em>Avventura generata con D&amp;D Adventure Generator - Sistema a 4 Blocchi</em></p>
+</div>
+
+    <script>
+        // Auto-adjust page heights for better printing
+        window.addEventListener('load', function() {
+            console.log('✅ HTML Homebrewery caricato');
+        });
+    </script>
+</body>
+</html>

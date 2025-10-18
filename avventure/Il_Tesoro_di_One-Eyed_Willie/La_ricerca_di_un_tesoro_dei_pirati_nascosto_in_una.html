@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La_ricerca_di_un_tesoro_dei_pirati_nascosto_in_una</title>
+    <style>
+
+/* === RESET E BASE === */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'BookInsanity', 'Book Antiqua', Palatino, serif;
+    font-size: 10.5pt;
+    line-height: 1.4;
+    color: #000;
+    background: #EEE5CE;
+    padding: 20px;
+}
+
+/* === LAYOUT PAGINE === */
+.page {
+    width: 210mm;  /* A4 width */
+    min-height: 297mm;  /* A4 height */
+    margin: 0 auto 20px auto;
+    padding: 1.5cm 2cm;
+    background: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    position: relative;
+    overflow: hidden;
+    
+    /* Layout a colonna singola per stampa più affidabile */
+}
+
+@media print {
+    body {
+        background: white;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .page {
+        width: 210mm;
+        height: 297mm;
+        min-height: 297mm;
+        max-height: 297mm;
+        margin: 0;
+        padding: 1.5cm 2cm;
+        box-shadow: none;
+        page-break-after: always;
+        page-break-inside: avoid;
+        overflow: visible;
+        
+        /* Layout a colonna singola per stampa più affidabile */
+    }
+    
+    /* Evita page break dentro questi elementi */
+    h1, h2, h3, h4, h5 {
+        page-break-after: avoid;
+        break-after: avoid-page;
+    }
+    
+    .stat-block,
+    .descriptive,
+    .note-box,
+    blockquote {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+    
+    table {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+    
+    /* Forza page break */
+    .page-break {
+        page-break-before: always;
+        break-before: page;
+    }
+    
+    /* Column break (non necessario in layout single-column) */
+    .column-break {
+        /* Ignorato - non usiamo più colonne */
+    }
+    
+    /* Nascondi elementi non stampabili */
+    .no-print {
+        display: none !important;
+    }
+    
+    /* Fix immagini */
+    img {
+        max-width: 100%;
+        page-break-inside: avoid;
+    }
+    
+    /* Rimuovi ombre e effetti */
+    * {
+        box-shadow: none !important;
+    }
+}
+
+/* === TIPOGRAFIA === */
+h1 {
+    font-family: 'MrEavesSmallCaps', 'Cinzel', serif;
+    font-size: 28pt;
+    font-weight: 800;
+    color: #58180D;
+    margin-bottom: 0.3cm;
+    margin-top: 0.5cm;
+    border-bottom: 2px solid #C0AD6A;
+    padding-bottom: 0.1cm;
+}
+
+h2 {
+    font-family: 'MrEavesSmallCaps', 'Cinzel', serif;
+    font-size: 20pt;
+    font-weight: 700;
+    color: #58180D;
+    margin-top: 0.4cm;
+    margin-bottom: 0.25cm;
+    border-bottom: 1px solid #C0AD6A;
+}
+
+h3 {
+    font-family: 'MrEavesSmallCaps', 'Cinzel', serif;
+    font-size: 15pt;
+    font-weight: 700;
+    color: #58180D;
+    margin-top: 0.3cm;
+    margin-bottom: 0.2cm;
+    border-bottom: 1px solid #C0AD6A;
+}
+
+h4 {
+    font-family: 'MrEavesSmallCaps', 'Cinzel', serif;
+    font-size: 12pt;
+    font-weight: 700;
+    color: #58180D;
+    margin-top: 0.25cm;
+    margin-bottom: 0.15cm;
+}
+
+h5 {
+    font-family: 'BookInsanityBold', 'Book Antiqua', Palatino, serif;
+    font-size: 11pt;
+    font-weight: 700;
+    font-variant: small-caps;
+    color: #58180D;
+    margin-top: 0.2cm;
+    margin-bottom: 0.1cm;
+}
+
+p {
+    margin-bottom: 0.3cm;
+    text-align: justify;
+    hyphens: auto;
+}
+
+/* === BLOCKQUOTE (Read-aloud text) === */
+blockquote {
+    background: #E0E5C1;
+    border-left: 4px solid #C0AD6A;
+    padding: 0.3cm 0.4cm;
+    margin: 0.4cm 0;
+    font-family: 'ScalySansItalic', 'Palatino Linotype', serif;
+    font-style: italic;
+    font-size: 10pt;
+    box-shadow: 1px 4px 14px rgba(0,0,0,0.15);
+}
+
+blockquote h5 {
+    font-family: 'MrEavesSmallCaps', 'Cinzel', serif;
+    font-style: normal;
+    text-align: center;
+    margin-top: 0;
+    border-bottom: 1px solid #C0AD6A;
+    padding-bottom: 0.1cm;
+    margin-bottom: 0.2cm;
+}
+
+blockquote p:last-child {
+    margin-bottom: 0;
+}
+
+/* === LISTE === */
+ul, ol {
+    margin-left: 1em;
+    margin-bottom: 0.3cm;
+}
+
+li {
+    margin-bottom: 0.15cm;
+}
+
+/* === TABELLE === */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0.4cm 0;
+    font-size: 9.5pt;
+    break-inside: avoid;
+}
+
+thead {
+    background: #E0E5C1;
+    font-weight: 700;
+}
+
+th, td {
+    border: 1px solid #C0AD6A;
+    padding: 0.15cm 0.25cm;
+    text-align: center;
+}
+
+th {
+    font-family: 'MrEavesSmallCaps', 'Cinzel', serif;
+    color: #58180D;
+}
+
+tbody tr:nth-child(even) {
+    background: #F9F9F5;
+}
+
+/* === STAT BLOCKS === */
+.stat-block {
+    background: #FDF1DC;
+    border: 1px solid #DDD;
+    padding: 0.4cm;
+    margin: 0.4cm 0;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    break-inside: avoid;
+    page-break-inside: avoid;
+    display: block;
+    position: relative;
+}
+
+.stat-block h3,
+.stat-block h4 {
+    color: #7A200D;
+    margin-top: 0;
+    text-align: center;
+    border-bottom: 2px solid #7A200D;
+}
+
+.stat-block p {
+    margin-bottom: 0.2cm;
+    text-align: left;
+}
+
+.stat-block hr {
+    border: none;
+    border-top: 1px solid #7A200D;
+    margin: 0.2cm 0;
+}
+
+.stat-block table {
+    margin: 0.2cm 0;
+}
+
+.stat-block strong {
+    font-family: 'ScalySansBold', 'Arial Black', sans-serif;
+    color: #7A200D;
+}
+
+.stat-block em {
+    font-style: italic;
+}
+
+/* === DESCRITTIVI (descriptive blocks) === */
+.descriptive {
+    background: #FAF7EA;
+    border: 1px dashed #C0AD6A;
+    padding: 0.3cm;
+    margin: 0.3cm 0;
+    font-family: 'ScalySans', 'Trebuchet MS', sans-serif;
+    font-size: 9.5pt;
+    break-inside: avoid;
+}
+
+.descriptive pre {
+    font-family: 'Courier New', monospace;
+    font-size: 8.5pt;
+    white-space: pre;
+    display: block;
+    background: #FFF;
+    padding: 0.2cm;
+    border: 1px solid #DDD;
+    overflow-x: auto;
+    margin: 0.2cm 0;
+}
+
+.descriptive pre code {
+    font-family: 'Courier New', monospace;
+    font-size: 8.5pt;
+    white-space: pre;
+    background: transparent;
+    padding: 0;
+    border: none;
+    display: block;
+}
+
+.descriptive code {
+    font-family: 'Courier New', monospace;
+    font-size: 9pt;
+    background: #F5F5F5;
+    padding: 0.05cm 0.1cm;
+    border-radius: 2px;
+}
+
+/* === IMMAGINI === */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0.3cm auto;
+}
+
+.img-wide {
+    column-span: all;
+    width: 100%;
+    margin: 0.5cm 0;
+}
+
+.img-cover {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    opacity: 0.4;
+    mix-blend-mode: multiply;
+}
+
+/* === CODE BLOCKS === */
+pre {
+    background: #F5F5F5;
+    border: 1px solid #DDD;
+    border-left: 3px solid #C0AD6A;
+    padding: 0.3cm;
+    margin: 0.3cm 0;
+    font-family: 'Courier New', monospace;
+    font-size: 8.5pt;
+    overflow-x: auto;
+    break-inside: avoid;
+}
+
+code {
+    font-family: 'Courier New', monospace;
+    background: #F5F5F5;
+    padding: 0.05cm 0.15cm;
+    border-radius: 2px;
+    font-size: 9pt;
+}
+
+pre code {
+    background: transparent;
+    padding: 0;
+}
+
+/* === HORIZONTAL RULES === */
+hr {
+    border: none;
+    border-top: 1px solid #C0AD6A;
+    margin: 0.5cm 0;
+}
+
+/* === STRONG & EM === */
+strong {
+    font-weight: 700;
+    font-family: 'BookInsanityBold', 'Book Antiqua', serif;
+}
+
+em {
+    font-style: italic;
+}
+
+strong em {
+    font-style: italic;
+    font-weight: 700;
+}
+
+/* === LINKS === */
+a {
+    color: #7A200D;
+    text-decoration: none;
+    border-bottom: 1px dotted #7A200D;
+}
+
+a:hover {
+    color: #58180D;
+    border-bottom: 1px solid #58180D;
+}
+
+/* === COLUMN BREAKS === */
+.column-break {
+    break-after: column;
+    page-break-after: avoid;
+}
+
+.page-break {
+    break-after: page;
+    page-break-after: always;
+}
+
+/* === NOTE/WIDE BOXES === */
+.note-box {
+    background: #E8F4F8;
+    border-left: 4px solid #4A9EFF;
+    padding: 0.3cm 0.4cm;
+    margin: 0.4cm 0;
+    break-inside: avoid;
+}
+
+.note-box strong {
+    color: #4A9EFF;
+}
+
+.wide-block {
+    column-span: all;
+    margin: 0.4cm 0;
+}
+
+/* === UTILITY === */
+.text-center {
+    text-align: center;
+}
+
+.no-indent {
+    text-indent: 0 !important;
+}
+
+/* === FIRST LETTER DROP CAP === */
+.page > p:first-of-type::first-letter {
+    float: left;
+    font-size: 3.5em;
+    line-height: 0.8;
+    margin: 0.05em 0.1em 0 0;
+    font-family: 'Solbera Imitation', serif;
+    color: #7A200D;
+}
+
+    </style>
+</head>
+<body>
+    <div class="no-print" style="position:fixed; top:10px; right:10px; background:white; padding:10px; border-radius:5px; box-shadow:0 2px 8px rgba(0,0,0,0.2); z-index:1000;">
+        <button onclick="window.print()" style="padding:8px 16px; font-size:14px; cursor:pointer; background:#4A9EFF; color:white; border:none; border-radius:4px;">
+            🖨️ Stampa / Salva PDF
+        </button>
+    </div>
+    
+<div class="page">
+<h1 id="il-tesoro-di-one-eyed-willie">Il Tesoro di One-Eyed Willie</h1>
+<p><em>Un’avventura D&amp;D 5e per 5 personaggi di livello 1</em></p>
+<p><strong>Durata:</strong> 3 ore (4-5 scene) | <strong>Ambientazione:</strong> Neverwinter, Costa della Spada (Forgotten Realms)</p>
+<hr/>
+<blockquote>
+<h3 id="riepilogo-per-il-dm">📋 Riepilogo per il DM</h3>
+<p><strong>Fronte:</strong> La Ciurma dei Teschi Neri, guidata dal sadico Capitano Malachia “Mano d’Ossa” Redspine, ha rapito il giovane cartografo Chunk Bronzewing per trovare il leggendario tesoro del pirata-mago One-Eyed Willie nascosto nelle Grotte dello Spavento. Con 50.000 mo in gioco, Malachia pianifica di usare la ricchezza per terrorizzare la Costa della Spada.</p>
+<p><strong>Passi in Avanti:</strong><br/>
+1. (24h) I pirati costringono Chunk a rivelare l’ingresso alle grotte e iniziano l’esplorazione<br/>
+2. (48h) La ciurma raggiunge il tesoro ma attiva un crollo che allaga le grotte, ferendo Chunk<br/>
+3. (72h) Malachia fugge con il tesoro e recluta un esercito di mercenari, perdendo il controllo del quartiere portuale</p>
+<p><strong>I 10 Segreti:</strong><br/>
+1. Il simbolo dei Teschi Neri è un teschio con moneta d’oro tra i denti<br/>
+2. Ingresso segreto alle grotte dietro la cascata del Fiume Serpente (bassa marea)<br/>
+3. One-Eyed Willie maledisse il tesoro - chi lo ruba diventa scheletro guardiano<br/>
+4. L’organo nella Caverna dell’Eco apre passaggi segreti (melodia sulla mappa di Chunk)<br/>
+5. Chunk ha Respirazione Acquatica (8 ore) e può guidare nei tunnel allagati<br/>
+6. Andy “Mano Veloce”, luogotenente di Malachia, vuole fuggire e può tradire la ciurma<br/>
+7. Il messaggio di Willie: “Il vero tesoro è la fratellanza” - benedizione +1 ai tiri salvezza 24h<br/>
+8. La Inferno, nave di Willie, giace nel lago sotterraneo e può ancora navigare<br/>
+9. Le grotte hanno trappole elaborate (massi, lance, Boulder Bar con scheletri)<br/>
+10. Recuperare il tesoro per la città garantisce titolo di “Eroi di Neverwinter” + villa + 500 mo ciascuno</p>
+<p><strong>Risoluzioni Possibili:</strong><br/>
+- <strong>Combattimento:</strong> Affrontare Malachia in battaglia navale sulla Inferno<br/>
+- <strong>Sociale:</strong> Negoziare spartizione tesoro o usare Andy per incriminare Malachia<br/>
+- <strong>Astuzia:</strong> Crollo controllato delle grotte, sabotare la nave, terrorizzare con illusioni</p>
+</blockquote>
+
+</div>
+<div class="page">
+
+<h2 id="background">Background</h2>
+<p>La città portuale di Neverwinter brilla al tramonto, le sue mura bianche che riflettono la luce dorata del sole che cala sul mare. Ma nelle taverne del quartiere portuale, sussurri inquietanti si diffondono: pirati spietati, tesori maledetti, e giovani rapiti nel cuore della notte.</p>
+<p>La leggenda del tesoro di One-Eyed Willie (Guglielmo l’Orbo) è conosciuta da tutti i ragazzi di Neverwinter. Due secoli fa, il famigerato pirata-mago nascose il frutto di una vita di razzie nelle Grotte dello Spavento, prima di morire in una tempesta magica che lui stesso evocò per sfuggire alla flotta reale. Nessuno ha mai trovato il tesoro… fino ad ora.</p>
+<p>La Ciurma dei Teschi Neri ha rapito Chunk Bronzewing, un brillante giovane cartografo che stava studiando mappe antiche nella biblioteca cittadina. Il ragazzo possedeva l’unica mappa completa delle grotte, e i pirati lo vogliono per svelare i segreti del tesoro.</p>
+<p>Il tempo stringe. I PG devono salvare Chunk, fermare i pirati, e forse… trovare loro stessi il leggendario tesoro.</p>
+<h2 id="introduzione-scegli-un-gancio">Introduzione: Scegli un Gancio</h2>
+<p>Seleziona uno dei seguenti ganci in base allo stile preferito del gruppo:</p>
+<h3 id="gancio-a-linseguimento-al-molo-action-oriented"><strong>Gancio A: L’Inseguimento al Molo</strong> (Action-Oriented)</h3>
+<blockquote>
+<p>Siete al Molo dei Pescatori di Neverwinter, godendovi l’aria salmastra e il tramonto, quando urla frenetiche squarciano la pace serale. Un giovane halfling con il volto sporco di carbone e gli occhi spalancati dal terrore corre verso di voi, le sue piccole gambe che quasi non toccano i ciottoli del molo.</p>
+<p>“Aiuto! AIUTO! Per tutti gli dei del mare!” grida, voltandosi per controllare i suoi inseguitori. Tre figure muscolose in abiti da pirata emergono da un vicolo, scimitarre sguainate che brillano alla luce del tramonto. Il loro teschio tatuato sul collo li identifica immediatamente: Ciurma dei Teschi Neri.</p>
+<p>L’halfling inciampa e cade ai vostri piedi. “Per favore… hanno preso Chunk, il mio migliore amico! Lo stanno portando alle grotte! Io… io so dove, ma da solo…” Le sue parole sono interrotte quando il pirata più grande punta la lama verso di voi.</p>
+<p>“Fatevi da parte, mocciosi, o finirete in fondo al mare con le pietre legate ai piedi!” ruggisce, sputando tabacco da masticare.</p>
+</blockquote>
+<p><strong>Connessioni per i PG</strong>:<br/>
+- Se hai un PG con background Sailor o Criminal, riconoscono i Teschi Neri come una delle bande più violente del porto<br/>
+- Se hai un PG Noble o con legami a Neverwinter, sa che la famiglia Bronzewing è rispettata e ricca<br/>
+- Mouth (l’halfling) offre 50 mo dei suoi risparmi se lo aiutate</p>
+<div class="column-break"></div>
+<h3 id="gancio-b-la-mappa-strappata-mystery-oriented"><strong>Gancio B: La Mappa Strappata</strong> (Mystery-Oriented)</h3>
+<blockquote>
+<p>La Locanda del Corvo Azzurro è affollata questa sera, marinai e mercanti che condividono storie ed ale. Un vecchio marinaio dal volto segnato dalle intemperie, con capelli grigi arruffati e una cicatrice che corre da tempia a mento, si avvicina incerto al vostro tavolo.</p>
+<p>“Voi… voi avete l’aria di eroi veri, non come quegli idioti della guardia cittadina,” mormora, guardandosi nervosamente alle spalle. Con mano tremante, estrae da dentro la tunica una pergamena antica, macchiata di quello che sembra sangue fresco. È strappata a metà.</p>
+<p>“Sono Mikey Silver. Mio fratello… Brand…” La sua voce si spezza. “L’hanno preso i Teschi Neri tre giorni fa. Questa mappa mostra il tesoro di One-Eyed Willie nelle Grotte dello Spavento. Brand ha l’altra metà. Se lo salvate, il tesoro è vostro. Ve lo giuro sulla tomba di mio padre.”</p>
+<p>Improvvisamente, vedete ombre muoversi fuori dalla finestra sporca della locanda. Qualcuno vi sta osservando. Le ombre hanno la forma di tricorni e scimitarre.</p>
+</blockquote>
+<p><strong>Connessioni per i PG</strong>:<br/>
+- Prove di Intelligence (History) DC 10 rivelano che One-Eyed Willie era reale e il tesoro è stimato in decine di migliaia di monete d’oro<br/>
+- Mikey offre la sua piccola casa come rifugio sicuro e contatti con contrabbandieri se avete bisogno<br/>
+- La mappa mostra simboli arcani che un personaggio con Arcana può identificare</p>
+<h3 id="gancio-c-lappello-disperato-social-oriented"><strong>Gancio C: L’Appello Disperato</strong> (Social-Oriented)</h3>
+<blockquote>
+<p>La piazza del mercato di Neverwinter è normalmente un luogo di vitalità e colore, ma oggi una folla silenziosa si è radunata attorno a una figura inginocchiata al centro. Lady Bronzewing, una mezzelfa dal volto aristocratico segnato da lacrime, veste a lutto nonostante la stagione calda.</p>
+<p>Quando vi avvicinate, lei alza lo sguardo disperato verso di voi. “Vi prego,” sussurra, con voce rotta. “Voi siete avventurieri, vero? Eroi?” Si trascina in ginocchio fino a voi, incurante della polvere che sporca il suo abito di seta. “Mio figlio Chunk è scomparso tre giorni fa. La guardia dice che non ci sono prove, ma io lo so… lo so nel cuore di una madre.”</p>
+<p>Vi mostra un lembo di stoffa strappata, macchiato di sangue. Su di esso è dipinto rozzamente un teschio con una moneta d’oro tra i denti. “L’ho trovato nella sua stanza. I pirati… i maledetti pirati del porto. Li conosco. Pagherò qualsiasi cifra. Vi darò la nostra villa estiva, i nostri cavalli, le nostre gemme… Riportatemi mio figlio!”</p>
+<p>La folla mormora. Alcuni cittadini annuiscono verso di voi con speranza. Altri sospettano che Chunk sia già morto. Voi siete l’ultima speranza della famiglia.</p>
+</blockquote>
+<p><strong>Connessioni per i PG</strong>:<br/>
+- Lady Bronzewing offre 100 mo subito + 200 mo al ritorno di Chunk vivo<br/>
+- Se hai un PG Noble, è possibile che conosca la famiglia Bronzewing socialmente<br/>
+- La guardia cittadina non può investigare ufficialmente senza prove (corruzione portuale)</p>
+
+</div>
+<div class="page">
+
+<h2 id="parte-1-il-covo-dei-teschi-neri">Parte 1: Il Covo dei Teschi Neri</h2>
+<p>Una volta scelto il gancio, i PG raccolgono informazioni che li portano inevitabilmente alla <strong>Taverna del Marinaio Affogato</strong>, il covo principale della Ciurma dei Teschi Neri nel quartiere portuale. È qui che tengono i prigionieri nelle celle sotterranee prima di “convincerli” a collaborare.</p>
+<h3 id="taverna-del-marinaio-affogato">Taverna del Marinaio Affogato</h3>
+<blockquote>
+<p>La taverna è un edificio fatiscente che sporge pericolosamente sul molo, sostenuto da piloni di legno marcio che scricchiolano a ogni onda. L’insegna penzolante mostra un marinaio annegato con gli occhi spalancati. L’odore di rum scadente, fumo di pipa e pesce andato a male ti colpisce prima ancora di varcare la soglia.</p>
+<p>All’interno, l’atmosfera è densa di pericolo. Una dozzina di pirati ubriachi siedono ai tavoli di legno scheggiato, giocando a dadi con monete insanguinate, affilando lame, o fissando minacciosamente chiunque entri. Un nano tarchiato dietro il bancone - Data, il taverniere - osserva tutto con occhi diffidenti e una mazza chiodata appoggiata vicino ai boccali.</p>
+<p>Dal soffitto pendono reti da pesca e ossa di pesci giganti. Una scala di legno in un angolo scende nell’oscurità - le celle.</p>
+</blockquote>
+<p><strong>Atmosfera</strong>: Ostile ma non immediatamente violenta. I pirati osservano i PG con sospetto. Se i PG agiscono da clienti normali, possono mescolarsi. Se agiscono da eroi ovvi, i pirati si preparano al combattimento.</p>
+<p><strong>PNG Presenti</strong>:<br/>
+- <strong>Data “Pugni Pesanti”</strong> (Taverniere Nano, 20 HP): Corrotto, fedele a Malachia per paura. Ha le chiavi delle celle.<br/>
+- <strong>4 Pirati Ubriachi</strong> (Bandit stats): Alcuni giocano a dadi, altri bevono. Attaccano se allertati.<br/>
+- <strong>Kragoth “Cicatrice”</strong> (Bandit Captain, 30 HP): Luogotenente di Malachia, sorveglia le scale delle celle.</p>
+<p><strong>Segreti Scopribili</strong>:<br/>
+- <strong>Segreto #1</strong>: Tutti i pirati hanno il tatuaggio del teschio con moneta tra i denti<br/>
+- <strong>Segreto #6</strong>: Ascoltando conversazioni ubriache, i PG sentono un pirata lamentarsi: “Andy è sparito di nuovo. Se Mano d’Ossa lo scopre, lo scortica. Quel mezzelfo è sempre stato uno smidollato.”<br/>
+- <strong>Segreto #10</strong>: Data, se corrotto o intimidito abbastanza, rivela: “Malachia dice sempre che se trovasse quel tesoro, sarebbe il Lord Redspine di nuovo. Dice che il Lord Neverember pagherebbe una fortuna per avere l’oro nella tesoreria… ma Malachia è troppo stupido per capire che darlo alla città lo renderebbe un eroe invece di un criminale ricercato.”</p>
+<div class="column-break"></div>
+<h3 id="prove-di-abilita-taverna">Prove di Abilità: Taverna</h3>
+<p><strong>Prova 1: Infiltrazione Stealth</strong><br/>
+- <strong>DC 13 Dexterity (Stealth)</strong> per muoversi inosservati verso le scale<br/>
+- <strong>Successo</strong>: Raggiungete le celle senza allarme. Sentite Data sussurrare a Kragoth: “Malachia vuole che il ragazzo finisca la mappa entro stasera, o gli tagliamo un dito ogni ora.”<br/>
+- <strong>Fallimento</strong>: Un pirata ubriaco vi urta e grida: “Ehi! Chi cavolo siete?” L’allarme è dato MA Andy “Mano Veloce” (un pirata nell’angolo) sussurra: “Io vi aiuto. Liberatemi da questi bastardi!” (Segreto #6)</p>
+<p><strong>Prova 2: Interrogare Data</strong><br/>
+- <strong>DC 14 Charisma (Intimidation o Persuasion)</strong> per convincerlo a parlare<br/>
+- <strong>Successo</strong>: Data crolla: “Va bene! Il ragazzo è sotto. Malachia lo usa per trovare il tesoro di One-Eyed Willie nelle Grotte dello Spavento a nord!” (Segreto #10)<br/>
+- <strong>Fallimento</strong>: Data mente maldestro ma un pirata ubriaco urla: “Data, sta’ zitto o Mano d’Ossa ti scortica! Come ha fatto al… aspetta, il ragazzo è ancora vivo! È sotto nei sotterranei!”</p>
+<p><strong>Prova 3: Liberare Chunk</strong><br/>
+- <strong>DC 12 Dexterity (Thieves’ Tools) o DC 15 Strength</strong> per aprire/sfondare<br/>
+- <strong>Successo</strong>: Cella aperta! Chunk è ammaccato ma vivo. “Grazie a Tymora! La mia mappa… Malachia l’ha presa, ma io ricordo tutto! C’è un ingresso segreto dietro la cascata!” (Segreto #2)<br/>
+- <strong>Fallimento</strong>: Chunk indica un passaggio segreto nel muro che porta alle fogne (via di fuga alternativa, ma nauseabonda - Constitution DC 10 o Poisoned 1h)</p>
+<h3 id="incontro-combattimento-liberare-le-celle">Incontro Combattimento: Liberare le Celle</h3>
+<p>Se l’allarme è dato o i PG attaccano apertamente:</p>
+<p><strong>Nemici</strong>:<br/>
+- 4 <strong>Bandits</strong> (Pirati ubriachi)<br/>
+  - CA 12, 11 HP ciascuno<br/>
+  - +3 colpire, 1d6+1 scimitarra<br/>
+- 1 <strong>Bandit Captain</strong> (Kragoth “Cicatrice”)<br/>
+  - CA 15, 30 HP<br/>
+  - +4 colpire, 2d6+2 scimitarra<br/>
+  - Multiattacco (2 attacchi)</p>
+<p><strong>Tattica</strong>: I pirati combattono ubriachi (svantaggio a Perception) ma feroci. Kragoth urla ordini e cerca di catturare almeno un PG vivo “per farlo parlare”. Data suona un corno d’allarme che chiama rinforzi (1d4+2 turni per 2 nuovi Bandit).</p>
+<p><strong>Ambiente</strong>: I PG possono:<br/>
+- Gettare botti di rum e incendiarle (Dexterity DC 12, 2d6 fuoco area 10ft)<br/>
+- Tagliare lampadari per farli cadere su nemici (Athletics DC 12, 2d8 contundenti)<br/>
+- Usare tavoli come copertura (+2 CA)</p>
+<p><strong>Risultato</strong>: Una volta sconfitti o in fuga i pirati, i PG liberano Chunk e ottengono informazioni cruciali sulle Grotte dello Spavento.</p>
+
+</div>
+<div class="page">
+
+<h2 id="parte-2-le-grotte-dello-spavento">Parte 2: Le Grotte dello Spavento</h2>
+<p>Chunk, una volta liberato, rivela la posizione delle grotte: “Sono a nord della città, nelle colline rocciose vicino al Fiume Serpente. L’ingresso principale è guardato, ma Malachia non sa dell’ingresso segreto dietro la cascata!”</p>
+<h3 id="viaggio-alle-grotte">Viaggio alle Grotte</h3>
+<p>Il viaggio da Neverwinter alle grotte richiede 2 ore a piedi o 1 ora a cavallo. Durante il viaggio, Chunk parla nervosamente dei suoi studi:</p>
+<blockquote>
+<p>“Mio nonno mi raccontava sempre di One-Eyed Willie. Era un pirata, sì, ma anche un mago potente. Aveva maledetto il suo tesoro, lo sai? Diceva… diceva che solo chi aveva ‘fratellanza nel cuore’ poteva prenderlo senza diventare… beh, un guardiano morto vivente per sempre.”</p>
+</blockquote>
+<p>Se i PG gli chiedono della mappa:</p>
+<blockquote>
+<p>“La mia parte mostrava i tunnel superiori e il puzzle dell’organo. C’è un organo a canne antico nella Caverna dell’Eco. Se suoni la melodia giusta, si apre un passaggio segreto! Ma note sbagliate… attivano dardi avvelenati. Io ho la melodia qui!” <em>indica la sua testa</em> “Ma Malachia ha la seconda metà della mappa che mostra il lago sotterraneo e la camera del tesoro.”</p>
+</blockquote>
+<h3 id="ingresso-alle-grotte">Ingresso alle Grotte</h3>
+<blockquote>
+<p>Le Grotte dello Spavento si aprono come una bocca oscura nelle colline rocciose. Stalattiti pendono dall’ingresso come zanne, e un vento umido porta con sé l’odore di acqua stagnante e qualcosa di più antico… morte, forse. Graffiti di pirati decorano le rocce esterne: teschi, frecce, avvertimenti come “Tornate Indietro” e “Morte ai Ladri”.</p>
+</blockquote>
+<p><strong>Due Ingressi</strong>:<br/>
+1. <strong>Ingresso Principale</strong> (L’Ingresso del Teschio): Guardato da 2 Bandit + 1 Mastiff da Guerra. I pirati bevono rum e giocano a dadi. Possono essere:<br/>
+   - Ingannati (Deception DC 13: “Malachia ci ha mandati come rinforzi!”)<br/>
+   - Combattuti (facile: 2 Bandit CA 12 11HP, Mastiff CA 12 5HP)<br/>
+   - Evitati usando Stealth DC 12</p>
+<ol start="2">
+<li><strong>Ingresso Segreto</strong> (Dietro la Cascata, Segreto #2): Accessibile solo con bassa marea (check con Chunk o prove di Survival DC 12). Bypassa le guardie completamente. Il passaggio è stretto e bagnato ma sicuro.</li>
+</ol>
+<div class="column-break"></div>
+<h3 id="livello-superiore-tunnel-ed-echi">Livello Superiore: Tunnel ed Echi</h3>
+<blockquote>
+<p>Il primo tunnel è stretto e umido, con pareti di roccia grezza che gocciolano costantemente. L’eco amplifica ogni suono: respiri, passi, il tintinnio di armature. Chunk sussurra: “State attenti. Willie amava le trappole elaborate. E anche i pirati di Malachia hanno già attivato alcune… guardate quei corpi.”</p>
+<p>Infatti, vedete scheletri di pirati più recenti lungo le pareti, trafitti da lance o schiacciati da massi caduti.</p>
+</blockquote>
+<p><strong>Sfida: Il Ponte di Corda Marcio</strong></p>
+<blockquote>
+<p>Il tunnel si apre improvvisamente in un baratro oscuro. Un ponte di corda vecchio di secoli penzola pericolosamente attraverso una voragine profonda 20 metri. Le assi di legno sono marce, alcune già cadute. Lontano, vedete il tunnel continuare dall’altra parte.</p>
+</blockquote>
+<ul>
+<li><strong>DC 13 Dexterity (Acrobatics)</strong> per attraversare con agilità</li>
+<li><strong>Successo</strong>: Attraversate sicuri. Vedete scheletri in fondo con equipaggiamento: 20 mo, 1 Potion of Healing</li>
+<li><strong>Fallimento</strong>: Il ponte si spezza! Cadete su sporgenza 6m sotto (2d6 danni). Scoprite tunnel secondario che bypassa il ponte (Segreto #3: vedete scritto “Maledetti i ladri, benedetti i fratelli”)</li>
+</ul>
+<p><strong>Enigma: La Caverna dell’Organo</strong></p>
+<blockquote>
+<p>Entrate in una caverna circolare illuminata da cristalli fosforescenti. Al centro, maestoso e inquietante, c’è un organo a canne di pietra e legno, miracolosamente preservato. Note musicali sono incise sulle pareti in sequenza: E-D-C-E-D-C-G.</p>
+</blockquote>
+<p><strong>Puzzle</strong>:<br/>
+- <strong>DC 14 Intelligence (Investigation) o Performance</strong> per capire la melodia<br/>
+- <strong>Con Chunk</strong>: Automatico successo (legge la mappa)<br/>
+- <strong>Successo</strong>: Passaggio segreto si apre! Tesoro: 500 mo + 1 Shield +1<br/>
+- <strong>Fallimento</strong>: Dardi! Attacco +5, 1d4+2 perforante + DC 12 CON o 2d8 veleno. Meccanica si inceppa, passaggio si apre parzialmente (si può strisciare)</p>
+<p><strong>Segreto Rivelato</strong>: Chunk dice “Mio padre mi ha lanciato Respirazione Acquatica prima del rapimento! Dura 8 ore. Se troviamo tunnel allagati, posso guidarvi!” (Segreto #5)</p>
+<h3 id="il-bivio-ingannevole">Il Bivio Ingannevole</h3>
+<blockquote>
+<p>Due tunnel si biforcano. A sinistra, sentite gorgoglii d’acqua. A destra, aria fredda e secca. Simboli sui muri mostrano teschi con X e teschi con frecce.</p>
+</blockquote>
+<ul>
+<li><strong>DC 13 Wisdom (Perception) o Intelligence (Investigation)</strong> per capire</li>
+<li><strong>Successo</strong>: Teschio X = pericolo, Teschio Freccia = sicuro. Via destra è sicura.</li>
+<li><strong>Fallimento</strong>: Scegliete sbagliato. Cadete in fossa 10ft (1d6 danni). Camera sommersa con scheletri - trovate anello inciso: “Maledetti i ladri, benedetti i fratelli” (Segreto #3 completo sulla maledizione)</li>
+</ul>
+
+</div>
+<div class="page">
+
+<h2 id="parte-3-il-lago-sotterraneo-climax-finale">Parte 3: Il Lago Sotterraneo - Climax Finale</h2>
+<blockquote>
+<p>Il tunnel infine si apre drammaticamente in una caverna così immensa che non riuscite a vederne i confini. Il soffitto è tempestato di cristalli blu e verdi che pulsano debolmente, illuminando uno spettacolo mozzafiato.</p>
+<p>Davanti a voi si estende un lago sotterraneo nero come pece, le cui acque immobili riflettono i cristalli sopra come uno specchio stellato. E al centro, impossibile e magnifico, c’è la <em>Inferno</em>.</p>
+<p>La nave pirata di One-Eyed Willie galleggia come se fosse stata varata ieri. Il suo scafo di legno oscuro brilla con una lucentezza magica, le vele arrotolate, il teschio dipinto sulla prua che sogghigna minacciosamente. Barche più piccole sono attraccate ai suoi fianchi, e figure si muovono sul ponte…</p>
+<p>“Il tesoro!” grida Chunk. “Malachia l’ha trovato!”</p>
+</blockquote>
+<h3 id="situazione-iniziale">Situazione Iniziale</h3>
+<p>Quando i PG arrivano, vedono:<br/>
+- <strong>Capitano Malachia</strong> sul ponte della Inferno, urla ordini<br/>
+- <strong>3 Pirati veterani</strong> caricano casse di tesoro su scialuppe<br/>
+- <strong>Andy “Mano Veloce”</strong> (se non salvato prima) è incatenato all’albero maestro<br/>
+- <strong>Chunk</strong> (se con i PG) riconosce la situazione: “Hanno trovato la Camera del Tesoro! Dobbiamo fermarli ORA!”</p>
+<h3 id="opzioni-tattiche-per-i-pg">Opzioni Tattiche per i PG</h3>
+<p><strong>1. Avvicinamento Stealth</strong><br/>
+- <strong>DC 14 Dexterity (Stealth)</strong> per raggiungere scialuppa o nuotare verso la nave<br/>
+- <strong>Successo</strong>: Sorpresa! I PG sentono Malachia: “Carica tutto! Questi stupidi scheletri li venderò come curiosità!” (Segreto #8)<br/>
+- <strong>Fallimento</strong>: Vedetta grida. Malachia ride: “Perfetto! Volevo sport!” Combattimento inizia ma i PG sono in buona posizione</p>
+<p><strong>2. Negoziazione/Intimidazione</strong><br/>
+- <strong>DC 16 Charisma (Intimidation/Persuasion)</strong> - DIFFICILE<br/>
+- <strong>Successo</strong>: Malachia propone spartizione (50-50). I PG possono accettare, rifiutare, o contro-offrire<br/>
+- <strong>Fallimento</strong>: “Mocciosi! VI SCHIACCERÒ!” Attacca, MA Andy (se presente) grida il punto debole: “Fuoco magico! Ha paura del fuoco!” (Segreto #6)</p>
+<p><strong>3. Dichiarazione di Fratellanza</strong><br/>
+Se i PG dichiarano ad alta voce legame di fratellanza vicino alla nave:</p>
+<blockquote>
+<p>Dal ponte della Inferno, ossa incominciano a stridere e muoversi. Dai bauli del tesoro, dalle fessure dello scafo, 6 scheletri emergono - ma non attaccano i PG. Le loro orbite vuote brillano di luce blu, e con movimenti scattanti, si voltano verso i pirati di Malachia.</p>
+<p>“NO! QUESTO È IMPOSSIBILE!” grida Malachia, il terrore distorce il suo volto scheletrico.</p>
+</blockquote>
+<p><strong>Risultato</strong>: 6 Skeleton attaccano i pirati per 3 turni, poi si disintegrano pacificamente. <strong>Segreto #7 completamente rivelato</strong>. Malachia combatte terrificato (svantaggio primo turno).</p>
+<div class="column-break"></div>
+<h3 id="incontro-finale-capitano-malachia-mano-dossa-redspine">Incontro Finale: Capitano Malachia “Mano d’Ossa” Redspine</h3>
+<p><strong>Combattimento Navale - Arena Dinamica</strong></p>
+<p><strong>Nemici</strong>:<br/>
+- <strong>Capitano Malachia “Mano d’Ossa”</strong> (Bandit Captain modificato)<br/>
+  - CA 17 (armatura di maglia + scudo), 40 HP<br/>
+  - +5 colpire, 2d6+3 scimitarra +1<br/>
+  - Multiattacco (2 attacchi)<br/>
+  - Incantesimi (3/giorno): <em>Mage Hand</em>, <em>Burning Hands</em> (DC 13)<br/>
+  - <strong>Punto Debole</strong>: Vulnerabile al fuoco magico (doppio danno)<br/>
+  - <strong>Tattica</strong>: Usa <em>Mage Hand</em> per afferrare armi, <em>Burning Hands</em> per controllo area. Combatte ferocemente ma codardo - fugge se sotto 10 HP</p>
+<ul>
+<li><strong>3 Pirati Veterani</strong> (Bandit migliorati)</li>
+<li>CA 13, 15 HP ciascuno</li>
+<li>+4 colpire, 1d8+2 spada lunga</li>
+<li><strong>Tattica</strong>: Proteggono Malachia, cercano di gettare PG in acqua</li>
+</ul>
+<p><strong>Ambiente Dinamico</strong>:<br/>
+- <strong>Scialuppe in Movimento</strong>: Cambiano posizione ogni turno<br/>
+- <strong>Acqua Profonda</strong>: Cadere richiede DC 10 Athletics per nuotare/riemergere<br/>
+- <strong>Barili di Tesoro</strong>: Possono essere gettati (Improvised Weapon 1d4), o aperti per coprirsi<br/>
+- <strong>Vele e Funi</strong>: Athletics DC 12 per arrampicarsi, posizioni tattiche elevate</p>
+<p><strong>Azioni Speciali dei PG</strong>:</p>
+<p><strong>Speronare con la Inferno</strong>:<br/>
+- Prendere controllo della nave: DC 13 Intelligence (Investigation) per leve + DC 15 Strength (Athletics) per azionare<br/>
+- Successo: La Inferno si muove e sperona le scialuppe pirata. I pirati fanno DC 12 Dex ST o cadono in acqua.<br/>
+- Malachia urla: “Questa è LA MIA NAVE, mocciosi!”</p>
+<p><strong>Attivare il Crollo</strong>:<br/>
+- Trovare meccanismo antico: DC 13 Intelligence (Investigation)<br/>
+- Azionare: DC 15 Strength (Athletics) per leve giganti<br/>
+- Successo: Massi cadono dal soffitto, bloccando uscita principale. Pirati si arrendono per paura di annegare. Timer: 10 turni prima che l’acqua salga pericolosamente.<br/>
+- Fallimento: Chunk interviene (1d4 turni) e riesce. Malachia prepara trappola (barili d’olio in acqua, pronti ad incendiarli)</p>
+<p><strong>Chiamare Andy all’Aiuto</strong>:<br/>
+Se Andy è stato salvato/liberato precedentemente, usa azione bonus per liberarsi (Sleight of Hand automatico) e pugnala Malachia alle spalle (Sneak Attack 2d6+3). Malachia urla tradito: “TU! TRADITORE! TI SCORTICO VIVO!”</p>
+
+</div>
+<div class="page">
+
+<h3 id="risoluzione-del-combattimento">Risoluzione del Combattimento</h3>
+<p><strong>Vittoria Combattimento Diretto</strong>:<br/>
+Malachia cade sconfitto (vivo se i PG sono merciful, morto altrimenti). I pirati si arrendono o fuggono. I PG hanno accesso completo al tesoro.</p>
+<p><strong>Vittoria Negoziazione</strong>:<br/>
+Malachia accetta spartizione e fugge con la sua parte (30%). Andy testimonia contro di lui in seguito, portando al suo arresto settimane dopo. I PG recuperano 60-70% del tesoro.</p>
+<p><strong>Vittoria Astuzia</strong>:<br/>
+Crollo controllato intrappola i pirati. Malachia fugge (giura vendetta) ma senza tesoro né ciurma. I PG recuperano 90% del tesoro.</p>
+<h3 id="il-tesoro-di-one-eyed-willie_1">Il Tesoro di One-Eyed Willie</h3>
+<blockquote>
+<p>Nel profondo della Inferno, nella cabina del capitano, trovate la Camera del Tesoro. Casse di legno marcescente traboccano di monete d’oro che brillano alla luce magica. Gemme di ogni colore: rubini grandi come pugni, smeraldi perfetti, zaffiri blu come il mare. Gioielli antichi, corone di re dimenticati, calici d’argento intarsiati.</p>
+<p>E al centro, su un piedistallo di ossidiana, un anello d’argento con un teschio sorridente e un rubino come occhio.</p>
+<p>Inciso sulla parete, in Common antico: <em>“Il vero tesoro non è l’oro che splende, ma la fratellanza dell’avventura che non termina. - One-Eyed Willie”</em></p>
+</blockquote>
+<p><strong>Contenuto del Tesoro</strong>:<br/>
+- <strong>12.000 mo</strong> in monete e gemme (recuperabili)<br/>
+- <strong>Tesoro aggiuntivo</strong>: Gioielli, arte, oggetti vari per ulteriori 8.000 mo di valore<br/>
+- <strong>Oggetti Magici</strong>:<br/>
+  - <strong>Ring of Pirate’s Luck</strong> (vedi Appendice B)<br/>
+  - <strong>Mappa dei Tesori Perduti</strong> (vedi Appendice B)<br/>
+  - <strong>+1 Scimitar</strong> (nome inciso: <em>Marinaio’s Vengeance</em>)<br/>
+  - 3x <strong>Potion of Healing</strong><br/>
+- <strong>Ship Deed</strong>: Atto di proprietà della <em>Inferno</em> (ora legalmente dei PG!)</p>
+<p><strong>Benedizione di Willie</strong>: Se i PG hanno dichiarato fratellanza, ricevono permanentemente il legame. Una volta per avventura, possono invocare lo spirito di Willie per ri-tirare un d20 (deve essere fatto come gruppo, non individualmente).</p>
+<div class="column-break"></div>
+<h2 id="epilogo-eroi-di-neverwinter">Epilogo: Eroi di Neverwinter</h2>
+<p>Il viaggio di ritorno con Chunk sano e salvo e (parte del) tesoro è trionfale. Chunk non smette di parlare:</p>
+<blockquote>
+<p>“Non posso crederci! Siamo stati come i Goonies delle vecchie leggende! Ci hanno sparato, quasi annegato, combattuto pirati VERI! E abbiamo vinto! Goonies never say die!”</p>
+</blockquote>
+<h3 id="ricompense-dalla-citta">Ricompense dalla Città</h3>
+<p>Quando i PG tornano a Neverwinter:</p>
+<p><strong>Lady Bronzewing</strong> sviene dalla gioia vedendo Chunk vivo. Organizza un banchetto in onore dei PG e:<br/>
+- Paga 100 mo a testa come promesso<br/>
+- Offre ai PG libero accesso alla biblioteca Bronzewing (advantage su History checks in città)<br/>
+- Chunk diventa contatto permanente (fornisce mappe e info gratuitamente)</p>
+<p><strong>Lord Neverember</strong> (se i PG donano almeno 5.000 mo alla città):<br/>
+- Nomina i PG “Eroi di Neverwinter”<br/>
+- Concede villa nel quartiere nobile (valore 10.000 mo)<br/>
+- Paga bonus di 500 mo a testa<br/>
+- Fornisce <strong>Writ of Free Passage</strong> (documenti ufficiali per viaggiare liberamente)</p>
+<p><strong>Reputazione</strong>: I PG diventano famosi come “I Goonies di Neverwinter”. Nelle taverne, bardi cantano le loro gesta. Bambini li seguono per strada chiedendo storie. Mercanti offrono sconti (10% su non-magical items).</p>
+<h3 id="agganci-per-future-avventure">Agganci per Future Avventure</h3>
+<p><strong>La Mappa dei Tesori</strong>: I 7 tesori sulla mappa magica aprono infinite avventure:<br/>
+1. <strong>La Corona del Re Pirata</strong> - Isola delle Tempeste<br/>
+2. <strong>Il Forziere dell’Ammiraglio Maledetto</strong> - Baia delle Ossa (sommerso)<br/>
+3. <strong>La Spada di Taglio Sangue</strong> - Rovine di un castello in Luskan<br/>
+4. <strong>Il Grimorio del Capitano Stregone</strong> - Relitto nella Palude dei Morti<br/>
+5. <strong>La Campana della Sirena</strong> - Grotta sottomarina vicino Waterdeep<br/>
+6. <strong>L’Idolo d’Oro di Umberlee</strong> - Tempio sommerso<br/>
+7. <strong>Il Diario di Willie</strong> - Rivela il suo nascondiglio segreto finale</p>
+<p><strong>Malachia’s Revenge</strong> (se fuggito): Settimane dopo, i PG ricevono un messaggio inquietante: <em>“Vi troverò, mocciosi. E quando lo farò, vi farò pagare. Mano d’Ossa non dimentica. - M.R.”</em> Chunk è terrorizzato e chiede protezione.</p>
+<p><strong>Andy’s Gratitude</strong> (se salvato): Andy “Mano Veloce” Corbeau diventa un alleato leale. Una volta per avventura, può fornire:<br/>
+- Informazioni sull’underworld criminale<br/>
+- Aiuto in infiltrazioni o furti<br/>
+- Contatti con contrabbandieri e fence</p>
+<p><strong>The Skeleton Crew</strong>: Gli scheletri di Willie, se invocati con il rituale di fratellanza, potrebbero tornare in momenti di bisogno estremo. Ma ogni volta, richiedono un favore: liberare un altro tesoro di Willie dalla sua maledizione.</p>
+
+</div>
+<div class="page">
+
+<h2 id="appendice-a-blocchi-statistiche">Appendice A: Blocchi Statistiche</h2>
+<div class="stat-block"><h3 id="capitano-malachia-mano-dossa-redspine">Capitano Malachia “Mano d’Ossa” Redspine</h3><p><em>Umanoide medio (umano), legale malvagio</em></p><hr/><p><strong>Classe Armatura</strong> 17 (armatura di maglia, scudo)<br/>
+<strong>Punti Ferita</strong> 40 (6d8 + 12)<br/>
+<strong>Velocità</strong> 9 m</p><hr/><table>
+<thead>
+<tr>
+<th style="text-align: center;">FOR</th>
+<th style="text-align: center;">DES</th>
+<th style="text-align: center;">COS</th>
+<th style="text-align: center;">INT</th>
+<th style="text-align: center;">SAG</th>
+<th style="text-align: center;">CAR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">16 (+3)</td>
+<td style="text-align: center;">14 (+2)</td>
+<td style="text-align: center;">14 (+2)</td>
+<td style="text-align: center;">12 (+1)</td>
+<td style="text-align: center;">10 (+0)</td>
+<td style="text-align: center;">14 (+2)</td>
+</tr>
+</tbody>
+</table><hr/><p><strong>Abilità</strong> Intimidazione +4, Atletica +5<br/>
+<strong>Sensi</strong> Percezione passiva 10<br/>
+<strong>Linguaggi</strong> Comune, Nanico<br/>
+<strong>Grado di Sfida</strong> 2 (450 XP)</p><hr/><p><strong><em>Vulnerabilità al Fuoco Magico.</em></strong> Malachia subisce danni raddoppiati da incantesimi o effetti magici che infliggono danno da fuoco.</p><p><strong><em>Tattica Pirata.</em></strong> Malachia ha vantaggio ai tiri per colpire contro creature che hanno un alleato di Malachia entro 1,5 metri.</p><p><strong><em>Incantatore Limitato (3/Giorno).</em></strong> Malachia può lanciare i seguenti incantesimi senza componenti materiali:<br/>
+- <em>Mage Hand</em> (a volontà)<br/>
+- <em>Burning Hands</em> (DC 13 Dexterity, 3d6 fuoco)</p></div>
+
+
+
+
+
+
+
+
+
+
+
+<div class="stat-block"><h3 id="azioni">Azioni</h3><p><strong><em>Multiattacco.</em></strong> Malachia effettua due attacchi con la sua scimitarra.</p><p><strong><em>Scimitarra +1.</em></strong> <em>Attacco con Arma da Mischia:</em> +5 al colpire, portata 1,5 m, un bersaglio. <em>Colpo:</em> 9 (2d6 + 3) danni taglienti.</p><p><strong><em>Mano Scheletrica.</em></strong> <em>Attacco con Arma da Mischia:</em> +5 al colpire, portata 1,5 m, un bersaglio. <em>Colpo:</em> 6 (1d6 + 3) danni contundenti più il bersaglio deve superare un TS Costituzione DC 13 o essere avvelenato fino alla fine del suo prossimo turno.</p><div class="stat-block"><h3 id="reazioni">Reazioni</h3><p><strong><em>Scudo Vivente.</em></strong> Quando Malachia viene colpito da un attacco, può usare la sua reazione per costringere un pirata alleato entro 1,5 metri a prendere il colpo al suo posto.</p><p><strong>Descrizione</strong>: Malachia è un ex-nobile caduto in disgrazia, il suo corpo scheletrico e la mano ossificata risultato di una maledizione che ha cercato di rimuovere per anni. Combatte con ferocia mista a codardia - urla minacce ma fugge se gravemente ferito. Porta sempre il suo cappello a tricorno nero con piuma di corvo.</p></div></div>
+
+
+
+
+
+
+<div class="column-break"></div>
+<div class="stat-block"><h3 id="andy-mano-veloce-corbeau">Andy “Mano Veloce” Corbeau</h3><p><em>Umanoide medio (mezzelfo), caotico neutrale</em></p><hr/><p><strong>Classe Armatura</strong> 15 (armatura di cuoio + Dex)<br/>
+<strong>Punti Ferita</strong> 22 (4d8 + 4)<br/>
+<strong>Velocità</strong> 9 m</p><hr/><table>
+<thead>
+<tr>
+<th style="text-align: center;">FOR</th>
+<th style="text-align: center;">DES</th>
+<th style="text-align: center;">COS</th>
+<th style="text-align: center;">INT</th>
+<th style="text-align: center;">SAG</th>
+<th style="text-align: center;">CAR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">10 (+0)</td>
+<td style="text-align: center;">16 (+3)</td>
+<td style="text-align: center;">12 (+1)</td>
+<td style="text-align: center;">13 (+1)</td>
+<td style="text-align: center;">12 (+1)</td>
+<td style="text-align: center;">14 (+2)</td>
+</tr>
+</tbody>
+</table><hr/><p><strong>Abilità</strong> Acrobazia +5, Furtività +7, Inganno +4, Percezione +3<br/>
+<strong>Sensi</strong> Scurovisione 18 m, Percezione passiva 13<br/>
+<strong>Linguaggi</strong> Comune, Elfico, Thieves’ Cant<br/>
+<strong>Grado di Sfida</strong> 1 (200 XP)</p><hr/><p><strong><em>Astuto.</em></strong> Andy può effettuare l’azione di Disimpegno o Nascondersi come azione bonus in ogni suo turno.</p><p><strong><em>Attacco Furtivo (1/Turno).</em></strong> Andy infligge 2d6 danni extra quando colpisce un bersaglio con un attacco con arma se ha vantaggio al tiro per colpire, o se un altro nemico del bersaglio è entro 1,5 metri da esso.</p></div>
+
+
+
+
+
+
+
+
+
+
+<div class="stat-block"><h3 id="azioni_1">Azioni</h3><p><strong><em>Daga.</em></strong> <em>Attacco con Arma da Mischia o a Distanza:</em> +5 al colpire, portata 1,5 m o gittata 6/18 m, un bersaglio. <em>Colpo:</em> 5 (1d4 + 3) danni perforanti.</p><p><strong><em>Arco Corto.</em></strong> <em>Attacco con Arma a Distanza:</em> +5 al colpire, gittata 24/96 m, un bersaglio. <em>Colpo:</em> 6 (1d6 + 3) danni perforanti.</p><p><strong>Descrizione</strong>: Mezzelfo snello e agile con dita lunghe e cicatrici da frusta sulla schiena. Reclutato forzatamente 2 anni fa dopo che i pirati hanno distrutto il suo villaggio. Vuole disperatamente fuggire ma teme la vendetta di Malachia. Se i PG lo salvano, diventa un alleato leale e fornisce informazioni preziose.</p><div class="stat-block"><h3 id="chunk-bronzewing">Chunk Bronzewing</h3><p><em>Umanoide medio (umano), neutrale buono</em></p><hr/><p><strong>Classe Armatura</strong> 10<br/>
+<strong>Punti Ferita</strong> 9 (2d8)<br/>
+<strong>Velocità</strong> 9 m</p><hr/><table>
+<thead>
+<tr>
+<th style="text-align: center;">FOR</th>
+<th style="text-align: center;">DES</th>
+<th style="text-align: center;">COS</th>
+<th style="text-align: center;">INT</th>
+<th style="text-align: center;">SAG</th>
+<th style="text-align: center;">CAR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">8 (-1)</td>
+<td style="text-align: center;">10 (+0)</td>
+<td style="text-align: center;">11 (+0)</td>
+<td style="text-align: center;">16 (+3)</td>
+<td style="text-align: center;">14 (+2)</td>
+<td style="text-align: center;">12 (+1)</td>
+</tr>
+</tbody>
+</table><hr/><p><strong>Abilità</strong> Cartografia (trattata come History) +5, Investigation +5, Nature +5<br/>
+<strong>Sensi</strong> Percezione passiva 12<br/>
+<strong>Linguaggi</strong> Comune, Nanico, Elfico<br/>
+<strong>Grado di Sfida</strong> 0 (10 XP)</p><hr/><p><strong><em>Respirazione Acquatica.</em></strong> Chunk può respirare sott’acqua per 8 ore (incantesimo del padre).</p><p><strong><em>Memoria Cartografica.</em></strong> Chunk ha vantaggio a prove di Intelligence per ricordare mappe, percorsi o layout di luoghi che ha studiato.</p><p><strong><em>Codardo ma Coraggioso.</em></strong> Chunk ha svantaggio ai tiri salvezza contro paura, ma se un alleato è in pericolo mortale, può superare automaticamente un TS paura per aiutarlo.</p></div></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="stat-block"><h3 id="azioni_2">Azioni</h3><p><strong><em>Daga Improvvisata.</em></strong> <em>Attacco con Arma da Mischia:</em> +1 al colpire, portata 1,5 m, un bersaglio. <em>Colpo:</em> 2 (1d4) danni perforanti.</p><p><strong>Descrizione</strong>: Ragazzo umano di 16 anni, paffutello, con occhiali tondi e sempre sporco di inchiostro. Parla velocissimo quando nervoso, inventando storie elaborate. Nonostante la paura, ha un cuore coraggioso e vuole aiutare i PG a fermare Malachia. Indossa giacca di cuoio piena di tasche con strumenti da cartografo.</p></div>
+
+
+
+</div>
+<div class="page">
+
+<div class="stat-block"><h3 id="pirati-della-ciurma-dei-teschi-neri">Pirati della Ciurma dei Teschi Neri</h3><p><em>Umanoide medio (varie razze), neutrale malvagio</em></p><hr/><p><strong>Classe Armatura</strong> 12 (armatura di cuoio)<br/>
+<strong>Punti Ferita</strong> 11 (2d8 + 2)<br/>
+<strong>Velocità</strong> 9 m</p><hr/><table>
+<thead>
+<tr>
+<th style="text-align: center;">FOR</th>
+<th style="text-align: center;">DES</th>
+<th style="text-align: center;">COS</th>
+<th style="text-align: center;">INT</th>
+<th style="text-align: center;">SAG</th>
+<th style="text-align: center;">CAR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">13 (+1)</td>
+<td style="text-align: center;">12 (+1)</td>
+<td style="text-align: center;">12 (+1)</td>
+<td style="text-align: center;">10 (+0)</td>
+<td style="text-align: center;">10 (+0)</td>
+<td style="text-align: center;">10 (+0)</td>
+</tr>
+</tbody>
+</table><hr/><p><strong>Sensi</strong> Percezione passiva 10<br/>
+<strong>Linguaggi</strong> Comune<br/>
+<strong>Grado di Sfida</strong> 1/8 (25 XP)</p><hr/></div>
+
+
+
+
+
+
+
+
+<div class="stat-block"><h3 id="azioni_3">Azioni</h3><p><strong><em>Scimitarra.</em></strong> <em>Attacco con Arma da Mischia:</em> +3 al colpire, portata 1,5 m, un bersaglio. <em>Colpo:</em> 4 (1d6 + 1) danni taglienti.</p><p><strong><em>Pistola Leggera.</em></strong> <em>Attacco con Arma a Distanza:</em> +3 al colpire, gittata 12/48 m, un bersaglio. <em>Colpo:</em> 5 (1d10) danni perforanti.</p><p><strong>Descrizione</strong>: Pirati brutali con tatuaggio del teschio con moneta tra i denti sul collo. Vestono abiti laceri, portano tricorni sporchi, e puzzano di rum. Fedeli a Malachia per paura più che per lealtà. Combattono feroci quando ubriachi.</p><hr/></div>
+
+
+
+
+<h2 id="appendice-b-oggetti-magici">Appendice B: Oggetti Magici</h2>
+<div class="stat-block"><h3 id="ring-of-pirates-luck">Ring of Pirate’s Luck</h3><p><em>Anello, non comune (richiede sintonia)</em></p><p>Un anello d’argento con un teschio sorridente e un rubino come occhio. Era l’anello portafortuna personale di One-Eyed Willie.</p><p><strong>Proprietà</strong>:<br/>
+- <strong>Fortuna del Pirata</strong>: Una volta al giorno, dopo aver visto il risultato di un d20 che hai tirato, puoi scegliere di ri-tirare il dado. Devi usare il nuovo risultato.<br/>
+- <strong>Carisma Criminale</strong>: Mentre indossi questo anello, hai vantaggio alle prove di Carisma (Persuasione) quando tratti affari con criminali, pirati, o individui dell’underworld.<br/>
+- <strong>Senso del Tesoro</strong>: Hai vantaggio alle prove di Saggezza (Percezione) per notare tesori nascosti, porte segrete o trappole in dungeon e rovine.</p><p><strong>Maledizione</strong>: Se rimuovi l’anello dopo averlo indossato per più di 24 ore, devi superare un TS Saggezza DC 12 o sentire un irresistibile desiderio di trovare tesori nascosti per le successive 24 ore (svantaggio a concentrazione su altri obiettivi).</p></div>
+
+
+
+
+<div class="column-break"></div>
+<div class="stat-block"><h3 id="mappa-dei-tesori-perduti">Mappa dei Tesori Perduti</h3><p><em>Oggetto meraviglioso, raro</em></p><p>Una mappa in pelle di drago con inchiostro magico che si illumina debolmente al buio. Mostra la Costa della Spada con 7 X marcate in posizioni diverse.</p><p><strong>Proprietà</strong>:<br/>
+- <strong>Visione Magica</strong>: La mappa non può essere copiata con mezzi ordinari. Solo chi ha sintonia con essa può vederla completamente.<br/>
+- <strong>Guida del Tesoro</strong>: Quando sei entro 1 miglio di uno dei 7 tesori marcati, l’X corrispondente pulsa con luce dorata.<br/>
+- <strong>Protezione</strong>: La mappa non può essere distrutta da mezzi ordinari (fuoco, acqua, ecc.). Solo <em>Disintegrate</em> o magia simile può danneggiarla.</p><p><strong>I 7 Tesori Marcati</strong>:<br/>
+1. <strong>La Corona del Re Pirata</strong> - Isola delle Tempeste (valore 5.000 mo)<br/>
+2. <strong>Il Forziere dell’Ammiraglio Maledetto</strong> - Baia delle Ossa, sommerso (valore 8.000 mo + artefatto)<br/>
+3. <strong>La Spada di Taglio Sangue</strong> - Rovine in Luskan (spada +2 magica)<br/>
+4. <strong>Il Grimorio del Capitano Stregone</strong> - Relitto nella Palude (spell scroll collection)<br/>
+5. <strong>La Campana della Sirena</strong> - Grotta sottomarina (oggetto rituale)<br/>
+6. <strong>L’Idolo d’Oro di Umberlee</strong> - Tempio sommerso (5.000 mo + benedizione divina)<br/>
+7. <strong>Il Diario di Willie</strong> - Location segreta finale (rivela storia personale e tesoro ultimo)</p><hr/></div>
+
+
+
+
+
+<h2 id="appendice-c-note-per-il-dm">Appendice C: Note per il DM</h2>
+<h3 id="adattare-la-difficolta">Adattare la Difficoltà</h3>
+<p><strong>Per 3-4 PG</strong>:<br/>
+- Riduci i pirati negli incontri a 3 invece di 4<br/>
+- Malachia ha 30 HP invece di 40<br/>
+- Rimuovi 1 Pirata Veterano dal climax finale</p>
+<p><strong>Per 6-7 PG</strong>:<br/>
+- Aggiungi 2 Pirati in ogni incontro<br/>
+- Malachia ha 50 HP e +1 CA<br/>
+- Aggiungi Bandit Captain come secondo luogotenente nel climax</p>
+<h3 id="gestire-il-timer">Gestire il Timer</h3>
+<p>La minaccia del “timer” (Malachia trova il tesoro e fugge) serve a creare urgenza ma NON dovrebbe punire eccessivamente i PG lenti.</p>
+<p><strong>Indicatori Narrativi</strong>:<br/>
+- Dopo 2 ore reali di gioco: I PG sentono echi lontani di combattimento<br/>
+- Dopo 2.5 ore: Vedono segni di pirati che si muovono velocemente<br/>
+- Dopo 3 ore: Arrivano al lago mentre Malachia sta caricando il tesoro (ancora tempo per agire!)</p>
+<p><strong>Non Forzare</strong>: Se i PG si divertono esplorando, non affrettare. Il timer è flessibile.</p>
+<h3 id="temi-e-atmosfera">Temi e Atmosfera</h3>
+<p>Questa avventura celebra i temi de “I Goonies”:<br/>
+- <strong>Amicizia e Fratellanza</strong>: I legami tra i PG sono cruciali<br/>
+- <strong>Avventura contro la Cupidigia</strong>: Willie rispetta l’avventura, non l’avidità<br/>
+- <strong>Ragazzi contro Adulti Malvagi</strong>: I PG giovani/eroici contro pirati cinici<br/>
+- <strong>Trappole Elaborate e Divertenti</strong>: Le trappole devono essere pericolose ma anche spettacolari</p>
+<p><strong>Tono Consigliato</strong>: Avventuroso, pulp, con momenti di pericolo reale ma spirito ottimista. “Goonies never say die!”</p>
+<hr/>
+<p><strong>FINE DOCUMENTO</strong></p>
+</div>
+
+    <script>
+        // Auto-adjust page heights for better printing
+        window.addEventListener('load', function() {
+            console.log('✅ HTML Homebrewery caricato');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>la_festa_del_raccolto_maledetto</title>
+    <style>
+
+/* === RESET E BASE === */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'BookInsanity', 'Book Antiqua', Palatino, serif;
+    font-size: 10.5pt;
+    line-height: 1.4;
+    color: #000;
+    background: #EEE5CE;
+    padding: 20px;
+}
+
+/* === LAYOUT PAGINE === */
+.page {
+    width: 210mm;  /* A4 width */
+    min-height: 297mm;  /* A4 height */
+    margin: 0 auto 20px auto;
+    padding: 1.5cm 2cm;
+    background: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    position: relative;
+    overflow: hidden;
+    
+    /* Layout a colonna singola per stampa più affidabile */
+}
+
+@media print {
+    body {
+        background: white;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .page {
+        width: 210mm;
+        height: 297mm;
+        min-height: 297mm;
+        max-height: 297mm;
+        margin: 0;
+        padding: 1.5cm 2cm;
+        box-shadow: none;
+        page-break-after: always;
+        page-break-inside: avoid;
+        overflow: visible;
+        
+        /* Layout a colonna singola per stampa più affidabile */
+    }
+    
+    /* Evita page break dentro questi elementi */
+    h1, h2, h3, h4, h5 {
+        page-break-after: avoid;
+        break-after: avoid-page;
+    }
+    
+    .stat-block,
+    .descriptive,
+    .note-box,
+    blockquote {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+    
+    table {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+    
+    /* Forza page break */
+    .page-break {
+        page-break-before: always;
+        break-before: page;
+    }
+    
+    /* Column break (non necessario in layout single-column) */
+    .column-break {
+        /* Ignorato - non usiamo più colonne */
+    }
+    
+    /* Nascondi elementi non stampabili */
+    .no-print {
+        display: none !important;
+    }
+    
+    /* Fix immagini */
+    img {
+        max-width: 100%;
+        page-break-inside: avoid;
+    }
+    
+    /* Rimuovi ombre e effetti */
+    * {
+        box-shadow: none !important;
+    }
+}
+
+/* === TIPOGRAFIA === */
+h1 {
+    font-family: 'MrEavesSmallCaps', 'Cinzel', serif;
+    font-size: 28pt;
+    font-weight: 800;
+    color: #58180D;
+    margin-bottom: 0.3cm;
+    margin-top: 0.5cm;
+    border-bottom: 2px solid #C0AD6A;
+    padding-bottom: 0.1cm;
+}
+
+h2 {
+    font-family: 'MrEavesSmallCaps', 'Cinzel', serif;
+    font-size: 20pt;
+    font-weight: 700;
+    color: #58180D;
+    margin-top: 0.4cm;
+    margin-bottom: 0.25cm;
+    border-bottom: 1px solid #C0AD6A;
+}
+
+h3 {
+    font-family: 'MrEavesSmallCaps', 'Cinzel', serif;
+    font-size: 15pt;
+    font-weight: 700;
+    color: #58180D;
+    margin-top: 0.3cm;
+    margin-bottom: 0.2cm;
+    border-bottom: 1px solid #C0AD6A;
+}
+
+h4 {
+    font-family: 'MrEavesSmallCaps', 'Cinzel', serif;
+    font-size: 12pt;
+    font-weight: 700;
+    color: #58180D;
+    margin-top: 0.25cm;
+    margin-bottom: 0.15cm;
+}
+
+h5 {
+    font-family: 'BookInsanityBold', 'Book Antiqua', Palatino, serif;
+    font-size: 11pt;
+    font-weight: 700;
+    font-variant: small-caps;
+    color: #58180D;
+    margin-top: 0.2cm;
+    margin-bottom: 0.1cm;
+}
+
+p {
+    margin-bottom: 0.3cm;
+    text-align: justify;
+    hyphens: auto;
+}
+
+/* === BLOCKQUOTE (Read-aloud text) === */
+blockquote {
+    background: #E0E5C1;
+    border-left: 4px solid #C0AD6A;
+    padding: 0.3cm 0.4cm;
+    margin: 0.4cm 0;
+    font-family: 'ScalySansItalic', 'Palatino Linotype', serif;
+    font-style: italic;
+    font-size: 10pt;
+    box-shadow: 1px 4px 14px rgba(0,0,0,0.15);
+}
+
+blockquote h5 {
+    font-family: 'MrEavesSmallCaps', 'Cinzel', serif;
+    font-style: normal;
+    text-align: center;
+    margin-top: 0;
+    border-bottom: 1px solid #C0AD6A;
+    padding-bottom: 0.1cm;
+    margin-bottom: 0.2cm;
+}
+
+blockquote p:last-child {
+    margin-bottom: 0;
+}
+
+/* === LISTE === */
+ul, ol {
+    margin-left: 1em;
+    margin-bottom: 0.3cm;
+}
+
+li {
+    margin-bottom: 0.15cm;
+}
+
+/* === TABELLE === */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0.4cm 0;
+    font-size: 9.5pt;
+    break-inside: avoid;
+}
+
+thead {
+    background: #E0E5C1;
+    font-weight: 700;
+}
+
+th, td {
+    border: 1px solid #C0AD6A;
+    padding: 0.15cm 0.25cm;
+    text-align: center;
+}
+
+th {
+    font-family: 'MrEavesSmallCaps', 'Cinzel', serif;
+    color: #58180D;
+}
+
+tbody tr:nth-child(even) {
+    background: #F9F9F5;
+}
+
+/* === STAT BLOCKS === */
+.stat-block {
+    background: #FDF1DC;
+    border: 1px solid #DDD;
+    padding: 0.4cm;
+    margin: 0.4cm 0;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    break-inside: avoid;
+    page-break-inside: avoid;
+    display: block;
+    position: relative;
+}
+
+.stat-block h3,
+.stat-block h4 {
+    color: #7A200D;
+    margin-top: 0;
+    text-align: center;
+    border-bottom: 2px solid #7A200D;
+}
+
+.stat-block p {
+    margin-bottom: 0.2cm;
+    text-align: left;
+}
+
+.stat-block hr {
+    border: none;
+    border-top: 1px solid #7A200D;
+    margin: 0.2cm 0;
+}
+
+.stat-block table {
+    margin: 0.2cm 0;
+}
+
+.stat-block strong {
+    font-family: 'ScalySansBold', 'Arial Black', sans-serif;
+    color: #7A200D;
+}
+
+.stat-block em {
+    font-style: italic;
+}
+
+/* === DESCRITTIVI (descriptive blocks) === */
+.descriptive {
+    background: #FAF7EA;
+    border: 1px dashed #C0AD6A;
+    padding: 0.3cm;
+    margin: 0.3cm 0;
+    font-family: 'ScalySans', 'Trebuchet MS', sans-serif;
+    font-size: 9.5pt;
+    break-inside: avoid;
+}
+
+.descriptive pre {
+    font-family: 'Courier New', monospace;
+    font-size: 8.5pt;
+    white-space: pre;
+    display: block;
+    background: #FFF;
+    padding: 0.2cm;
+    border: 1px solid #DDD;
+    overflow-x: auto;
+    margin: 0.2cm 0;
+}
+
+.descriptive pre code {
+    font-family: 'Courier New', monospace;
+    font-size: 8.5pt;
+    white-space: pre;
+    background: transparent;
+    padding: 0;
+    border: none;
+    display: block;
+}
+
+.descriptive code {
+    font-family: 'Courier New', monospace;
+    font-size: 9pt;
+    background: #F5F5F5;
+    padding: 0.05cm 0.1cm;
+    border-radius: 2px;
+}
+
+/* === IMMAGINI === */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0.3cm auto;
+}
+
+.img-wide {
+    column-span: all;
+    width: 100%;
+    margin: 0.5cm 0;
+}
+
+.img-cover {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    opacity: 0.4;
+    mix-blend-mode: multiply;
+}
+
+/* === CODE BLOCKS === */
+pre {
+    background: #F5F5F5;
+    border: 1px solid #DDD;
+    border-left: 3px solid #C0AD6A;
+    padding: 0.3cm;
+    margin: 0.3cm 0;
+    font-family: 'Courier New', monospace;
+    font-size: 8.5pt;
+    overflow-x: auto;
+    break-inside: avoid;
+}
+
+code {
+    font-family: 'Courier New', monospace;
+    background: #F5F5F5;
+    padding: 0.05cm 0.15cm;
+    border-radius: 2px;
+    font-size: 9pt;
+}
+
+pre code {
+    background: transparent;
+    padding: 0;
+}
+
+/* === HORIZONTAL RULES === */
+hr {
+    border: none;
+    border-top: 1px solid #C0AD6A;
+    margin: 0.5cm 0;
+}
+
+/* === STRONG & EM === */
+strong {
+    font-weight: 700;
+    font-family: 'BookInsanityBold', 'Book Antiqua', serif;
+}
+
+em {
+    font-style: italic;
+}
+
+strong em {
+    font-style: italic;
+    font-weight: 700;
+}
+
+/* === LINKS === */
+a {
+    color: #7A200D;
+    text-decoration: none;
+    border-bottom: 1px dotted #7A200D;
+}
+
+a:hover {
+    color: #58180D;
+    border-bottom: 1px solid #58180D;
+}
+
+/* === COLUMN BREAKS === */
+.column-break {
+    break-after: column;
+    page-break-after: avoid;
+}
+
+.page-break {
+    break-after: page;
+    page-break-after: always;
+}
+
+/* === NOTE/WIDE BOXES === */
+.note-box {
+    background: #E8F4F8;
+    border-left: 4px solid #4A9EFF;
+    padding: 0.3cm 0.4cm;
+    margin: 0.4cm 0;
+    break-inside: avoid;
+}
+
+.note-box strong {
+    color: #4A9EFF;
+}
+
+.wide-block {
+    column-span: all;
+    margin: 0.4cm 0;
+}
+
+/* === UTILITY === */
+.text-center {
+    text-align: center;
+}
+
+.no-indent {
+    text-indent: 0 !important;
+}
+
+/* === FIRST LETTER DROP CAP === */
+.page > p:first-of-type::first-letter {
+    float: left;
+    font-size: 3.5em;
+    line-height: 0.8;
+    margin: 0.05em 0.1em 0 0;
+    font-family: 'Solbera Imitation', serif;
+    color: #7A200D;
+}
+
+    </style>
+</head>
+<body>
+    <div class="no-print" style="position:fixed; top:10px; right:10px; background:white; padding:10px; border-radius:5px; box-shadow:0 2px 8px rgba(0,0,0,0.2); z-index:1000;">
+        <button onclick="window.print()" style="padding:8px 16px; font-size:14px; cursor:pointer; background:#4A9EFF; color:white; border:none; border-radius:4px;">
+            🖨️ Stampa / Salva PDF
+        </button>
+    </div>
+    
+<div class="page">
+<h1 id="la-festa-del-raccolto-maledetto">La Festa del Raccolto Maledetto</h1>
+<p><em>Un’avventura D&amp;D 5e per 5 personaggi di livello 1</em></p>
+<p><strong>Durata:</strong> 3-4 ore | <strong>Ambientazione:</strong> Phandalin, Costa della Spada (Forgotten Realms)</p>
+<p>{{imageMaskEdge1,–offsetX:0%,–offsetY:0%<br/>
+<img alt="Gancio iniziale" src="img/scena_1_gancio_piazza.png"/> width=”350px”<br/>
+}}</p>
+<hr/>
+<blockquote>
+<h5 id="riepilogo-per-il-dm">📋 Riepilogo per il DM</h5>
+<p><strong>Fronte:</strong> Snik Orecchiatagliata, un goblin astuto, ha scoperto antiche rovine naniche sotto le Colline del Triboar. Ha trovato barili di idromele magico che conferisce forza ai suoi seguaci, e ora sta rubando provviste per formare una nuova tribù.</p>
+<p><strong>Passi in Avanti (se i PG non intervengono):</strong><br/>
+1. I goblin rubano cibo dalle fattorie, rendendo impossibile la Festa del Raccolto<br/>
+2. Snik recluta bugbear e altri goblin, attaccando le carovane sulla Strada del Triboar<br/>
+3. I goblin assaltano Phandalin di notte, saccheggiando il villaggio</p>
+<p><strong>I 10 Segreti:</strong><br/>
+1. Le impronte a tre dita sono di goblin che trascinano barili pesanti<br/>
+2. L’idromele magico nano conferisce +2 FOR per 1 ora ma causa dipendenza<br/>
+3. Snik era uno schiavo hobgoblin e ha imparato a leggere il nanico<br/>
+4. L’ingresso alle rovine si trova nella cantina crollata della Fattoria Alderleaf<br/>
+5. I goblin temono i lupi; Carp Alderleaf sa imitare il loro verso<br/>
+6. Un barile integro di idromele vale 200 mo ma può esplodere se agitato<br/>
+7. Le rovine erano l’avamposto commerciale Karak-Thûn, abbandonato 400 anni fa<br/>
+8. Snik ha una mappa con altre 2 entrate: una grotta e il vecchio mulino<br/>
+9. Sildar Hallwinter pagherà 50 mo per info, 100 mo per sconfiggere i goblin<br/>
+10. Tra i tesori c’è un martello cerimoniale della famiglia Alderleaf</p>
+<p><strong>Risoluzioni Possibili:</strong><br/>
+- <strong>Combattimento:</strong> Confronto diretto con Snik nelle rovine<br/>
+- <strong>Sociale:</strong> Negoziare con Snik o ingannarlo (idromele “maledetto”)<br/>
+- <strong>Astuzia:</strong> Usare ululati di lupo per far fuggire i goblin nel panico, o sabotare l’idromele</p>
+</blockquote>
+<hr/>
+<div class="column-break"></div>
+<h2 id="background">Background</h2>
+<p>Phandalin si prepara alla sua Festa del Raccolto annuale, un evento che celebra la prosperità e l’unità della comunità. Quest’anno, però, strani furti notturni hanno messo a rischio i festeggiamenti. Dispense svuotate, pollai saccheggiati, e persino interi carri di provviste spariti nel nulla.</p>
+<p>La verità è inquietante: un gruppo di goblin guidato dall’astuto Snik Orecchiatagliata ha scoperto le antiche rovine dell’avamposto nanico di Karak-Thûn, sepolte sotto le colline. Nelle profondità, Snik ha trovato barili di idromele magico che conferisce forza sovrumana. Ora sogna di usare questa scoperta per diventare il capo di una nuova tribù goblin nella regione.</p>
+<p>I personaggi, che si trovano a Phandalin per aiutare con i preparativi della festa, vengono coinvolti quando il furto più audace avviene in pieno giorno.</p>
+<h2 id="introduzione">Introduzione</h2>
+<h3 id="scegli-un-gancio">Scegli un Gancio</h3>
+<p>Seleziona uno dei seguenti ganci in base allo stile di gioco preferito dal gruppo:</p>
+<p><strong>Gancio A: Furto in Pieno Giorno (Action)</strong></p>
+<blockquote>
+<p>Siete nella piazza del mercato di Phandalin, aiutando a scaricare zucche e grano dalla Locanda Pietrafinestra, quando urla si levano dalla fontana centrale. Un carro carico di provviste è stato rovesciato! Piccole figure incappucciate - non più alte di un metro - stanno afferrando sacchi di cibo e fuggendo verso il bosco a est. Gli abitanti urlano e gesticolano, ma nessuno sembra avere il coraggio di inseguirli.</p>
+</blockquote>
+<p><strong>Gancio B: Il Mistero dei Furti (Mystery)</strong></p>
+<blockquote>
+<p>Elsa Grano d’Oro, l’anziana organizzatrice della festa, vi ferma con aria afflitta. “Per favore, cari, dovete aiutarmi!” dice gesticolando nervosamente. “Nelle ultime tre notti, qualcuno ha rubato le provviste di mezza Phandalin. Dispense, pollai, persino la cantina di Toblen! Non ci sono segni di effrazione, solo uno strano odore acre e piccole impronte a tre dita. Senza quel cibo, la Festa del Raccolto è rovinata!”</p>
+</blockquote>
+<p><strong>Gancio C: Tensioni in Crescita (Social)</strong></p>
+<blockquote>
+<p>L’assemblea cittadina nella piazza si sta trasformando in una rissa. “Tu hai rubato le mie patate!” urla il fattore Daran Edermath a Qelline Alderleaf. “E tu la mia birra!” replica lei. Toblen Pietrafinestra cerca di mediare ma viene ignorato. Il locandiere vi fa cenno disperato: “Dovete scoprire chi è il vero ladro, prima che questa comunità si distrugga dall’interno!”</p>
+</blockquote>
+
+</div>
+<div class="page">
+
+<h2 id="parte-1-investigazioni-a-phandalin">Parte 1: Investigazioni a Phandalin</h2>
+<p>Una volta scelto il gancio, i personaggi possono investigare in città. I seguenti PNG possono fornire informazioni:</p>
+<h3 id="png-importanti">PNG Importanti</h3>
+<div class="stat-block"><h4 id="elsa-grano-doro">Elsa Grano d’Oro</h4><p><em>Umana, organizzatrice della festa</em></p><p><strong><em>Aspetto.</em></strong> Donna sulla sessantina con capelli grigi raccolti e grembiule sempre cosparso di farina. Parla velocissimo gesticolando molto.</p><p><strong><em>Personalità.</em></strong> Energica ma ansiosa, chiama tutti “tesoro” o “caro”. Questo anno la festa è particolarmente importante per lei: vuole onorare la memoria del marito, morto l’anno scorso.</p><p><strong><em>Informazioni.</em></strong> Elsa può dire ai PG:<br/>
+- I furti sono iniziati tre notti fa<br/>
+- Hanno colpito almeno 7 case e la locanda<br/>
+- Nessuno ha visto i ladri, solo sentito rumori di notte<br/>
+- Qelline Alderleaf è stata colpita due volte</p><p><strong><em>Ricompensa.</em></strong> Offre 50 mo dal fondo della festa se i PG risolvono il problema.</p><div class="stat-block"><h4 id="sildar-hallwinter">Sildar Hallwinter</h4><p><em>Umano, membro dell’Alleanza dei Lord</em></p><p><strong><em>Aspetto.</em></strong> Guerriero umano di mezza età in armatura di maglia, sempre composto e professionale.</p><p><strong><em>Informazioni.</em></strong> Sildar è preoccupato che i furti siano segno di una minaccia più grande. Offre 50 mo per informazioni concrete sui responsabili e 100 mo se vengono eliminati.</p><div class="stat-block"><h4 id="qelline-alderleaf">Qelline Alderleaf</h4><p><em>Halfling, fattrice</em></p><p><strong><em>Aspetto.</em></strong> Halfling robusta con aria pratica e mani callose dal lavoro nei campi.</p><p><strong><em>Personalità.</em></strong> Protettiva verso suo figlio Carp, pragmatica ma gentile.</p><p><strong><em>Informazioni.</em></strong> Se i PG la rassicurano (Persuasion DC 12), Qelline rivela:<br/>
+- Suo figlio Carp ha visto “piccoli mostri verdi” nei boschi<br/>
+- Ha notato strani rumori dalla vecchia cantina crollata nella sua fattoria<br/>
+- I suoi polli sono terrorizzati ogni notte</p></div></div></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="column-break"></div>
+<h3 id="tracce-e-indizi">Tracce e Indizi</h3>
+<p>I personaggi possono investigare le scene dei furti. Con una prova di <strong>Survival DC 12</strong>, scoprono:<br/>
+- Piccole impronte a tre dita (goblin)<br/>
+- Segni di trascinamento di oggetti pesanti verso est<br/>
+- Un odore acre caratteristico (i goblin)<br/>
+- Le tracce portano verso le colline oltre la Fattoria Alderleaf</p>
+<p>Con <strong>Investigation DC 13</strong> nelle location colpite:<br/>
+- I ladri hanno preso solo cibo, non oggetti di valore<br/>
+- Sono entrati da finestre o porte sul retro<br/>
+- Hanno agito con una certa organizzazione</p>
+<h3 id="carp-alderleaf">Carp Alderleaf</h3>
+<p>Se i PG parlano con Carp (il figlio 10enne di Qelline), il ragazzo è entusiasta di aiutare:<br/>
+- Ha visto 4-5 goblin uscire dalla vecchia cantina crollata<br/>
+- Possono entrare nella fattoria la notte quando i goblin tornano<br/>
+- Carp sa imitare perfettamente l’ululato del lupo (informazione utile!)</p>
+<h2 id="parte-2-gli-scenari">Parte 2: Gli Scenari</h2>
+<p>La struttura dell’avventura è a <strong>hub</strong>: Phandalin è la base centrale da cui i PG possono esplorare i tre scenari in qualsiasi ordine. Ogni scenario rivela segreti e si avvicina al confronto finale.</p>
+<hr/>
+<blockquote>
+<h5 id="nota-per-il-dm">Nota per il DM</h5>
+<p>I giocatori possono affrontare questi scenari in qualsiasi sequenza. Ogni scenario fornisce indizi e segreti che aiutano a risolvere gli altri. Non forzare un ordine specifico.</p>
+</blockquote>
+<hr/>
+
+</div>
+<div class="page">
+
+<h1 id="scenario-a-la-fattoria-alderleaf">Scenario A: La Fattoria Alderleaf</h1>
+<p><em>Questo scenario può iniziare in due modi: i PG decidono di investigare la fattoria, oppure vengono chiamati per difenderla da un attacco notturno.</em></p>
+<blockquote>
+<p>Seguite il sentiero tortuoso che porta alla fattoria degli Alderleaf, circondata da campi dorati di grano maturo. La casa di legno con il tetto di paglia sembra tranquilla, ma notate che le imposte sono tutte chiuse nonostante sia giorno. Nel cortile, alcune galline razzolano nervosamente, e un cane abbaia sporadicamente verso est, in direzione del vecchio fienile mezzo crollato.</p>
+</blockquote>
+<div class="stat-block"><h3 id="per-il-dm">Per il DM</h3><p><strong><em>Atmosfera.</em></strong> La fattoria è tesa. Qelline è nervosa e tiene Carp in casa. Gli animali sono agitati.</p><p><strong><em>Elementi Interattivi:</em></strong><br/>
+- Il cane (Thieving) abbaia verso la vecchia cantina crollata dietro il fienile<br/>
+- I polli hanno perso metà piume per lo stress<br/>
+- La cantina crollata è parzialmente coperta da tavole e detriti<br/>
+- Nel fienile ci sono attrezzi che potrebbero essere utili (corde, lanterne, pale)</p><p><strong><em>Segreti Scopribili:</em></strong> #1, #4, #5, #10</p><h3 id="evento-lattacco-notturno-opzionale">Evento: L’Attacco Notturno (Opzionale)</h3><p>Se i PG decidono di rimanere la notte per tendere un’imboscata:</p><blockquote>
+<p>La notte è calda e senza luna. Verso mezzanotte, sentite movimenti furtivi vicino al pollaio. Quattro figure basse e goffe emergono dall’ombra del fienile, con sacchi di juta nelle mani. Uno di loro spalanca la porta del pollaio con un calcio.</p>
+</blockquote><p><strong>Incontro:</strong> 4 <strong>goblin</strong> (vedi Appendice per statistiche)</p><p><strong><em>Tattica.</em></strong> I goblin cercano di rubare galline e sacchi di grano. Se sorpresi, due combattono mentre gli altri due fuggono. Se ridotti a metà, tutti fuggono verso la cantina crollata.</p><p><strong><em>Successo.</em></strong> Se i PG catturano almeno un goblin, possono interrogarlo (vedi Prove di Abilità sotto).</p><p><strong><em>Fallimento.</em></strong> Se i goblin fuggono, lasciano comunque tracce chiare verso la cantina.</p></div>
+
+
+
+
+
+
+
+
+
+
+<div class="column-break"></div>
+<h3 id="prove-di-abilita">Prove di Abilità</h3>
+<h4 id="inseguire-i-goblin-fisica">Inseguire i Goblin (Fisica)</h4>
+<p><strong>Athletics o Acrobatics DC 13</strong></p>
+<p><strong><em>Successo.</em></strong> I PG raggiungono i goblin prima che raggiungano la cantina. Possono affrontarli o seguirli fino all’ingresso segreto. <strong>Segreti rivelati: #1 (impronte con segni di barili), #4 (ingresso nascosto)</strong></p>
+<p><strong><em>Fallimento (Fail Forward).</em></strong> I goblin scompaiono tra le macerie, ma lasciano cadere un sacco di grano rubato. Le tracce sono chiare fino alla cantina crollata. I PG possono seguirle al mattino, ma i goblin dentro sono ora in allerta e hanno preparato un’imboscata (le guardie goblin hanno vantaggio su Perception). <strong>Segreto #1 rivelato</strong></p>
+<h4 id="parlare-con-qelline-e-carp-sociale">Parlare con Qelline e Carp (Sociale)</h4>
+<p><strong>Persuasion o Insight DC 12</strong></p>
+<p><strong><em>Successo.</em></strong> Qelline, rassicurata, ammette che Carp ha visto i goblin più volte. Carp li porta entusiasta alla cantina crollata e dimostra la sua abilità di imitare l’ululato del lupo (un talento locale). “I mostri ne hanno paura!” esclama. <strong>Segreti rivelati: #4 (ingresso), #5 (goblin temono lupi, Carp sa imitarli)</strong></p>
+<p><strong><em>Fallimento (Fail Forward).</em></strong> Qelline è troppo spaventata per parlare e vieta a Carp di uscire. Tuttavia, Carp scappa dalla finestra quella notte per “aiutare gli eroi” e guida i PG alla cantina, ma ora è in pericolo e dovrete proteggerlo durante l’esplorazione. <strong>Segreto #4 rivelato, ma complicazione</strong></p>
+<h4 id="esplorare-la-cantina-crollata-investigazione">Esplorare la Cantina Crollata (Investigazione)</h4>
+<p><strong>Investigation o Perception DC 13</strong></p>
+<p><strong><em>Successo.</em></strong> Rimuovendo le macerie, scoprite una scala di pietra che scende nelle tenebre. L’odore acre è forte. Sulla parete vedete antiche rune naniche quasi cancellate. Impronte goblin fresche vanno e vengono. Se proseguite, questo porta alle Rovine di Karak-Thûn (Scenario B). <strong>Segreto #4 rivelato</strong></p>
+<p><strong><em>Fallimento (Fail Forward).</em></strong> Rimuovere le macerie fa molto rumore. I goblin sotto terra sono allertati e preparano un’imboscata. Quando i PG scendono, vengono accolti da 3 goblin armati (incontro più difficile). <strong>Segreto #4 parziale</strong></p>
+<h3 id="collegamenti">Collegamenti</h3>
+<ul>
+<li><strong>Rovine di Karak-Thûn:</strong> L’ingresso nella cantina porta direttamente alle rovine (Scenario B)</li>
+<li><strong>Villaggio:</strong> I PG possono tornare a riferire o cercare rinforzi</li>
+</ul>
+
+</div>
+<div class="page">
+
+<h1 id="scenario-b-le-rovine-di-karak-thun">Scenario B: Le Rovine di Karak-Thûn</h1>
+<p><em>L’antico avamposto commerciale nanico, ora nascondiglio dei goblin</em></p>
+<blockquote>
+<p>Scendete le scale di pietra consumata dal tempo. L’aria diventa fredda e umida. Dopo una ventina di gradini, emergete in un corridoio largo circa tre metri, con soffitto a volta sostenuto da pilastri squadrati. L’acqua gocciola dalle pareti, e un rigagnolo scorre al centro del pavimento. Sulla parete destra, rune naniche sono ancora visibili, anche se coperte di muschio. L’odore di goblin è forte qui.</p>
+</blockquote>
+<div class="stat-block"><h3 id="per-il-dm_1">Per il DM</h3><p><strong><em>Layout Generale.</em></strong> Le rovine consistono in:<br/>
+1. <strong>Corridoio d’Ingresso:</strong> Lungo 15 metri, con rune naniche<br/>
+2. <strong>Antica Cantina (Allagata):</strong> Camera principale, 10x10 metri, acqua alta 60 cm<br/>
+3. <strong>Camera del Consiglio:</strong> Sala finale dove si trova Snik<br/>
+4. <strong>Celle di Stoccaggio:</strong> Laterali, usate come dormitori goblin</p><p><strong><em>Atmosfera.</em></strong> Umido, buio, echi d’acqua che gocciola. Rune che brillano debolmente se illuminate. Senso di antica gloria decaduta.</p><p><strong><em>Elementi Interattivi:</em></strong><br/>
+- Le rune naniche raccontano la storia dell’avamposto<br/>
+- Barili antichi parzialmente sommersi nell’acqua<br/>
+- Pilastri instabili (potrebbero crollare)<br/>
+- Passaggi stretti che i PG possono usare tatticamente</p><p><strong><em>Segreti Scopribili:</em></strong> #2, #3, #6, #7</p><h3 id="mappa-delle-rovine">Mappa delle Rovine</h3><div class="descriptive"><pre><code>    [Ingresso Fattoria Alderleaf]
+                |
+    +-----------+-----------+
+    |   Corridoio Rune     |
+    +----------+-----------+
+               |
++------+-------+------+------+
+|Cella |  Cantina    |Cella |
+|Ovest | (allagata)  | Est  |
++------+      |      +------+
+              |
+       +------+------+
+       | Camera del |
+       |  Consiglio |
+       +------------+</code></pre></div></div>
+
+
+
+
+
+
+<div class="column-break"></div>
+<h3 id="1-corridoio-dingresso">1. Corridoio d’Ingresso</h3>
+<blockquote>
+<p>Il corridoio si estende davanti a voi, le pareti decorate con rune naniche elaborate. Scorgete simboli di martelli, anvils e montagne. L’acqua scorre in una canaletta al centro, sparendo in un buco nel pavimento.</p>
+</blockquote>
+<p><strong><em>Prova:</em></strong> Decifrare le rune (History o Investigation DC 15)</p>
+<p><strong><em>Successo.</em></strong> Le rune dicono: “Karak-Thûn, avamposto del Clan Thundil. Qui riposiamo e commerciamo. L’idromele della forza montana ci sostiene.” Data: circa 400 anni fa. <strong>Segreto #7 rivelato</strong></p>
+<p><strong><em>Fallimento.</em></strong> Capite solo che questo era un luogo nanico importante. Toccando le rune attivate accidentalmente un’antica trappola magica: un suono acuto echeggia in tutte le rovine, allertando tutti i goblin. <strong>Segreto #7 parziale</strong></p>
+<h3 id="2-cantina-allagata">2. Cantina Allagata</h3>
+<div class="wide-block">![Cantina allagata](img/scena_3_cantina_allagata.png)</div>
+<blockquote>
+<p>Entrate in una grande camera con soffitto a volta. L’acqua copre il pavimento per circa 60 centimetri, riflettendo la luce della vostra torcia come uno specchio scuro. Lungo le pareti, file di barili di legno emergono dall’acqua. Alcuni sono crollati e marciscono, altri sembrano intatti. Scorgete movimento nell’angolo più lontano: piccole figure goffe e qualcosa che guizza nell’acqua.</p>
+</blockquote>
+<p><strong><em>Minacce.</em></strong> <br/>
+- 2 <strong>goblin</strong> ubriachi di idromele (hanno +2 FOR, -2 WIS, sono vocali e aggressivi)<br/>
+- 1 <strong>sciame di ratti</strong> (attirati dal cibo rubato)</p>
+<p><strong><em>Difficile Terrain.</em></strong> L’acqua alta rende tutto il movimento a metà velocità.</p>
+<p><strong><em>Tesoro.</em></strong> Tra i barili:<br/>
+- 3 barili di idromele magico intatti (uno contiene 10 dosi)<br/>
+- 1 barile parzialmente svuotato (2 dosi rimaste)<br/>
+- Provviste rubate: sacchi di grano, prosciutti, formaggi (valore 50 mo)</p>
+<h3 id="prove-di-abilita_1">Prove di Abilità</h3>
+<h4 id="navigare-la-cantina-esplorazione">Navigare la Cantina (Esplorazione)</h4>
+<p><strong>Athletics o Perception DC 14</strong></p>
+<p><strong><em>Successo.</em></strong> Trovate un sentiero di pietre sommerse che permette di attraversare senza fare rumore. Raggiungete i barili senza allertare i goblin e i ratti. Esaminando i barili, ne identificate uno intatto con rune naniche: “Forza dei Montanari - maneggiare con cura”. <strong>Segreti rivelati: #2 (effetti idromele), #6 (valore), #7 (storia)</strong></p>
+<div class="column-break"></div>
+<p><strong><em>Fallimento (Fail Forward).</em></strong> Scivolate nell’acqua profonda con un tonfo, bagnandovi completamente. Il rumore allerta i goblin ubriachi e i ratti, che attaccano immediatamente. Il combattimento avviene in condizioni svantaggiose (difficile terrain, personaggi bagnati). Potete comunque esplorare dopo il combattimento. <strong>Segreto #2 rivelato</strong></p>
+<h4 id="interrogare-un-goblin-catturato-sociale">Interrogare un Goblin Catturato (Sociale)</h4>
+<p><strong>Intimidation o Persuasion DC 13</strong></p>
+<p><strong><em>Successo.</em></strong> Il goblin terrorizzato canta come un uccellino:<br/>
+- “Snik è boss! Lui molto furbo, sa leggere strane rune!”<br/>
+- “Idromele fa noi forti! Ma fa anche testa girare…”<br/>
+- “Snik ha mappa! Altre entrate qui: grotta su collina, vecchio mulino!”<br/>
+- “Snik nella sala grande, con tre guardie migliori!”</p>
+<p><strong>Segreti rivelati: #2, #3 (Snik sa leggere), #8 (mappa con altre entrate)</strong></p>
+<p><strong><em>Fallimento (Fail Forward).</em></strong> Il goblin mente spudoratamente, cercando di mandare i PG in una trappola: “Tesoro è dietro porta ovest!” (che porta a un crollo pericoloso). È un pessimo bugiardo (DC 10 Insight per capirlo), quindi i PG scoprono comunque la verità, ma perdono 10 minuti mentre Snik si prepara al combattimento. <strong>Segreto #3 parziale</strong></p>
+<h3 id="3-celle-di-stoccaggio">3. Celle di Stoccaggio</h3>
+<blockquote>
+<p>Piccole stanze laterali, circa 3x4 metri ciascuna. Erano depositi per merci, ora trasformate in dormitori malsani dai goblin. Giacigli di paglia puzzolente, ossa spolpate, e altro sporco goblin.</p>
+</blockquote>
+<p><strong><em>Tesoro:</em></strong><br/>
+- 25 mo sparse in vari nascondigli<br/>
+- 1 <em>pozione di cura</em> (rubata da una carovana)<br/>
+- Oggetti personali rubati (medaglioni, scarpe, coltelli da cucina)</p>
+<h3 id="4-camera-del-consiglio">4. Camera del Consiglio</h3>
+<p>Questa è la location del confronto finale con Snik (vedi Parte 3: Climax).</p>
+
+</div>
+<div class="page">
+
+<h1 id="scenario-c-il-vecchio-mulino">Scenario C: Il Vecchio Mulino</h1>
+<p><em>Un deposito temporaneo dei goblin, dove tengono prigioniero un mercante</em></p>
+<blockquote>
+<p>Il vecchio mulino sorge sul fiume Triboar, a circa un miglio a nord-est di Phandalin. La ruota di legno è ferma e parzialmente marcia. Le finestre sono buie, ma vedete un debole fumo uscire dal camino. La porta principale è socchiusa, e sentite voci acute che bisticciano in Goblin all’interno.</p>
+</blockquote>
+<div class="stat-block"><h3 id="per-il-dm_2">Per il DM</h3><p><strong><em>Layout.</em></strong> Il mulino è su due piani:<br/>
+- <strong>Piano Terra:</strong> Grande spazio aperto con macine vecchie, ora usato come deposito. 2 goblin di guardia.<br/>
+- <strong>Primo Piano:</strong> Stanze più piccole dove tengono Pip prigioniero</p><p><strong><em>Atmosfera.</em></strong> Decadente ma più luminoso delle rovine. Odore di muffa e grano vecchio. I goblin sono meno attenti qui, pensandosi al sicuro.</p><p><strong><em>Elementi Interattivi:</em></strong><br/>
+- La ruota del mulino può essere fatta girare (rumore forte, distrazione)<br/>
+- Sacchi di grano possono essere usati come copertura o imbottiture<br/>
+- Scale per il secondo piano cigolano rumorosamente<br/>
+- Finestra sul retro al piano terra (ingresso alternativo)</p><p><strong><em>Segreti Scopribili:</em></strong> #8, #9, #10 (parziale)</p><h3 id="incontro">Incontro</h3><p><strong>Guardie:</strong> 2 <strong>goblin</strong> al piano terra</p><p><strong>Prigioniero:</strong> Pip Piedelesto, halfling mercante, legato al primo piano</p><div class="stat-block"><h3 id="pip-piedelesto">Pip Piedelesto</h3><p><strong><em>Aspetto.</em></strong> Halfling maschio sui trent’anni, vestiti da viaggio strappati e sporchi. Capelli ricci disordinati. Nonostante tutto, sorride ancora.</p><p><strong><em>Personalità.</em></strong> Ottimista irriducibile, ridacchia nervosamente quando è spaventato. Suona un’armonica per calmarsi (i goblin gliela hanno lasciata perché trovano il suono “divertente”).</p><p><strong><em>Informazioni.</em></strong> Pip è stato catturato 4 giorni fa mentre viaggiava verso Phandalin. Ha visto molto:<br/>
+- Snik Orecchiatagliata è il capo, parla di “diventare grande boss”<br/>
+- I goblin hanno trovato “acqua magica che fa forti”<br/>
+- Ha visto una mappa grezza nella bisaccia di Snik: mostra 3 ingressi alle rovine<br/>
+- Conosce vecchie storie sui nani di Karak-Thûn (suo nonno era uno studioso)</p></div></div>
+
+
+
+
+
+
+
+
+
+
+
+<div class="column-break"></div>
+<p><strong><em>Gratitudine.</em></strong> Se liberato, Pip offre:<br/>
+- 20 mo (tutto quello che ha addosso)<br/>
+- Informazioni su Sildar Hallwinter e la sua ricompensa<br/>
+- Una <em>pozione di cura</em> nascosta nel suo stivale<br/>
+- Aiuto per negoziare con i commercianti di Phandalin (sconto 10%)</p>
+<h3 id="prove-di-abilita_2">Prove di Abilità</h3>
+<h4 id="infiltrarsi-nel-mulino-stealth">Infiltrarsi nel Mulino (Stealth)</h4>
+<p><strong>Stealth DC 12</strong></p>
+<p><strong><em>Successo.</em></strong> Vi avvicinate silenziosamente attraverso la finestra posteriore. I goblin sono distratti a giocare ai dadi e bevendo (idromele diluito). Potete sorprenderli o evitarli completamente salendo le scale mentre sono concentrati sul gioco. <strong>Segreti rivelati: #8 (vedete la mappa sul tavolo), #9 (Pip ve lo dice)</strong></p>
+<p><strong><em>Fallimento (Fail Forward).</em></strong> Mentre vi avvicinate, un ramo secco scricchiola sotto i vostri piedi. I goblin vi vedono e corrono dentro barricandosi. “Noi avere prigioniero! Voi andare via o noi fare male halfling!” urla uno. Ora dovete negoziare o assaltare la porta. <strong>Segreto #9 solo (Pip urla informazioni attraverso la porta)</strong></p>
+<h4 id="negoziare-con-i-goblin-sociale">Negoziare con i Goblin (Sociale)</h4>
+<p><strong>Persuasion o Deception DC 14</strong></p>
+<p><strong><em>Successo.</em></strong> I goblin sono codardi e stupidi. Potete:<br/>
+- Offrire 5 mo per il rilascio di Pip (accettano)<br/>
+- Convincerli che Snik li ha traditi: “Vi ha lasciati qui mentre lui tiene tutto il tesoro!” (Deception DC 14, accettano e fuggono)<br/>
+- Minacciare di bruciare il mulino (Intimidation DC 14, cedono)</p>
+<p><strong>Segreti rivelati: #8 (i goblin lasciano cadere la mappa fuggendo), #9</strong></p>
+<p><strong><em>Fallimento (Fail Forward).</em></strong> I goblin rifiutano e cercano di fuggire dalla finestra con Pip come ostaggio. Inizia un inseguimento caotico: uno dei goblin lascia cadere la mappa durante la fuga. Pip riesce a liberarsi (sa sleight of hand) ma si slogaun caviglia (velocità dimezzata per 1 giorno). <strong>Segreto #8</strong></p>
+<h4 id="cercare-nel-deposito-investigazione">Cercare nel Deposito (Investigazione)</h4>
+<p><strong>Investigation DC 13</strong></p>
+<p><strong><em>Successo.</em></strong> Tra i sacchi di provviste rubate trovate:<br/>
+- Etichette che indicano le vittime: “Alderleaf”, “Pietrafinestra”, “Edermath”<br/>
+- Un piccolo forziere nascosto: 30 mo (bottino goblin)<br/>
+- Appunti di Snik in nanico (capisce il linguaggio!)<br/>
+- La mappa con le 3 entrate alle rovine (grotta, cantina, mulino)</p>
+<p><strong>Segreti rivelati: #3 (Snik sa leggere nanico), #8 (mappa completa)</strong></p>
+<div class="column-break"></div>
+<p><strong><em>Fallimento (Fail Forward).</em></strong> Trovate solo parte delle provviste. Mentre rovinate tra i sacchi, 3 goblin tornano inaspettatamente al mulino (erano fuori a rubare). “Intrusi! Intrusi!” Inizia un combattimento, ma almeno trovate la mappa che un goblin porta nella sua bisaccia. <strong>Segreto #8 parziale</strong></p>
+<h3 id="tesoro-al-mulino">Tesoro al Mulino</h3>
+<ul>
+<li>30 mo nel forziere nascosto</li>
+<li>Provviste rubate (valore 50 mo se restituite)</li>
+<li>3 <em>razioni di viaggio</em> ancora sigillate</li>
+<li>1 <em>pozione di cura</em> con Pip</li>
+<li>Mappa delle rovine (segreto #8)</li>
+</ul>
+<h3 id="collegamenti_1">Collegamenti</h3>
+<ul>
+<li><strong>Grotta sulle Colline:</strong> La mappa mostra un altro ingresso alle rovine attraverso una grotta naturale (1 ora di viaggio)</li>
+<li><strong>Rovine di Karak-Thûn:</strong> Il passaggio dal mulino è allagato e richiede nuotare (Athletics DC 12)</li>
+</ul>
+
+</div>
+<div class="page">
+
+<h1 id="parte-3-climax-e-risoluzioni">Parte 3: Climax e Risoluzioni</h1>
+<p>Dopo aver esplorato almeno uno scenario (idealmente due o tutti e tre), i personaggi hanno abbastanza informazioni per affrontare Snik Orecchiatagliata. Il confronto avviene nella <strong>Camera del Consiglio</strong> delle rovine di Karak-Thûn.</p>
+<h2 id="camera-del-consiglio-di-snik">Camera del Consiglio di Snik</h2>
+<div class="wide-block">![Snik Orecchiatagliata](img/antagonista_snik_orecchiatagliata.png)</div>
+<blockquote>
+<p>Varcate l’arco di pietra ed entrate in una sala rettangolare di circa 12x8 metri. Il soffitto è sostenuto da quattro pilastri istoriati con scene di nani che commerciano. Al centro, un tavolo di pietra è coperto di mapge grezze, sacchi di provviste e barili aperti. L’odore di idromele è forte.</p>
+<p>Un goblin più grande degli altri siede su una vecchia sedia troppo grande per lui, indossando un elmo nanico arrugginito. Quando vi vede, salta in piedi, impugnando una scimitarra scheggiata.</p>
+<p>“Voi non rovinare piano di Snik!” urla in Common spezzato. “Io essere grande boss adesso! Idromele magico fare noi invincibili!” Altri tre goblin emergono dalle ombre, ognuno brandendo armi e bevendo da piccoli boccali.</p>
+</blockquote>
+<div class="stat-block"><h3 id="per-il-dm_3">Per il DM</h3><p><strong><em>Snik Orecchiatagliata.</em></strong> Più grande e astuto dei goblin normali. Indossa un elmo nanico e ha una bisaccia piena di mappe e tesori.</p><p><strong><em>Statistiche.</em></strong> Snik usa le statistiche del <strong>Goblin Boss</strong> (vedi Appendice). I 3 goblin guardie hanno bevuto idromele: +2 FOR, -2 WIS.</p><p><strong><em>Tattica.</em></strong><br/>
+- Snik ordina alle guardie di attaccare mentre lui usa <em>Redirect Attack</em><br/>
+- Beve una dose di idromele se il combattimento va male (bonus action)<br/>
+- Se ridotto a metà HP, cerca di fuggire attraverso un passaggio segreto dietro il trono</p><p><strong><em>Passaggio Segreto.</em></strong> Perception DC 15 per notarlo. Se Snik fugge, può tornare in futuro come antagonista ricorrente.</p><p><strong><em>Tesoro nella Camera:</em></strong><br/>
+- 3 barili di idromele magico (30 dosi totali)<br/>
+- Il <strong>Martello Cerimoniale di Karak-Thûn</strong> (valore 75 mo, ricompensa #1)<br/>
+- 150 mo in monete antiche naniche<br/>
+- Mappa completa delle rovine<br/>
+- Provviste rubate (valore 100 mo se restituite)</p></div>
+
+
+
+
+
+<div class="column-break"></div>
+<h2 id="tre-modi-per-risolvere">Tre Modi per Risolvere</h2>
+<p>I giocatori non devono necessariamente combattere. Ecco le tre risoluzioni principali:</p>
+<div class="stat-block"><h3 id="risoluzione-1-confronto-diretto-combattimento">Risoluzione 1: Confronto Diretto (Combattimento)</h3><p><strong><em>Descrizione.</em></strong> I PG affrontano Snik e le sue guardie in combattimento aperto.</p><p><strong><em>Incontro.</em></strong> Snik (Goblin Boss) + 3 goblin potenziati da idromele</p><p><strong><em>Difficoltà.</em></strong> Difficile per 5 PG di livello 1 (500 XP totali)</p><p><strong><em>Risultato.</em></strong> Se i PG vincono:<br/>
+- Ottengono tutto il tesoro<br/>
+- Snik è sconfitto (catturato o ucciso, a scelta dei PG)<br/>
+- I goblin superstiti fuggono e non torneranno<br/>
+- I PG sono gli eroi di Phandalin</p><p><strong><em>XP:</em></strong> 500 XP totali</p><div class="stat-block"><h3 id="risoluzione-2-diplomazia-e-inganno-sociale">Risoluzione 2: Diplomazia e Inganno (Sociale)</h3><p><strong><em>Approccio A: L’Idromele Maledetto.</em></strong><br/>
+Convincere Snik che l’idromele è maledetto (Deception DC 15):<br/>
+- “Abbiamo parlato con un mago. Dice che l’idromele porta la maledizione nanica! Ti trasformerà in pietra!”<br/>
+- Se successo: Snik è superstizioso. Accetta di lasciare le rovine in cambio di poter tenere un barile (promette di andarsene nella Terra Selvaggia)<br/>
+- Risultato: Nessun combattimento, ma Snik è libero e potrebbe tornare</p><p><strong><em>Approccio B: Negoziazione.</em></strong><br/>
+Offrire un accordo a Snik (Persuasion DC 16):<br/>
+- “Tieni metà del tesoro e vattene. Non diremo a Sildar dove sei andato.”<br/>
+- Se successo: Snik, fondamentalmente codardo, accetta. Prende 1 barile di idromele e 75 mo, poi fugge<br/>
+- Risultato: Pace, ma il tesoro è dimezzato</p><p><strong><em>Approccio C: Denaro.</em></strong><br/>
+Pagare Snik per andarsene (Persuasion DC 14 + 50 mo):<br/>
+- Snik accetta immediatamente e se ne va felice<br/>
+- Risultato: Nessun combattimento, ma i PG perdono oro</p><p><strong><em>XP per Approcci Sociali:</em></strong> 400 XP (leggermente meno del combattimento)</p></div></div>
+
+
+
+
+
+
+
+
+
+
+
+</div>
+<div class="page">
+
+<div class="stat-block"><h3 id="risoluzione-3-sabotaggio-e-astuzia-alternativa">Risoluzione 3: Sabotaggio e Astuzia (Alternativa)</h3><p><strong><em>Approccio A: Ululati e Panico.</em></strong><br/>
+Se i PG hanno scoperto il Segreto #5 (goblin temono lupi):<br/>
+- Usare Carp Alderleaf o incantesimi come <em>minor illusion</em> per creare ululati<br/>
+- I goblin (incluso Snik) devono fare <strong>Wisdom saving throw DC 13</strong> o fuggire terrorizzati per 1 minuto<br/>
+- Se falliscono: Fuggono abbandonando tutto. I PG ottengono il tesoro senza combattere<br/>
+- Se hanno successo: Combattimento normale ma i goblin sono spaventati (svantaggio su attacchi per 1 round)</p><p><strong><em>Approccio B: Avvelenare/Diluire l’Idromele.</em></strong><br/>
+Se i PG hanno accesso alla cantina allagata prima del confronto:<br/>
+- Possono diluire o contaminare i barili di idromele (Sleight of Hand DC 14 + 1 dose di veleno o <em>pozione di sonno</em>)<br/>
+- Snik e le guardie che bevono sono <strong>avvelenati</strong> (svantaggio su attacchi e prove abilità) per 1 ora<br/>
+- Semplifica molto il combattimento</p><p><strong><em>Approccio C: Far Crollare l’Entrata.</em></strong><br/>
+Intrappolare Snik e i goblin nelle rovine:<br/>
+- Richiede esplosivi (alchemist’s fire x3) o <em>shatter</em> cast su pilastri<br/>
+- Strutture DC 15 per valutare dove far crollare<br/>
+- Se successo: L’ingresso crolla, intrappolando i goblin (ma anche metà tesoro è sepolto)<br/>
+- Risultato: Goblin neutralizzati, ma tesoro ridotto (75 mo recuperabili invece di 150)</p><p><strong><em>XP per Approcci Astuzia:</em></strong> 450 XP</p><hr/><blockquote>
+<h5 id="nota-per-il-dm-creativita-dei-giocatori">Nota per il DM: Creatività dei Giocatori</h5>
+<p>Questi sono solo esempi. Se i vostri giocatori propongono soluzioni creative e logiche, premiatele! L’obiettivo è che si sentano intelligenti e competenti, non che seguano una “soluzione corretta” prestabilita.</p>
+</blockquote><hr/></div>
+
+
+
+
+
+
+
+<div class="column-break"></div>
+<h2 id="conseguenze-e-ricompense">Conseguenze e Ricompense</h2>
+<p>Dopo aver risolto la minaccia, i personaggi tornano a Phandalin come eroi.</p>
+<h3 id="la-festa-del-raccolto">La Festa del Raccolto</h3>
+<blockquote>
+<p>La piazza del mercato di Phandalin è trasformata. Ghirlande di foglie autunnali decorano ogni casa. Tavoli stracolmi di cibo (molto del quale avete recuperato voi!) sono disposti in cerchio intorno a un grande falò. Elsa Grano d’Oro vi accoglie con lacrime di gioia, abbracciandovi uno per uno.</p>
+<p>“Cari, avete salvato la nostra festa! Salvato la nostra comunità!” La folla vi applaude, e Sildar Hallwinter si fa avanti con una borsa di monete tintinnanti.</p>
+</blockquote>
+<h3 id="ricompense-materiali">Ricompense Materiali</h3>
+<p><strong>Da Sildar Hallwinter:</strong><br/>
+- 50 mo per informazioni sui goblin<br/>
+- 100 mo se li avete sconfitti (totale: 150 mo)</p>
+<p><strong>Da Elsa e la Comunità:</strong><br/>
+- 50 mo dal fondo della festa<br/>
+- Sconto 10% permanente in tutti i negozi di Phandalin<br/>
+- Cibo e alloggio gratuiti alla Locanda Pietrafinestra per 1 mese</p>
+<p><strong>Tesoro dalle Rovine:</strong><br/>
+- 150 mo in monete naniche antiche (o di più/meno secondo la risoluzione)<br/>
+- 1-3 barili di <strong>Idromele Magico dei Nani</strong> (10 dosi per barile)<br/>
+- <strong>Martello Cerimoniale di Karak-Thûn</strong><br/>
+- Provviste recuperate (50-100 mo di valore)</p>
+<h3 id="ricompense-narrative">Ricompense Narrative</h3>
+<p><strong>Reputazione a Phandalin:</strong><br/>
+- I PG sono riconosciuti come eroi locali<br/>
+- +2 bonus a tutte le prove di Carisma con residenti di Phandalin<br/>
+- Possono usare la Fattoria Alderleaf come base gratuita (se restituiscono il martello)<br/>
+- Futurequest potrebbero arrivare dagli abitanti</p>
+<p><strong>Conoscenza delle Rovine:</strong><br/>
+- I PG conoscono l’ubicazione di Karak-Thûn<br/>
+- Potrebbero esserci altre camere inesplorate (hook per future avventure)<br/>
+- L’idromele magico potrebbe attirare l’interesse di maghi o collezionisti</p>
+<p><strong>PNG Alleati:</strong><br/>
+- Pip Piedelesto li considera amici e può fornire aiuto mercantile<br/>
+- Carp Alderleaf li idolatra e vuole diventare un avventuriero<br/>
+- Qelline li considera famiglia adottiva</p>
+
+</div>
+<div class="page">
+
+<h1 id="appendici">Appendici</h1>
+<h2 id="a-blocchi-statistiche">A. Blocchi Statistiche</h2>
+<div class="stat-block"><h3 id="goblin">Goblin</h3><p><em>Umanoide piccolo (goblinoide), neutrale malvagio</em></p><hr/><p><strong>Classe Armatura</strong> 15 (armatura di cuoio, scudo)<br/>
+<strong>Punti Ferita</strong> 7 (2d6)<br/>
+<strong>Velocità</strong> 9 m</p><hr/><table>
+<thead>
+<tr>
+<th style="text-align: center;">FOR</th>
+<th style="text-align: center;">DES</th>
+<th style="text-align: center;">COS</th>
+<th style="text-align: center;">INT</th>
+<th style="text-align: center;">SAG</th>
+<th style="text-align: center;">CAR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">8 (-1)</td>
+<td style="text-align: center;">14 (+2)</td>
+<td style="text-align: center;">10 (+0)</td>
+<td style="text-align: center;">10 (+0)</td>
+<td style="text-align: center;">8 (-1)</td>
+<td style="text-align: center;">8 (-1)</td>
+</tr>
+</tbody>
+</table><hr/><p><strong>Abilità</strong> Furtività +6<br/>
+<strong>Sensi</strong> Scurovisione 18 m, Percezione passiva 9<br/>
+<strong>Linguaggi</strong> Comune, Goblin<br/>
+<strong>Grado di Sfida</strong> 1/4 (50 XP)</p><hr/><p><strong><em>Fuga Agile.</em></strong> Il goblin può effettuare l’azione di Disimpegno o Nascondersi come azione bonus in ognuno dei suoi turni.</p></div>
+
+
+
+
+
+
+
+
+
+<div class="stat-block"><h3 id="azioni">Azioni</h3><p><strong><em>Scimitarra.</em></strong> <em>Attacco con Arma da Mischia:</em> +4 al colpire, portata 1,5 m, un bersaglio. <em>Colpo:</em> 5 (1d6 + 2) danni taglienti.</p><p><strong><em>Arco Corto.</em></strong> <em>Attacco con Arma a Distanza:</em> +4 al colpire, gittata 24/96 m, un bersaglio. <em>Colpo:</em> 5 (1d6 + 2) danni perforanti.</p><hr/><div class="stat-block"><h3 id="goblin-boss-snik-orecchiatagliata">Goblin Boss (Snik Orecchiatagliata)</h3><p><em>Umanoide piccolo (goblinoide), neutrale malvagio</em></p><hr/><p><strong>Classe Armatura</strong> 17 (armatura di maglia, scudo)<br/>
+<strong>Punti Ferita</strong> 21 (6d6)<br/>
+<strong>Velocità</strong> 9 m</p><hr/><table>
+<thead>
+<tr>
+<th style="text-align: center;">FOR</th>
+<th style="text-align: center;">DES</th>
+<th style="text-align: center;">COS</th>
+<th style="text-align: center;">INT</th>
+<th style="text-align: center;">SAG</th>
+<th style="text-align: center;">CAR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">10 (+0)</td>
+<td style="text-align: center;">14 (+2)</td>
+<td style="text-align: center;">10 (+0)</td>
+<td style="text-align: center;">12 (+1)</td>
+<td style="text-align: center;">8 (-1)</td>
+<td style="text-align: center;">10 (+0)</td>
+</tr>
+</tbody>
+</table><hr/><p><strong>Abilità</strong> Furtività +6, Inganno +2<br/>
+<strong>Sensi</strong> Scurovisione 18 m, Percezione passiva 9<br/>
+<strong>Linguaggi</strong> Comune, Goblin, Nanico (legge ma non parla bene)<br/>
+<strong>Grado di Sfida</strong> 1 (200 XP)</p><hr/><p><strong><em>Fuga Agile.</em></strong> Snik può effettuare l’azione di Disimpegno o Nascondersi come azione bonus in ognuno dei suoi turni.</p><p><strong><em>Redirect Attack.</em></strong> Se una creatura che Snik può vedere entro 1,5 m da lui viene colpita da un attacco, può usare la sua reazione per ridirigere l’attacco verso un’altra creatura entro 1,5 m (escluso l’attaccante).</p></div></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="column-break"></div>
+<div class="stat-block"><h3 id="azioni_1">Azioni</h3><p><strong><em>Multiattacco.</em></strong> Snik effettua due attacchi con la sua scimitarra.</p><p><strong><em>Scimitarra.</em></strong> <em>Attacco con Arma da Mischia:</em> +4 al colpire, portata 1,5 m, un bersaglio. <em>Colpo:</em> 5 (1d6 + 2) danni taglienti.</p><p><strong><em>Giavellotto.</em></strong> <em>Attacco con Arma da Mischia o a Distanza:</em> +2 al colpire, portata 1,5 m o gittata 9/36 m, un bersaglio. <em>Colpo:</em> 3 (1d6) danni perforanti.</p><p><strong>Tattiche di Snik:</strong><br/>
+- Usa <em>Redirect Attack</em> per proteggere sé stesso, reindirizzando attacchi verso i goblin guardie<br/>
+- Beve idromele magico (bonus action) se ferito (guadagna +2 FOR per 1 ora)<br/>
+- Se ridotto sotto 10 HP, tenta di fuggire attraverso il passaggio segreto<br/>
+- Codardo ma astuto: preferisce la sopravvivenza alla vittoria</p><hr/><div class="stat-block"><h3 id="sciame-di-ratti">Sciame di Ratti</h3><p><em>Sciame di bestie minuscole, senza allineamento</em></p><hr/><p><strong>Classe Armatura</strong> 10<br/>
+<strong>Punti Ferita</strong> 24 (7d8 - 7)<br/>
+<strong>Velocità</strong> 9 m</p><hr/><table>
+<thead>
+<tr>
+<th style="text-align: center;">FOR</th>
+<th style="text-align: center;">DES</th>
+<th style="text-align: center;">COS</th>
+<th style="text-align: center;">INT</th>
+<th style="text-align: center;">SAG</th>
+<th style="text-align: center;">CAR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">9 (-1)</td>
+<td style="text-align: center;">11 (+0)</td>
+<td style="text-align: center;">9 (-1)</td>
+<td style="text-align: center;">2 (-4)</td>
+<td style="text-align: center;">10 (+0)</td>
+<td style="text-align: center;">3 (-4)</td>
+</tr>
+</tbody>
+</table><hr/><p><strong>Resistenze ai Danni</strong> contundenti, perforanti, taglienti<br/>
+<strong>Immunità alle Condizioni</strong> affascinato, atterrato, afferrato, impaurito, paralizzato, pietrificato, prono, stordito<br/>
+<strong>Sensi</strong> Scurovisione 9 m, Percezione passiva 10<br/>
+<strong>Linguaggi</strong> —<br/>
+<strong>Grado di Sfida</strong> 1/4 (50 XP)</p><hr/><p><strong><em>Olfatto Acuto.</em></strong> Lo sciame ha vantaggio alle prove di Saggezza (Percezione) basate sull’olfatto.</p><p><strong><em>Sciame.</em></strong> Lo sciame può occupare lo spazio di un’altra creatura e viceversa. Lo sciame può muoversi attraverso qualsiasi apertura larga abbastanza per un ratto minuscolo. Lo sciame non può recuperare punti ferita o ottenere punti ferita temporanei.</p></div></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="stat-block"><h3 id="azioni_2">Azioni</h3><p><strong><em>Morsi.</em></strong> <em>Attacco con Arma da Mischia:</em> +2 al colpire, portata 0 m, una creatura nello spazio dello sciame. <em>Colpo:</em> 7 (2d6) danni perforanti, o 3 (1d6) danni perforanti se lo sciame ha metà dei suoi punti ferita o meno.</p></div>
+
+
+</div>
+<div class="page">
+
+<h2 id="b-oggetti-magici">B. Oggetti Magici</h2>
+<div class="stat-block"><h3 id="idromele-magico-dei-nani">Idromele Magico dei Nani</h3><p><em>Pozione, non comune</em></p><p>Questo idromele dorato brilla debolmente in una luce fioca. Era prodotto dai nani del Clan Thundil per conferire forza durante lunghe marce o battaglie.</p><p><strong>Effetto:</strong> Bere una dose (azione) conferisce i seguenti benefici per 1 ora:<br/>
+- +2 bonus alla Forza (non supera 20)<br/>
+- Vantaggio ai saving throw contro esaurimento</p><p><strong>Limiti:</strong> Una creatura può beneficiare di una sola dose per giorno. Dosi multiple nella stessa giornata causano nausea (svantaggio a tutte le prove per 1 ora, no benefit).</p><p><strong>Dipendenza (Goblinoidi):</strong> I goblinoidi che bevono idromele magico per 3+ giorni consecutivi sviluppano dipendenza. Se passano 24 ore senza berne, soffrono di svantaggio a tutte le prove finché non ne bevono di nuovo.</p><p><strong>Instabilità:</strong> Un barile pieno, se agitato violentemente (caduta, colpo forte), può esplodere. Quando agitato, tira 1d6: con 1, esplode per 2d6 danni da fuoco in un raggio di 3 metri (Dexterity DC 12 dimezza).</p><p><strong>Valore:</strong> 20 mo per dose, 200 mo per barile intatto (ai collezionisti o maghi)</p><hr/><div class="stat-block"><h3 id="martello-cerimoniale-di-karak-thun">Martello Cerimoniale di Karak-Thûn</h3><p><em>Oggetto meraviglioso, raro (non richiede sintonia)</em></p><p>Un piccolo martello d’argento con manico di legno di quercia. Rune naniche lungo la testa recitano: “Forgiato in onore del Clan Thundil, costruttori di ponti tra popoli.”</p><p><strong>Storia:</strong> Questo martello era usato nelle cerimonie commerciali dei nani di Karak-Thûn. Veniva dato in dono ai partner commerciali più fidati. La famiglia Alderleaf ha un antenato nano che ricevette questo onore.</p><p><strong>Proprietà:</strong><br/>
+- <strong>Non Magico:</strong> Non conferisce bonus meccanici<br/>
+- <strong>Valore Storico:</strong> Vale 75 mo a un collezionista<br/>
+- <strong>Reliquia Familiare:</strong> Se restituito alla famiglia Alderleaf, sono estremamente grati:<br/>
+  - Offrono l’uso gratuito della loro fattoria come base<br/>
+  - Provvedono a 3 <em>razioni di viaggio</em> gratis ogni settimana<br/>
+  - Carp diventa un alleato entusiasta (può fare da messaggero o aiutante)<br/>
+  - +4 (invece di +2) a prove di Carisma con Qelline e Carp</p><p><strong>Aspetto:</strong> Lungo 20 cm, peso 0,5 kg. L’argento è annerito dal tempo ma le rune brillano se pulite.</p></div></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="column-break"></div>
+<h2 id="c-mappe">C. Mappe</h2>
+<h3 id="mappa-di-phandalin">Mappa di Phandalin</h3>
+<div class="descriptive"><pre><code>         [Bosco]
+            |
+  [Colline] | [Strada Triboar]
+            |
+  Fattoria--+--[PHANDALIN]--Mulino
+ Alderleaf  |   (Piazza)   (fiume)
+            |
+         [Rovine]
+       Karak-Thûn
+      (sotterranee)</code></pre></div>
+<p><strong>Distanze:</strong><br/>
+- Phandalin → Fattoria Alderleaf: 20 minuti a piedi<br/>
+- Phandalin → Vecchio Mulino: 30 minuti a piedi<br/>
+- Fattoria → Ingresso Rovine: nella cantina (immediato)</p>
+<h3 id="mappa-delle-rovine-di-karak-thun">Mappa delle Rovine di Karak-Thûn</h3>
+<p>(Vedi Scenario B per mappa ASCII dettagliata)</p>
+<p><strong>Note:</strong><br/>
+- Le rovine si estendono per circa 400 metri quadrati<br/>
+- Profondità: 8-12 metri sotto terra<br/>
+- 3 ingressi: cantina Alderleaf (principale), grotta sulle colline (secondario, non esplorato in questa avventura), passaggio dal mulino (allagato)</p>
+<h2 id="d-handout-e-lettere">D. Handout e Lettere</h2>
+<h3 id="mappa-di-snik-handout">Mappa di Snik (Handout)</h3>
+<p>Se i PG trovano o recuperano la mappa di Snik, puoi mostrare loro questo testo (o disegnare una mappa grezza):</p>
+<blockquote>
+<p>Una mappa disegnata rozzamente su pelle conciata, con inchiostro di carbone. Mostra:<br/>
+- “CASA DI PIETRA” (le rovine) al centro<br/>
+- Una linea che va a nord-est verso “RUOTA D’ACQUA” (il mulino)<br/>
+- Una linea a ovest verso “CASA PICCOLA GENTE” (Fattoria Alderleaf)<br/>
+- Una linea a nord verso “BUCO NELLA ROCCIA” (grotta non esplorata)<br/>
+- X segna “ACQUA CHE FA FORTE”</p>
+</blockquote>
+<h3 id="nota-di-elsa-gancio-opzionale">Nota di Elsa (Gancio Opzionale)</h3>
+<p>Se usi il Gancio B (Mystery), puoi dare ai giocatori questo handout:</p>
+<blockquote>
+<p><em>Cari avventurieri,</em></p>
+<p><em>Ho bisogno del vostro aiuto. Qualcosa di terribile sta accadendo a Phandalin. Nelle ultime tre notti, le provviste per la nostra Festa del Raccolto sono state rubate. Dispense, pollai, persino le cantine private.</em></p>
+<p><em>Nessuno ha visto i ladri. Solo impronte strane e un odore orribile.</em></p>
+<p><em>Vi prego, scoprite chi o cosa sta facendo questo. Pagherò quello che posso.</em></p>
+<p><em>— Elsa Grano d’Oro</em></p>
+</blockquote>
+
+</div>
+<div class="page">
+
+<h2 id="e-varianti-e-opzioni">E. Varianti e Opzioni</h2>
+<div class="stat-block"><h3 id="per-giocatori-meno-esperti">Per Giocatori Meno Esperti</h3><p>Se i tuoi giocatori sono nuovi a D&amp;D, considera:<br/>
+- Riduci i goblin negli incontri di 1 unità<br/>
+- Dai loro 1 <em>pozione di cura</em> extra all’inizio<br/>
+- Rendi Carp più proattivo nell’aiutare (può unirsi come PNG alleato non combattente)<br/>
+- Fornisci indizi più diretti (Elsa dice apertamente “controllate la fattoria Alderleaf”)</p><div class="stat-block"><h3 id="per-giocatori-esperti">Per Giocatori Esperti</h3><p>Se i tuoi giocatori sono veterani:<br/>
+- Aggiungi 1-2 goblin agli incontri<br/>
+- Snik ha 1 <em>pozione di cura</em> e la usa<br/>
+- Aggiungi trappole nelle rovine (tranelli DC 14, 1d6 danni)<br/>
+- Introduci un tempo limite: la Festa è tra 2 giorni (crea pressione)</p><h3 id="agganci-per-future-avventure">Agganci per Future Avventure</h3><p>Questa avventura può portare a:<br/>
+- <strong>Le Camere Profonde:</strong> Altre sezioni di Karak-Thûn inesplorate, con tesori maggiori (e pericoli maggiori)<br/>
+- <strong>La Vendetta di Snik:</strong> Se Snik fugge, torna con rinforzi tra 1-2 sessioni<br/>
+- <strong>Il Clan Thundil:</strong> Nani discendenti del clan originale vengono a Phandalin dopo aver sentito della scoperta delle rovine<br/>
+- <strong>L’Idromele Maledetto:</strong> Un mago malvagio vuole l’idromele per esperimenti su soldati potenziati<br/>
+- <strong>Pip Piedelesto in Guai:</strong> Il mercante halfling invia una richiesta d’aiuto: è stato catturato da banditi e ha bisogno di soccorso</p><h3 id="cambiare-ambientazione">Cambiare Ambientazione</h3><p>Questa avventura può essere adattata facilmente ad altre ambientazioni:<br/>
+- <strong>Greyhawk:</strong> Sostituisci Phandalin con Hommlet o Nulb<br/>
+- <strong>Eberron:</strong> Le rovine sono di una foundry di creation forges<br/>
+- <strong>Ravenloft:</strong> Le rovine sono sotto il villaggio di Barovia, l’idromele è contaminato da energia oscura<br/>
+- <strong>Homebrew:</strong> Cambia i nani con qualsiasi altra civiltà antica</p></div></div>
+
+
+
+
+
+
+
+<div class="column-break"></div>
+<h2 id="f-suggerimenti-per-il-master">F. Suggerimenti per il Master</h2>
+<h3 id="gestire-la-struttura-hub">Gestire la Struttura Hub</h3>
+<p>Ricorda che i giocatori possono affrontare gli scenari in qualsiasi ordine. Ogni scenario fornisce indizi che rendono gli altri più facili:</p>
+<ul>
+<li><strong>Se vanno prima alla Fattoria:</strong> Scoprono l’ingresso diretto alle rovine</li>
+<li><strong>Se vanno prima al Mulino:</strong> Liberano Pip che dà info preziose e la mappa</li>
+<li><strong>Se vanno direttamente alle Rovine:</strong> È più pericoloso ma più diretto</li>
+</ul>
+<p>Non c’è un ordine “sbagliato”. Premia la creatività.</p>
+<h3 id="gestire-il-fail-forward">Gestire il Fail Forward</h3>
+<p>Il principio del “fail forward” è essenziale in questa avventura. Quando i PG falliscono una prova, non dire semplicemente “fallisci”. Invece:<br/>
+1. Ottengono comunque l’informazione o progrediscono<br/>
+2. Ma c’è una complicazione o un costo<br/>
+3. L’avventura continua senza bloccarsi</p>
+<p><strong>Esempi:</strong><br/>
+- Falliscono Stealth? I goblin li sentono, ma si barricano invece di attaccare → negoziazione<br/>
+- Falliscono Persuasion? L’PNG non collabora, ma suo figlio li aiuta di nascosto → complicazione<br/>
+- Falliscono Athletics? Cadono nell’acqua, bagnandosi, ma trovano comunque la via → costo</p>
+<h3 id="interpretare-snik">Interpretare Snik</h3>
+<p>Snik è un antagonista sympathetico in un certo senso: è un reietto che cerca rispetto. Quando lo interpreti:<br/>
+- Parla in Common spezzato: “Io essere boss ora! Voi non capire!”<br/>
+- È arrogante quando ha il vantaggio, codardo quando è in difficoltà<br/>
+- Può essere negoziato con, se i PG offrono una via d’uscita “onorevole”<br/>
+- Se catturato vivo, può dare info su altre minacce nella regione (hook)</p>
+<h3 id="gestire-il-tempo">Gestire il Tempo</h3>
+<p>Questa avventura è progettata per 3-4 ore:<br/>
+- <strong>Introduzione e Gancio:</strong> 20-30 minuti<br/>
+- <strong>Primo Scenario:</strong> 40-60 minuti<br/>
+- <strong>Secondo Scenario:</strong> 40-60 minuti<br/>
+- <strong>Terzo Scenario o Climax:</strong> 40-60 minuti<br/>
+- <strong>Risoluzione:</strong> 20 minuti</p>
+<p>Se il tempo scarseggia:<br/>
+- Salta uno scenario (i PG ottengono le info chiave da un PNG)<br/>
+- Semplifica il confronto finale<br/>
+- Riduci il numero di goblin</p>
+<h3 id="musica-e-atmosfera">Musica e Atmosfera</h3>
+<p>Suggerimenti per la colonna sonora:<br/>
+- <strong>Phandalin:</strong> Musica di taverna, atmosfera rurale tranquilla<br/>
+- <strong>Rovine:</strong> Musica ambient scura, echi, dripping water sounds<br/>
+- <strong>Combattimenti:</strong> Battle music epica ma non troppo intensa (sono goblin!)<br/>
+- <strong>Festa Finale:</strong> Musica celebrativa, medievale festosa</p>
+
+</div>
+<div class="page">
+
+<h2 id="g-crediti-e-note">G. Crediti e Note</h2>
+<h3 id="fonti-di-ispirazione">Fonti di Ispirazione</h3>
+<p>Questa avventura è ispirata da:<br/>
+- La struttura a “fronti” di <strong>Dungeon World</strong><br/>
+- Il metodo del “Lazy Dungeon Master” di <strong>Sly Flourish</strong><br/>
+- Le avventure starter di <strong>D&amp;D 5e</strong><br/>
+- La filosofia “prep little, play big” di vari designer indie</p>
+<div class="stat-block"><h3 id="note-sullambientazione">Note sull’Ambientazione</h3><p><strong>Phandalin</strong> è il villaggio centrale della avventura starter di D&amp;D 5e, <em>Lost Mine of Phandelver</em>. Questa avventura può essere giocata:<br/>
+- <strong>Come prequel:</strong> Prima degli eventi di Lost Mine<br/>
+- <strong>Come standalone:</strong> In una versione alternativa di Phandalin<br/>
+- <strong>Come sequel:</strong> Dopo Lost Mine, con Sildar già stabilizzato nel villaggio</p><p><strong>Karak-Thûn</strong> è un’invenzione originale per questa avventura, ma si integra perfettamente nella lore dei nani della Costa della Spada.</p><h3 id="ringraziamenti">Ringraziamenti</h3><p>Grazie a:<br/>
+- Ai playtesters che hanno testato questa avventura<br/>
+- Alla community di D&amp;D per l’ispirazione continua<br/>
+- A Wizards of the Coast per D&amp;D 5e</p><h3 id="changelog">Changelog</h3><p><strong>Versione 1.0</strong> (18 Ottobre 2025)<br/>
+- Prima release pubblica<br/>
+- Struttura completa con 3 scenari hub<br/>
+- Blocchi statistiche completi<br/>
+- Opzioni di risoluzione multiple</p><h3 id="licenza">Licenza</h3><p>Questo materiale è fan-made e non ufficiale. D&amp;D, Forgotten Realms e tutte le relative proprietà sono © Wizards of the Coast.</p><p>Questo documento può essere condiviso liberamente per uso personale e non commerciale.</p><hr/><p><em>Che la vostra Festa del Raccolto sia memorabile!</em></p><p><em>— Il Dungeon Master</em></p></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+<div class="page">
+
+<h1 id="note-di-progettazione-dm-only">Note di Progettazione (DM Only)</h1>
+<p>Questa sezione contiene note meta-game sulla progettazione dell’avventura. Non leggere ai giocatori!</p>
+<h2 id="filosofia-progettuale">Filosofia Progettuale</h2>
+<p>Questa avventura segue questi principi:</p>
+<h3 id="1-preparazione-minima-massima-flessibilita">1. Preparazione Minima, Massima Flessibilità</h3>
+<p>Non c’è un “sentiero corretto”. I PG possono:<br/>
+- Saltare scenari completamente (se ottengono info altrove)<br/>
+- Risolvere tutto senza combattere<br/>
+- Andare dritti al confronto finale</p>
+<h3 id="2-il-fail-forward-e-fondamentale">2. Il Fail Forward è Fondamentale</h3>
+<p>Nessuna prova di abilità blocca l’avventura. Ogni fallimento:<br/>
+- Dà comunque informazioni parziali<br/>
+- Aggiunge complicazioni interessanti<br/>
+- Mantiene il momentum narrativo</p>
+<h3 id="3-scelte-significative">3. Scelte Significative</h3>
+<p>I giocatori hanno scelte vere:<br/>
+- Quale scenario esplorare per primo<br/>
+- Come affrontare Snik (combattere/negoziare/imbrogliare)<br/>
+- Cosa fare con le ricompense (vendere o tenere)</p>
+<h3 id="4-conseguenze-visibili">4. Conseguenze Visibili</h3>
+<p>Le azioni dei PG cambiano il mondo:<br/>
+- Se ignorano i goblin troppo a lungo, gli attacchi peggiorano<br/>
+- Se negoziano con Snik, rimane una minaccia futura<br/>
+- Se restituiscono il martello, guadagnano alleati</p>
+<h2 id="bilanciamento-degli-incontri">Bilanciamento degli Incontri</h2>
+<p><strong>Budget XP per 5 PG di Livello 1:</strong><br/>
+- Easy: 125 XP<br/>
+- Medium: 250 XP<br/>
+- Hard: 375 XP<br/>
+- Deadly: 500 XP</p>
+<p><strong>Incontri in questa avventura:</strong><br/>
+- 4 goblin (200 XP) = Medium<br/>
+- 2 goblin ubriachi + sciame ratti (200 XP) = Medium<br/>
+- Snik + 3 goblin (500 XP) = Deadly (ma evitabile!)</p>
+<p>Totale possibile: 900 XP, ma non tutti gli incontri sono obbligatori.</p>
+<h2 id="distribuzione-xp-alternativa-milestone">Distribuzione XP Alternativa (Milestone)</h2>
+<p>Invece di XP da combattimento, considera milestone XP:<br/>
+- <strong>Completato 1 scenario:</strong> 150 XP ciascun PG<br/>
+- <strong>Liberato Pip:</strong> 100 XP ciascun PG<br/>
+- <strong>Risolto il fronte (in qualsiasi modo):</strong> 250 XP ciascun PG</p>
+<p>Totale possibile: 650 XP per PG → avvicina i PG al livello 2</p>
+<h2 id="perche-questa-struttura-funziona">Perché Questa Struttura Funziona</h2>
+<p><strong>Hub Design:</strong><br/>
+- Dà ai giocatori agency (sensazione di controllo)<br/>
+- Adatto a giocatori esperti che amano esplorare<br/>
+- Previene il “railroad feeling”<br/>
+- Ogni sessione può essere diversa in base alle scelte</p>
+<p><strong>10 Segreti:</strong><br/>
+- Anche se i PG non scoprono tutti i 10, ne troveranno 5-7<br/>
+- Ogni segreto rende l’avventura più facile o interessante<br/>
+- Crea “aha!” moments soddisfacenti</p>
+<p><strong>3 Risoluzioni:</strong><br/>
+- Ogni tipo di giocatore ha la sua via (fighter, face, strategist)<br/>
+- Nessun “modo giusto” = più replay value<br/>
+- Premia creatività e build diverse</p>
+<hr/>
+<p><strong>Buona Avventura!</strong></p>
+</div>
+
+    <script>
+        // Auto-adjust page heights for better printing
+        window.addEventListener('load', function() {
+            console.log('✅ HTML Homebrewery caricato');
+        });
+    </script>
+</body>
+</html>
