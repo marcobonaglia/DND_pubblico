@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>la_danza_del_raccolto</title>
+    <style>
+
+/* === RESET E BASE === */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'BookInsanity', 'Book Antiqua', Palatino, serif;
+    font-size: 10.5pt;
+    line-height: 1.4;
+    color: #000;
+    background: #EEE5CE;
+    padding: 20px;
+}
+
+/* === LAYOUT PAGINE === */
+.page {
+    width: 210mm;  /* A4 width */
+    min-height: 297mm;  /* A4 height */
+    margin: 0 auto 20px auto;
+    padding: 1.5cm 2cm;
+    background: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    position: relative;
+    overflow: hidden;
+    
+    /* Layout a colonna singola per stampa più affidabile */
+}
+
+@media print {
+    body {
+        background: white;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .page {
+        width: 210mm;
+        height: 297mm;
+        min-height: 297mm;
+        max-height: 297mm;
+        margin: 0;
+        padding: 1.5cm 2cm;
+        box-shadow: none;
+        page-break-after: always;
+        page-break-inside: avoid;
+        overflow: visible;
+        
+        /* Layout a colonna singola per stampa più affidabile */
+    }
+    
+    /* Evita page break dentro questi elementi */
+    h1, h2, h3, h4, h5 {
+        page-break-after: avoid;
+        break-after: avoid-page;
+    }
+    
+    .stat-block,
+    .descriptive,
+    .note-box,
+    blockquote {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+    
+    table {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+    
+    /* Forza page break */
+    .page-break {
+        page-break-before: always;
+        break-before: page;
+    }
+    
+    /* Column break (non necessario in layout single-column) */
+    .column-break {
+        /* Ignorato - non usiamo più colonne */
+    }
+    
+    /* Nascondi elementi non stampabili */
+    .no-print {
+        display: none !important;
+    }
+    
+    /* Fix immagini */
+    img {
+        max-width: 100%;
+        page-break-inside: avoid;
+    }
+    
+    /* Rimuovi ombre e effetti */
+    * {
+        box-shadow: none !important;
+    }
+}
+
+/* === TIPOGRAFIA === */
+h1 {
+    font-family: 'MrEavesSmallCaps', 'Cinzel', serif;
+    font-size: 28pt;
+    font-weight: 800;
+    color: #58180D;
+    margin-bottom: 0.3cm;
+    margin-top: 0.5cm;
+    border-bottom: 2px solid #C0AD6A;
+    padding-bottom: 0.1cm;
+}
+
+h2 {
+    font-family: 'MrEavesSmallCaps', 'Cinzel', serif;
+    font-size: 20pt;
+    font-weight: 700;
+    color: #58180D;
+    margin-top: 0.4cm;
+    margin-bottom: 0.25cm;
+    border-bottom: 1px solid #C0AD6A;
+}
+
+h3 {
+    font-family: 'MrEavesSmallCaps', 'Cinzel', serif;
+    font-size: 15pt;
+    font-weight: 700;
+    color: #58180D;
+    margin-top: 0.3cm;
+    margin-bottom: 0.2cm;
+    border-bottom: 1px solid #C0AD6A;
+}
+
+h4 {
+    font-family: 'MrEavesSmallCaps', 'Cinzel', serif;
+    font-size: 12pt;
+    font-weight: 700;
+    color: #58180D;
+    margin-top: 0.25cm;
+    margin-bottom: 0.15cm;
+}
+
+h5 {
+    font-family: 'BookInsanityBold', 'Book Antiqua', Palatino, serif;
+    font-size: 11pt;
+    font-weight: 700;
+    font-variant: small-caps;
+    color: #58180D;
+    margin-top: 0.2cm;
+    margin-bottom: 0.1cm;
+}
+
+p {
+    margin-bottom: 0.3cm;
+    text-align: justify;
+    hyphens: auto;
+}
+
+/* === BLOCKQUOTE (Read-aloud text) === */
+blockquote {
+    background: #E0E5C1;
+    border-left: 4px solid #C0AD6A;
+    padding: 0.3cm 0.4cm;
+    margin: 0.4cm 0;
+    font-family: 'ScalySansItalic', 'Palatino Linotype', serif;
+    font-style: italic;
+    font-size: 10pt;
+    box-shadow: 1px 4px 14px rgba(0,0,0,0.15);
+}
+
+blockquote h5 {
+    font-family: 'MrEavesSmallCaps', 'Cinzel', serif;
+    font-style: normal;
+    text-align: center;
+    margin-top: 0;
+    border-bottom: 1px solid #C0AD6A;
+    padding-bottom: 0.1cm;
+    margin-bottom: 0.2cm;
+}
+
+blockquote p:last-child {
+    margin-bottom: 0;
+}
+
+/* === LISTE === */
+ul, ol {
+    margin-left: 1em;
+    margin-bottom: 0.3cm;
+}
+
+li {
+    margin-bottom: 0.15cm;
+}
+
+/* === TABELLE === */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0.4cm 0;
+    font-size: 9.5pt;
+    break-inside: avoid;
+}
+
+thead {
+    background: #E0E5C1;
+    font-weight: 700;
+}
+
+th, td {
+    border: 1px solid #C0AD6A;
+    padding: 0.15cm 0.25cm;
+    text-align: center;
+}
+
+th {
+    font-family: 'MrEavesSmallCaps', 'Cinzel', serif;
+    color: #58180D;
+}
+
+tbody tr:nth-child(even) {
+    background: #F9F9F5;
+}
+
+/* === STAT BLOCKS === */
+.stat-block {
+    background: #FDF1DC;
+    border: 1px solid #DDD;
+    padding: 0.4cm;
+    margin: 0.4cm 0;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    break-inside: avoid;
+    page-break-inside: avoid;
+    display: block;
+    position: relative;
+}
+
+.stat-block h3,
+.stat-block h4 {
+    color: #7A200D;
+    margin-top: 0;
+    text-align: center;
+    border-bottom: 2px solid #7A200D;
+}
+
+.stat-block p {
+    margin-bottom: 0.2cm;
+    text-align: left;
+}
+
+.stat-block hr {
+    border: none;
+    border-top: 1px solid #7A200D;
+    margin: 0.2cm 0;
+}
+
+.stat-block table {
+    margin: 0.2cm 0;
+}
+
+.stat-block strong {
+    font-family: 'ScalySansBold', 'Arial Black', sans-serif;
+    color: #7A200D;
+}
+
+.stat-block em {
+    font-style: italic;
+}
+
+/* === DESCRITTIVI (descriptive blocks) === */
+.descriptive {
+    background: #FAF7EA;
+    border: 1px dashed #C0AD6A;
+    padding: 0.3cm;
+    margin: 0.3cm 0;
+    font-family: 'ScalySans', 'Trebuchet MS', sans-serif;
+    font-size: 9.5pt;
+    break-inside: avoid;
+}
+
+.descriptive pre {
+    font-family: 'Courier New', monospace;
+    font-size: 8.5pt;
+    white-space: pre;
+    display: block;
+    background: #FFF;
+    padding: 0.2cm;
+    border: 1px solid #DDD;
+    overflow-x: auto;
+    margin: 0.2cm 0;
+}
+
+.descriptive pre code {
+    font-family: 'Courier New', monospace;
+    font-size: 8.5pt;
+    white-space: pre;
+    background: transparent;
+    padding: 0;
+    border: none;
+    display: block;
+}
+
+.descriptive code {
+    font-family: 'Courier New', monospace;
+    font-size: 9pt;
+    background: #F5F5F5;
+    padding: 0.05cm 0.1cm;
+    border-radius: 2px;
+}
+
+/* === IMMAGINI === */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0.3cm auto;
+}
+
+.img-wide {
+    column-span: all;
+    width: 100%;
+    margin: 0.5cm 0;
+}
+
+.img-cover {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    opacity: 0.4;
+    mix-blend-mode: multiply;
+}
+
+/* === CODE BLOCKS === */
+pre {
+    background: #F5F5F5;
+    border: 1px solid #DDD;
+    border-left: 3px solid #C0AD6A;
+    padding: 0.3cm;
+    margin: 0.3cm 0;
+    font-family: 'Courier New', monospace;
+    font-size: 8.5pt;
+    overflow-x: auto;
+    break-inside: avoid;
+}
+
+code {
+    font-family: 'Courier New', monospace;
+    background: #F5F5F5;
+    padding: 0.05cm 0.15cm;
+    border-radius: 2px;
+    font-size: 9pt;
+}
+
+pre code {
+    background: transparent;
+    padding: 0;
+}
+
+/* === HORIZONTAL RULES === */
+hr {
+    border: none;
+    border-top: 1px solid #C0AD6A;
+    margin: 0.5cm 0;
+}
+
+/* === STRONG & EM === */
+strong {
+    font-weight: 700;
+    font-family: 'BookInsanityBold', 'Book Antiqua', serif;
+}
+
+em {
+    font-style: italic;
+}
+
+strong em {
+    font-style: italic;
+    font-weight: 700;
+}
+
+/* === LINKS === */
+a {
+    color: #7A200D;
+    text-decoration: none;
+    border-bottom: 1px dotted #7A200D;
+}
+
+a:hover {
+    color: #58180D;
+    border-bottom: 1px solid #58180D;
+}
+
+/* === COLUMN BREAKS === */
+.column-break {
+    break-after: column;
+    page-break-after: avoid;
+}
+
+.page-break {
+    break-after: page;
+    page-break-after: always;
+}
+
+/* === NOTE/WIDE BOXES === */
+.note-box {
+    background: #E8F4F8;
+    border-left: 4px solid #4A9EFF;
+    padding: 0.3cm 0.4cm;
+    margin: 0.4cm 0;
+    break-inside: avoid;
+}
+
+.note-box strong {
+    color: #4A9EFF;
+}
+
+.wide-block {
+    column-span: all;
+    margin: 0.4cm 0;
+}
+
+/* === UTILITY === */
+.text-center {
+    text-align: center;
+}
+
+.no-indent {
+    text-indent: 0 !important;
+}
+
+/* === FIRST LETTER DROP CAP === */
+.page > p:first-of-type::first-letter {
+    float: left;
+    font-size: 3.5em;
+    line-height: 0.8;
+    margin: 0.05em 0.1em 0 0;
+    font-family: 'Solbera Imitation', serif;
+    color: #7A200D;
+}
+
+    </style>
+</head>
+<body>
+    <div class="no-print" style="position:fixed; top:10px; right:10px; background:white; padding:10px; border-radius:5px; box-shadow:0 2px 8px rgba(0,0,0,0.2); z-index:1000;">
+        <button onclick="window.print()" style="padding:8px 16px; font-size:14px; cursor:pointer; background:#4A9EFF; color:white; border:none; border-radius:4px;">
+            🖨️ Stampa / Salva PDF
+        </button>
+    </div>
+    
+<div class="page">
+<h1 id="la-danza-del-raccolto">La Danza del Raccolto</h1>
+<h2 id="una-scena-di-tipica-vita-quotidiana-medievale-si-trasforma-in-unavventura-memorabile">Una scena di tipica vita quotidiana medievale si trasforma in un’avventura memorabile</h2>
+<p><strong>Livello 1 – 5 giocatori – Durata 3 ore</strong><br/>
+<strong>Ambientazione</strong>: Forgotten Realms, Costa della Spada (Neverwinter/Phandalin)</p>
+<hr/>
+<blockquote>
+<h3 id="riepilogo-veloce-per-il-dm">📋 Riepilogo Veloce per il DM</h3>
+<p><strong>Fronte Principale</strong>: Il Druido Corrotto Malachar vuole completare un antico rituale per risvegliare un’entità vegetale dormiente sotto Phandalin, usando la Festa del Raccolto come copertura per raccogliere energia vitale dai cittadini ignari.</p>
+<p><strong>Escalation (Se i PG non agiscono)</strong>:<br/>
+1. Durante la festa, alcuni partecipanti iniziano a sentirsi strani e deboli—l’energia viene drenata lentamente.<br/>
+2. Le piante intorno alla piazza iniziano a crescere in modo innaturale, alcuni cittadini collassano privi di sensi.<br/>
+3. L’entità vegetale emerge dal sottosuolo, Malachar completa il rituale, Phandalin viene invasa da vegetazione carnivora.</p>
+<p><strong>10 Segreti da Scoprire</strong>:<br/>
+1. Il vino servito alla festa contiene un estratto che rende le persone più vulnerabili al drenaggio di energia.<br/>
+2. Strani simboli druidici sono nascosti tra le decorazioni della piazza.<br/>
+3. Il capo della cerimonia, Padre Aldric, è stato sostituito da un impostore (Malachar travestito).<br/>
+4. Sotto il palco principale c’è un passaggio segreto che porta alle radici dell’entità.<br/>
+5. Alcuni bambini hanno visto “l’uomo verde” parlare con le piante nel bosco vicino.<br/>
+6. Le torce della festa sono state spalmate con una resina magica che amplifica il rituale.<br/>
+7. Un vecchio contadino ricorda una leggenda su un “Cuore Verde” sepolto sotto il villaggio.<br/>
+8. La musicista della festa, Elena, è stata ricattata per suonare una melodia specifica che sincronizza il rituale.<br/>
+9. Malachar ha bisogno di attendere la mezzanotte per completare il rituale—quando la luna è allo zenith.<br/>
+10. Il vero Padre Aldric è prigioniero nel granaio fuori città, legato e imbavagliato.</p>
+<p><strong>Risoluzioni Possibili</strong>:<br/>
+- <strong>Combattimento</strong>: Affrontare Malachar durante il rituale e sconfiggerlo prima della mezzanotte.<br/>
+- <strong>Sociale/Investigazione</strong>: Svelare pubblicamente l’inganno, liberare Padre Aldric, convincere i cittadini a fermare la festa.<br/>
+- <strong>Rituale</strong>: Interrompere il rituale distruggendo i focus magici (torce, simboli) o suonando la melodia al contrario per invertire il drenaggio.</p>
+</blockquote>
+
+</div>
+<div class="page">
+
+<h2 id="introduzione-allavventura">Introduzione all’Avventura</h2>
+<blockquote>
+<p>La sera autunnale avvolge Phandalin in un’atmosfera magica. La piazza principale è adornata con ghirlande di foglie dorate, zucche intagliate e fasci di grano. L’aria è carica del profumo di sidro caldo e castagne arrostite. Musicisti suonano melodie allegre mentre cittadini in abiti festivi danzano e ridono.</p>
+<p>La Festa del Raccolto è il culmine dell’anno agricolo—un momento di gratitudine e celebrazione. Padre Aldric, il venerato anziano che guida la cerimonia da decenni, sta per iniziare la benedizione tradizionale.</p>
+<p>Ma qualcosa nell’aria non torna. Forse è il modo in cui le ombre sembrano allungarsi troppo velocemente. O il fatto che alcune piante decorative sembrano… muoversi impercettibilmente. O forse è solo la vostra immaginazione.</p>
+</blockquote>
+<h3 id="contesto-per-il-dm">Contesto per il DM</h3>
+<p>Phandalin è una cittadina prospera costruita, inconsapevolmente, sopra le radici dormienti di un’antica entità vegetale chiamata il <strong>Cuore Verde</strong>—un essere corrotto dall’energia negativa secoli fa e sigillato dai druidi del Circolo della Quercia.</p>
+<p><strong>Malachar</strong>, un druido rinnegato ossessionato dal potere naturale primordiale, ha scoperto la leggenda e ha passato mesi a preparare questo momento. Ha rapito il vero Padre Aldric pochi giorni fa e ha preso il suo posto usando magia druidica di camuffamento.</p>
+<p>Stanotte, durante la Festa del Raccolto, Malachar eseguirà il rituale per risvegliare il Cuore Verde, usando l’energia vitale dei cittadini festanti come catalizzatore. Se ci riesce, l’entità emergerà e trasformerà Phandalin in un inferno verdeggiante di vegetazione carnivora.</p>
+<p>I PG sono presenti alla festa come ospiti o partecipanti. Le loro scelte determineranno se Phandalin vedrà l’alba.</p>
+<h3 id="agganci-narrativi-per-i-pg">Agganci Narrativi per i PG</h3>
+<p>Scegliete uno (o più) in base ai personaggi:<br/>
+- Siete stati invitati da un amico mercante che voleva condividere questa tradizione speciale.<br/>
+- Uno di voi ha notato comportamenti strani negli ultimi giorni e voleva indagare.<br/>
+- Stavate semplicemente passando per Phandalin e la festa sembrava un buon modo per rilassarsi.<br/>
+- Un PNG alleato vi ha chiesto di “tenere d’occhio le cose” perché aveva brutti presentimenti.</p>
+
+</div>
+<div class="page">
+
+<h2 id="scenario-a-la-piazza-della-festa-hub-centrale">Scenario A: La Piazza della Festa (Hub Centrale)</h2>
+<p><strong>Luogo Hub Centrale</strong>: La piazza principale di Phandalin durante la Festa del Raccolto</p>
+<blockquote>
+<p>Quando arrivate al centro della piazza, la festa è in pieno svolgimento. Decine di cittadini ballano in cerchio, ridono, bevono sidro e vino speziato. Sul palco di legno decorato con foglie autunnali, un uomo anziano in vesti ceremoniali—presumibilmente Padre Aldric—sta per iniziare la benedizione tradizionale.</p>
+<p>Tutto sembra perfetto, ma i vostri istinti vi dicono diversamente. Le piante decorative sembrano… troppo verdi, troppo rigogliose per questa stagione. E quel profumo nell’aria—non è solo castagne. C’è qualcosa di dolciastro, quasi nauseante, nascosto sotto.</p>
+</blockquote>
+<h3 id="per-il-dm">Per il DM</h3>
+<p>Questo è il cuore dell’avventura, il luogo dove i PG possono:<br/>
+- Osservare la cerimonia e notare dettagli strani<br/>
+- Parlare con cittadini e PNG chiave<br/>
+- Investigare le decorazioni e il vino<br/>
+- Decidere quale scenario esplorare per primo (il Bosco o il Granaio)</p>
+<p>La piazza è affollata (circa 60-70 persone). La cerimonia inizia 30 minuti dopo l’arrivo dei PG. La mezzanotte—momento cruciale del rituale—è tra circa 3 ore di gioco reale.</p>
+<p><strong>PNG Presenti</strong>:<br/>
+- <strong>Malachar travestito da Padre Aldric</strong> (vedi Appendice) - Sembra un anziano gentile ma i suoi occhi hanno uno strano bagliore verde quando non è osservato. Parla con voce calma e autorevole.<br/>
+- <strong>Elena la Musicista</strong> (30 anni, violinista nervosa, si morde le labbra) - Suona sul palco ma sembra terrorizzata. Continua a guardare Malachar/Aldric con paura.<br/>
+- <strong>Jorren il Taverniere</strong> (45 anni, corpulento, allegro ma distratto) - Serve il vino “speciale” della festa. Non sa che è stato alterato da Malachar.<br/>
+- <strong>Bambini del villaggio</strong> (vari) - Un gruppo di 4-5 bambini che giocano ai bordi della piazza, potrebbero aver visto cose strane.</p>
+<p><strong>Segreti Scopribili Qui</strong>: #1, #2, #5, #6, #8</p>
+<h3 id="prove-di-abilita">Prove di Abilità</h3>
+<div class="stat-block"><h4 id="prove-fisicainvestigazione-perception-dc-15">Prove Fisica/Investigazione (Perception DC 15)</h4><p><strong>Osservare le Decorazioni e l’Ambiente</strong>:<br/>
+- <em>Successo</em>: I PG notano che le piante decorative non sono normali—alcune foglie brillano debolmente di verde bioluminescente. Nascosti tra le ghirlande ci sono simboli druidici incisi su piccoli bastoncini di legno (segreto #2). Le torce emanano un fumo leggermente verdastro (segreto #6). Inoltre, possono sentire distintamente un odore dolciastro provenire dal vino servito da Jorren (segreto #1).<br/>
+- <em>Fallimento (Fail Forward)</em>: I PG notano solo che “qualcosa è strano” ma non riescono a identificare cosa. Tuttavia, uno dei bambini si avvicina e dice: “Avete visto anche voi l’uomo verde che parla con le piante?” (segreto #5). Questo apre la strada al Scenario B.</p><div class="stat-block"><h4 id="prova-mentalesociale-insight-dc-14">Prova Mentale/Sociale (Insight DC 14)</h4><p><strong>Osservare Padre Aldric Durante la Benedizione</strong>:<br/>
+- <em>Successo</em>: Qualcosa non va. Il modo in cui muove le mani—troppo fluido, troppo giovane per un anziano. La voce è giusta, ma gli occhi… hanno una luce verde innaturale quando non è sotto osservazione diretta. Non è il vero Padre Aldric (segreto #3).<br/>
+- <em>Fallimento (Fail Forward)</em>: Non notate nulla di definitivo, ma vedete Elena, la musicista, tremare visibilmente mentre guarda Aldric. Sembra terrorizzata. Se parlate con lei (prova successiva di Persuasion DC 13), rivela che è stata minacciata di suonare una melodia specifica stanotte (segreto #8).</p><div class="stat-block"><h4 id="prova-mentaleinvestigazione-investigation-dc-13">Prova Mentale/Investigazione (Investigation DC 13)</h4><p><strong>Esaminare il Vino e le Bevande</strong>:<br/>
+- <em>Successo</em>: Analizzando attentamente il vino, i PG notano piccoli cristalli verdastri disciolti sul fondo delle botti. Un PG con conoscenze di Arcana o Nature (DC 12) riconosce un estratto druidico usato per amplificare l’energia vitale delle persone, rendendole vulnerabili (segreto #1).<br/>
+- <em>Fallimento (Fail Forward)</em>: I PG assaggiano il vino e lo trovano delizioso, ma poco dopo sentono un leggero capogiro e devono fare un tiro salvezza CON DC 11. Se falliscono, hanno svantaggio alla prossima prova di abilità ma ottengono comunque un indizio: “Il vino ha un retrogusto metallico strano, come se fosse stato contaminato”.</p><h3 id="sfideincontri">Sfide/Incontri</h3><p><strong>Incidente: La Bambina Scomparsa</strong><br/>
+- Durante la festa, una madre grida che sua figlia (8 anni, capelli rossi, vestito giallo) è scomparsa.<br/>
+- I PG possono aiutare a cercarla. Prova di Perception DC 12 o Survival DC 13 per seguire tracce.<br/>
+- <strong>Se cercano bene</strong>: La trovano sotto il palco principale, intrappolata in una rete di radici che si sono mosse da sole. Liberandola (prova di Athletics DC 10 o tagliando le radici), la bambina dice: “Le piante mi hanno tirata giù! C’è un buco sotto il palco!” (segreto #4).<br/>
+- <strong>Se falliscono o impiegano troppo tempo</strong>: La bambina riesce a liberarsi da sola, terrorizzata, ma non ricorda nulla (shock). Tuttavia, i PG notano comunque le radici innaturali e possono investigare il palco.</p><p><strong>Confronto Sociale con “Padre Aldric”</strong><br/>
+- Se i PG sospettano qualcosa e confrontano apertamente Malachar, lui mantiene la facciata.<br/>
+- Prova di Insight contrapposta (Insight dei PG vs Deception +5 di Malachar).<br/>
+- <strong>Se i PG vincono</strong>: Malachar si rende conto di essere stato scoperto. Non attacca subito (troppo rischioso con tutta la folla) ma dice: “Capisco i vostri dubbi. Vi prego, seguitemi in privato al Granaio—posso spiegare tutto”. Sta cercando di isolarli per eliminarli.<br/>
+- <strong>Se Malachar vince</strong>: Riesce a convincere la folla che i PG sono ubriachi o paranoici. Guadagna tempo ma i PG possono comunque investigare altrove.</p><h3 id="collegamenti">Collegamenti</h3><p>Da qui i PG possono:<br/>
+- Esplorare <strong>Il Bosco Sussurrante</strong> (Scenario B) se hanno sentito del “uomo verde” o vogliono investigare la fonte della magia.<br/>
+- Andare al <strong>Granaio Abbandonato</strong> (Scenario C) se sospettano che il vero Padre Aldric sia prigioniero o se Malachar li invita lì.<br/>
+- Continuare a investigare nella piazza, parlare con altri PNG, esaminare il palco e scoprire il passaggio segreto (segreto #4).</p></div></div></div>
+
+
+
+
+
+
+
+
+
+
+
+</div>
+<div class="page">
+
+<h2 id="scenario-b-il-bosco-sussurrante">Scenario B: Il Bosco Sussurrante</h2>
+<p><strong>Luogo</strong>: La foresta ai margini di Phandalin, 10 minuti a piedi dalla piazza</p>
+<blockquote>
+<p>Lasciandovi alle spalle le luci e i suoni della festa, entrate nel bosco. La luna piena filtra attraverso i rami spogli, creando ombre lunghe e inquietanti. L’aria qui è diversa—più fredda, più densa. Sentite un sussurrio costante, come se le piante stesse stessero comunicando.</p>
+<p>Davanti a voi, tra gli alberi, vedete un cerchio di funghi bioluminescenti che brillano di verde pallido. Al centro del cerchio, radici enormi emergono dal terreno, pulsando debolmente come vene.</p>
+</blockquote>
+<h3 id="per-il-dm_1">Per il DM</h3>
+<p>Questo scenario è meno diretto della piazza. Qui i PG:<br/>
+- Esplorano il luogo dove Malachar ha preparato parte del rituale<br/>
+- Affrontano manifestazioni magiche e creature vegetali minori<br/>
+- Scoprono indizi sulla vera natura della minaccia<br/>
+- Possono trovare un modo per contrastare il rituale</p>
+<p>Il bosco è il collegamento tra Phandalin e il Cuore Verde sepolto. Malachar ha usato questo luogo per canalizzare energia nelle radici che portano sotto la piazza.</p>
+<p><strong>PNG/Creature Presenti</strong>:<br/>
+- <strong>2 Blights Ramoscello</strong> (vedi Appendice) - Piccole creature vegetali corrotte, servitori dell’energia oscura.<br/>
+- <strong>Spirito della Quercia</strong> (PNG neutrale) - Un antico spirito della natura, intrappolato da Malachar. Può aiutare i PG se liberato.</p>
+<p><strong>Segreti Scopribili Qui</strong>: #4, #7, #9</p>
+<h3 id="prove-di-abilita_1">Prove di Abilità</h3>
+<div class="stat-block"><h4 id="prova-fisicaesplorazione-survival-dc-14-o-arcana-dc-15">Prova Fisica/Esplorazione (Survival DC 14 o Arcana DC 15)</h4><p><strong>Seguire le Tracce di Energia Magica</strong>:<br/>
+- <em>Successo</em>: I PG seguono le pulsazioni di energia e scoprono che le radici nel cerchio si estendono sottoterra in direzione della piazza principale. Usando Arcana o Nature, capiscono che queste radici fanno parte di un’entità molto più grande—il “Cuore Verde” di cui parlano le leggende locali (segreto #7). Le radici convergono verso il punto sotto il palco della festa (segreto #4).<br/>
+- <em>Fallimento (Fail Forward)</em>: I PG si perdono leggermente e inciampano in una trappola naturale—radici che si animano e cercano di afferrarli (tiro salvezza DEX DC 13 o restrained per 1 round). Ma nel processo, vedono chiaramente le radici muoversi volutamente, confermando che qualcosa di vivente e consapevole è sotto terra.</p><div class="stat-block"><h4 id="prova-mentalesociale-perception-dc-13-o-nature-dc-14">Prova Mentale/Sociale (Perception DC 13 o Nature DC 14)</h4><p><strong>Comunicare con lo Spirito della Quercia</strong>:<br/>
+- <em>Successo</em>: I PG sentono una voce flebile provenire da una vecchia quercia al bordo del cerchio. È lo Spirito della Quercia, intrappolato da simboli druidici corrotti incisi sulla corteccia. Se i PG rimuovono i simboli (prova di Arcana DC 12 o semplicemente tagliano la corteccia), lo spirito si libera parzialmente e rivela: “Il druido oscuro vuole risvegliare ciò che dorme. Deve attendere il picco della luna—la mezzanotte—per completare il rituale. Fermatelo prima!” (segreto #9). Lo spirito offre anche una <strong>Bacca del Risveglio</strong> che può curare 2d4+2 HP o rimuovere un veleno.<br/>
+- <em>Fallimento (Fail Forward)</em>: I PG sentono sussurri incomprensibili ma non riescono a decifrare il messaggio. Tuttavia, notano i simboli sulla quercia che sembrano gli stessi visti nella piazza (segreto #2), confermando il collegamento.</p><h3 id="sfideincontri_1">Sfide/Incontri</h3><p><strong>Combattimento: I Blights Ramoscello Attaccano</strong><br/>
+- Quando i PG si avvicinano al cerchio di funghi, 2 <strong>Blights Ramoscello</strong> (piccole creature vegetali ostili) emergono dal terreno e attaccano, percependo i PG come intrusi.<br/>
+- <strong>Statistiche</strong>: AC 13, HP 4 (1d6+1), Speed 20 ft<br/>
+  - Attacco: Rami +4 to hit, 1d4+2 piercing<br/>
+  - <strong>Tratto</strong>: Mimetismo—svantaggio a Perception per individuarli prima dell’attacco<br/>
+- <strong>Tattica</strong>: Attaccano con imboscata. Se ridotti a 1 HP, fuggono sottoterra.<br/>
+- <strong>Ricompensa se sconfitti</strong>: I PG trovano tra i resti dei blights un <strong>Seme Magico</strong> (può essere piantato per far crescere istantaneamente una barriera di rovi, utile più tardi contro Malachar).</p><p><strong>Enigma: Il Cerchio di Funghi</strong><br/>
+- Al centro del cerchio c’è un piccolo altare di pietra con 3 coppe di legno. Ognuna ha un’incisione: <strong>Terra</strong>, <strong>Acqua</strong>, <strong>Luce</strong>.<br/>
+- Per disattivare il flusso di energia verso il rituale, i PG devono riempire le coppe con gli elementi giusti:<br/>
+  - <strong>Terra</strong>: Raccogliere terra dal cerchio (facile)<br/>
+  - <strong>Acqua</strong>: Trovare acqua—c’è un ruscello a 50 piedi (Survival DC 10)<br/>
+  - <strong>Luce</strong>: Creare luce (incantesimo <em>Light</em>, torcia, o riflettere la luna con uno specchio/scudo lucido)<br/>
+- <strong>Se riescono (DC 12 Intelligence o Nature)</strong>: Il cerchio si disattiva, il flusso di energia si interrompe parzialmente. Malachar dovrà usare più energia personale per il rituale (riduce i suoi HP di 10 quando lo affronteranno).<br/>
+- <strong>Se falliscono</strong>: Nulla di grave, ma il cerchio resta attivo. Possono comunque procedere.</p><h3 id="collegamenti_1">Collegamenti</h3><p>Dal bosco i PG possono:<br/>
+- Tornare alla <strong>Piazza della Festa</strong> (Scenario A) con le informazioni scoperte.<br/>
+- Dirigersi verso il <strong>Granaio Abbandonato</strong> (Scenario C) se hanno sentito parlare di Padre Aldric prigioniero.<br/>
+- Esplorare ulteriormente il bosco per trovare altri indizi o risorse.</p></div></div>
+
+
+
+
+
+
+
+
+
+</div>
+<div class="page">
+
+<h2 id="scenario-c-il-granaio-abbandonato">Scenario C: Il Granaio Abbandonato</h2>
+<p><strong>Luogo</strong>: Un vecchio granaio in disuso a 5 minuti dalla piazza, sul lato nord del villaggio</p>
+<blockquote>
+<p>Il granaio si erge in silenzio, separato dalle case vicine. La porta principale è sbarrata dall’esterno—nessuno dovrebbe essere qui dentro. Eppure, mentre vi avvicinate, sentite distintamente dei rumori attutiti provenire dall’interno. Qualcuno sta cercando di parlare… o gridare.</p>
+<p>Le finestre sono coperte da assi inchiodate. L’aria puzza di muffa e fieno marcio. Ma c’è anche qualcos’altro—un odore di terra bagnata e radici, come se qualcosa stesse crescendo dentro.</p>
+</blockquote>
+<h3 id="per-il-dm_2">Per il DM</h3>
+<p>Questo scenario è il luogo dove Malachar ha imprigionato il vero <strong>Padre Aldric</strong>. È anche dove ha lasciato alcuni suoi “esperimenti”—piante corrotte e creature vegetali che proteggono il prigioniero.</p>
+<p>I PG possono scoprire qui:<br/>
+- Il vero Padre Aldric, che può confermare l’inganno e fornire informazioni cruciali<br/>
+- Prove concrete del piano di Malachar (appunti, simboli, mappe)<br/>
+- Un potenziale alleato per la fase finale</p>
+<p><strong>PNG/Creature Presenti</strong>:<br/>
+- <strong>Padre Aldric</strong> (vero) - 68 anni, barba bianca, voce roca, esausto ma determinato. Può spiegare tutto ai PG e li accompagnerà alla piazza per smascherare Malachar.<br/>
+- <strong>1 Blight Rampicante</strong> (guardiano) - Una creatura vegetale più grande, lasciata da Malachar a guardia.<br/>
+- <strong>Radici Animate</strong> (trappola) - Radici corrotte che attaccano chi entra senza precauzioni.</p>
+<p><strong>Segreti Scopribili Qui</strong>: #3, #8, #10</p>
+<h3 id="prove-di-abilita_2">Prove di Abilità</h3>
+<div class="stat-block"><h4 id="prova-fisicaesplorazione-athletics-dc-13-o-thieves-tools-dc-14">Prova Fisica/Esplorazione (Athletics DC 13 o Thieves’ Tools DC 14)</h4><p><strong>Entrare nel Granaio</strong>:<br/>
+- <em>Successo</em>: I PG riescono a rimuovere le assi dalla porta o da una finestra senza fare rumore. Entrano silenziosamente ed evitano di attivare le radici animate (vedi sotto). Vedono immediatamente Padre Aldric legato a una colonna centrale, imbavagliato (segreto #10).<br/>
+- <em>Fallimento (Fail Forward)</em>: I PG fanno rumore entrando—le assi cadono con fracasso. Le <strong>Radici Animate</strong> si attivano immediatamente e attaccano (vedi Sfide/Incontri). Ma riescono comunque a entrare e trovare Padre Aldric.</p><div class="stat-block"><h4 id="prova-mentaleinvestigazione-investigation-dc-13_1">Prova Mentale/Investigazione (Investigation DC 13)</h4><p><strong>Cercare Prove e Documenti</strong>:<br/>
+- <em>Successo</em>: In un angolo del granaio, i PG trovano uno zaino di Malachar con appunti, mappe e simboli druidici. Leggendo (chi parla Druidico o con prova di Arcana DC 12) scoprono il piano completo: il rituale alla mezzanotte (segreto #9), la melodia che Elena deve suonare per sincronizzare le energie (segreto #8), e il fatto che Malachar ha sostituito Padre Aldric (segreto #3). C’è anche una mappa che mostra il punto esatto sotto il palco dove emerge il Cuore Verde (segreto #4).<br/>
+- <em>Fallimento (Fail Forward)</em>: I PG trovano solo alcuni frammenti e simboli incomprensibili. Ma trovano comunque una <strong>Pozione di Guarigione</strong> e un <strong>Rotolo di Entangle</strong> nell’equipaggiamento di Malachar (utili per dopo).</p><h3 id="sfideincontri_2">Sfide/Incontri</h3><p><strong>Trappola: Radici Animate</strong><br/>
+- Quando i PG entrano nel granaio, le radici corrotte che coprono il pavimento si animano se non sono stati silenziosi.<br/>
+- <strong>Meccanica</strong>: Ogni PG deve fare un tiro salvezza DEX DC 14. Chi fallisce viene afferrato (Restrained) e subisce 1d6 piercing damage dalle spine.<br/>
+- <strong>Liberarsi</strong>: Athletics DC 13 come azione, oppure infliggere 10 danni alle radici (AC 12, vulnerabili al fuoco).<br/>
+- <strong>Disattivare</strong>: Prova di Nature DC 15 per capire che le radici sono controllate da un seme corrotto al centro della stanza—distruggerlo (1 colpo) le disattiva tutte.</p><p><strong>Combattimento: Il Blight Rampicante</strong><br/>
+- Dopo che i PG liberano Padre Aldric, il <strong>Blight Rampicante</strong> si risveglia da un mucchio di fieno e attacca.<br/>
+- <strong>Statistiche</strong>: AC 12, HP 22 (4d8+4), Speed 20 ft<br/>
+  - Attacco: Frustate +4 to hit, 1d6+2 slashing + grapple (Athletics DC 12 per liberarsi)<br/>
+  - <strong>Tratto</strong>: Assorbimento—se a contatto con terra, rigenera 3 HP/round<br/>
+- <strong>Tattica</strong>: Cerca di afferrare il PG più debole e trascinarlo verso il mucchio di fieno per soffocare.<br/>
+- <strong>Vulnerabilità</strong>: Fuoco (danno doppio). Se i PG appiccano fuoco al fieno, il Blight prende 2d6 fire damage/round.</p><p><strong>PNG: Padre Aldric Spiega Tutto</strong><br/>
+- Una volta liberato, Padre Aldric è esausto ma lucido.<br/>
+- <strong>Cosa sa</strong>: Conferma che è stato rapito 3 giorni fa da un druido (Malachar) che voleva prendere il suo posto. Ha sentito Malachar parlare da solo di un “Cuore Verde” e di un “risveglio alla mezzanotte”. Padre Aldric conosce anche la vecchia leggenda del villaggio (segreto #7): “Secoli fa, un’entità vegetale corrotta fu sigillata sotto Phandalin dai druidi del Circolo della Quercia. Si diceva che potesse essere risvegliata solo con un rituale durante la Festa del Raccolto”.<br/>
+- <strong>Cosa può fare</strong>: Accompagnare i PG alla piazza per smascherare pubblicamente Malachar. La sua presenza è la prova definitiva.</p><h3 id="collegamenti_2">Collegamenti</h3><p>Dal granaio i PG possono:<br/>
+- Tornare immediatamente alla <strong>Piazza della Festa</strong> (Scenario A) con Padre Aldric per smascherare Malachar pubblicamente.<br/>
+- Passare prima dal <strong>Bosco Sussurrante</strong> (Scenario B) per completare le indagini.<br/>
+- Prepararsi al confronto finale con le informazioni e gli oggetti trovati.</p></div></div>
+
+
+
+
+
+
+
+
+
+
+</div>
+<div class="page">
+
+<h2 id="climax-e-risoluzioni-finali">Climax e Risoluzioni Finali</h2>
+<p>Quando i PG hanno raccolto abbastanza informazioni e si avvicinano alla mezzanotte, devono scegliere come fermare Malachar. Il climax avviene nella <strong>Piazza della Festa</strong>, possibilmente con il palco che collassa e rivela il passaggio verso le radici del Cuore Verde.</p>
+<h3 id="la-mezzanotte-si-avvicina">La Mezzanotte Si Avvicina</h3>
+<p>Circa 30 minuti prima della mezzanotte (tempo reale: quando i PG hanno esplorato almeno 2 scenari), Malachar inizia la fase finale del rituale. I cittadini che hanno bevuto il vino iniziano a sentirsi deboli. Le piante decorative crescono visibilmente. La musica di Elena diventa più intensa e inquietante.</p>
+<p>Malachar, sul palco, alza le mani verso la luna e inizia a cantare in Druidico. Le radici sotto il palco iniziano a spaccare le assi.</p>
+<p>I PG devono agire <strong>ora</strong>.</p>
+<h3 id="tre-modi-per-risolvere-il-fronte-principale">Tre Modi per Risolvere il Fronte Principale</h3>
+<h4 id="1-risoluzione-combattimento-diretto">1. Risoluzione Combattimento Diretto</h4>
+<ul>
+<li><strong>Scenario</strong>: I PG attaccano Malachar direttamente durante il rituale, sul palco o giù nel passaggio sotterraneo (se lo hanno scoperto).</li>
+<li><strong>Scontro</strong>: Malachar (vedi Appendice) + 2 Blights Ramoscello (se il cerchio nel bosco non è stato disattivato).</li>
+<li><strong>Condizioni speciali</strong>:</li>
+<li>Se i PG hanno disattivato il cerchio nel bosco: Malachar ha -10 HP (indebolito).</li>
+<li>Se i PG hanno liberato lo Spirito della Quercia: hanno 1d4 Bacche del Risveglio (guarigione 2d4+2 HP).</li>
+<li>Se i PG hanno piantato il Seme Magico dal bosco: possono evocare una barriera di rovi (Entangle effect) come azione bonus.</li>
+<li><strong>Vittoria</strong>: Sconfiggendo Malachar, il rituale si interrompe. Il Cuore Verde torna dormiente. I cittadini si riprendono lentamente.</li>
+<li><strong>Conseguenze</strong>: Phandalin è salva ma deve riparare i danni alla piazza. I PG sono acclamati come eroi.</li>
+</ul>
+<h4 id="2-risoluzione-socialecivica">2. Risoluzione Sociale/Civica</h4>
+<ul>
+<li><strong>Scenario</strong>: I PG scelgono di smascherare pubblicamente Malachar usando le prove raccolte, specialmente portando il vero Padre Aldric alla piazza.</li>
+<li><strong>Prove necessarie</strong>:</li>
+<li>Prova di Persuasion DC 15 per convincere la folla a fermarsi e ascoltare.</li>
+<li>Presenza del vero Padre Aldric (prova automatica di successo—la gente lo riconosce).</li>
+<li>Mostrare prove concrete (appunti di Malachar, simboli, il vino contaminato).</li>
+<li><strong>Reazione di Malachar</strong>: Se smascherato pubblicamente, Malachar perde il supporto della folla. Ha due scelte:<br/>
+  1. <strong>Fuga</strong>: Tenta di scappare nel bosco (i PG possono inseguirlo—prova di Athletics DC 14 per raggiungerlo). Se scappa, potrebbe tornare in futuro per vendetta (gancio per avventure future).<br/>
+  2. <strong>Disperazione</strong>: Tenta comunque di completare il rituale da solo, attaccando chiunque si avvicini (porta al combattimento, ma Malachar è solo e indebolito—AC e HP ridotti del 25%).</li>
+<li><strong>Vittoria</strong>: Malachar viene catturato o fugge. Il rituale è interrotto. Padre Aldric guida una cerimonia di purificazione per benedire la piazza e rinforzare il sigillo sul Cuore Verde.</li>
+<li><strong>Conseguenze</strong>: Phandalin è salva e i cittadini hanno rinnovata fiducia nei PG e nelle autorità. Malachar potrebbe tornare.</li>
+</ul>
+<h4 id="3-risoluzione-ritualemagica">3. Risoluzione Rituale/Magica</h4>
+<ul>
+<li><strong>Scenario</strong>: I PG usano le loro conoscenze magiche per contrastare il rituale dall’interno, senza combattere direttamente Malachar.</li>
+<li><strong>Come funziona</strong>:</li>
+<li>I PG distruggono i <strong>focus magici</strong> del rituale: le torce spalmate di resina (segreto #6), i simboli nascosti nelle decorazioni (segreto #2), e le radici pulsanti sotto il palco.</li>
+<li>Oppure, se hanno liberato Elena la musicista (segreto #8), la convincono a suonare la melodia <strong>al contrario</strong>, invertendo il flusso di energia e sigillando nuovamente il Cuore Verde.</li>
+<li><strong>Prove necessarie</strong>:</li>
+<li>Arcana DC 15 per capire come invertire il rituale.</li>
+<li>Performance DC 14 (Elena) o DC 17 (PG musicista) per suonare correttamente la melodia inversa.</li>
+<li>Athletics/Acrobatics DC 13 per distruggere i focus mentre si evitano le radici che si agitano.</li>
+<li><strong>Reazione di Malachar</strong>: Sente il rituale sgretolarsi e tenta di fermare i PG, ma è troppo concentrato nel mantenere il controllo. Può lanciare solo 1-2 incantesimi prima di crollare esausto.</li>
+<li><strong>Vittoria</strong>: Il rituale viene invertito. Il Cuore Verde torna dormiente e il sigillo si rafforza. Malachar, privo di energia, collassa incosciente (i PG possono catturarlo).</li>
+<li><strong>Conseguenze</strong>: Phandalin è salva e la minaccia è completamente neutralizzata. Il sigillo è più forte di prima—il Cuore Verde non potrà essere risvegliato per secoli.</li>
+</ul>
+<h3 id="conseguenze-per-il-mondo">Conseguenze per il Mondo</h3>
+<p><strong>Se i PG salvano Phandalin</strong>:<br/>
+- La città celebra i PG come <strong>Guardiani del Raccolto</strong>.<br/>
+- Padre Aldric offre la sua benedizione permanente: i PG hanno vantaggio ai tiri salvezza contro effetti di charme/paura quando sono a Phandalin.<br/>
+- Elena la musicista, riconoscente, offre di suonare gratuitamente per i PG nelle loro future avventure e regala un <strong>Flauto dei Sussurri</strong> (permette di inviare un messaggio breve a qualcuno che conosci entro 1 miglio, 1/giorno).<br/>
+- Jorren il taverniere offre alloggio e pasti gratuiti per un anno.<br/>
+- La città commemora l’evento con una nuova tradizione: “La Veglia Verde”—una candela verde accesa ogni anno per ricordare la minaccia scongiurata.</p>
+<p><strong>Se i PG falliscono parzialmente</strong> (Malachar fugge o il rituale è solo ritardato):<br/>
+- Phandalin è salva per ora, ma la minaccia incombe.<br/>
+- Malachar giura vendetta e potrebbe tornare con alleati più forti (gancio per avventure future).<br/>
+- I cittadini sono grati ma spaventati, chiedendo ai PG di restare o di trovare Malachar prima che torni.</p>
+<p><strong>Se i PG falliscono completamente</strong> (molto improbabile con le meccaniche fail-forward):<br/>
+- Il Cuore Verde emerge parzialmente, Phandalin viene invasa da vegetazione ostile.<br/>
+- I PG devono evacuare i cittadini e cercare aiuto esterno (druidi del Circolo della Quercia, maghi di Neverwinter).<br/>
+- Opportunità di redenzione in sessioni future.</p>
+
+</div>
+<div class="page">
+
+<h2 id="ricompense">Ricompense</h2>
+<h3 id="ricompensa-1-flauto-dei-sussurri">Ricompensa 1: Flauto dei Sussurri</h3>
+<ul>
+<li><strong>Non Comune</strong>, Wondrous Item</li>
+<li><strong>Effetti</strong>: Una volta al giorno, suonando questo flauto di legno intarsiato, puoi inviare un messaggio magico (fino a 25 parole) a una creatura che conosci entro 1 miglio. La creatura sente il messaggio nella sua mente come se fosse sussurrato. Può rispondere allo stesso modo.</li>
+<li><strong>Descrizione</strong>: Regalo di Elena la musicista, questo flauto è decorato con motivi floreali ed emette note dolci e cristalline.</li>
+</ul>
+<h3 id="ricompensa-2-medaglia-del-guardiano-del-raccolto">Ricompensa 2: Medaglia del Guardiano del Raccolto</h3>
+<ul>
+<li><strong>Non Comune</strong>, Wondrous Item (attunement)</li>
+<li><strong>Effetti</strong>: Mentre indossi questa medaglia d’argento incisa con una spiga di grano, hai resistenza ai danni da veleno e vantaggio ai tiri salvezza contro effetti che drenano la tua forza vitale o riducono i tuoi massimi HP.</li>
+<li><strong>Descrizione</strong>: Conferita da Padre Aldric e dal consiglio cittadino, questa medaglia simboleggia il tuo ruolo di protettore di Phandalin.</li>
+</ul>
+<h3 id="ricompensa-3-alleanza-con-il-circolo-della-quercia">Ricompensa 3: Alleanza con il Circolo della Quercia</h3>
+<ul>
+<li><strong>Ricompensa Narrativa</strong></li>
+<li><strong>Effetti</strong>: Dopo l’avventura, i druidi del Circolo della Quercia (l’ordine che secoli fa sigillò il Cuore Verde) vengono a conoscenza delle tue azioni. Ti offrono il loro sostegno: puoi richiedere aiuto o consiglio quando ti trovi in pericolo legato alla natura o alla magia druidica. Ottieni anche accesso a un contatto permanente tra i druidi—<strong>Silvara Fogliaverde</strong>, che può fornire pozioni, informazioni o alleanze future.</li>
+<li><strong>Descrizione</strong>: Un’alleanza che potrebbe aprire porte a intere campagne future legate alla natura, al Circle of the Moon, o a minacce primordiali.</li>
+</ul>
+<h3 id="ricompensa-monetaria">Ricompensa Monetaria</h3>
+<ul>
+<li><strong>200 PO</strong> raccolti dalla comunità di Phandalin come ricompensa.</li>
+<li><strong>50 PO</strong> in oggetti trovati nell’equipaggiamento di Malachar (pozioni, componenti spell, gemme).</li>
+</ul>
+<hr/>
+
+</div>
+<div class="page">
+
+<h2 id="appendici">Appendici</h2>
+<h3 id="stat-block-blights-ramoscello-x2">Stat Block: Blights Ramoscello (x2)</h3>
+<p><strong>Armor Class</strong> 13 (armatura naturale)<br/>
+<strong>Hit Points</strong> 4 (1d6+1)<br/>
+<strong>Speed</strong> 20 ft.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>STR</th>
+<th>DEX</th>
+<th>CON</th>
+<th>INT</th>
+<th>WIS</th>
+<th>CHA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>6(-2)</td>
+<td>13(+1)</td>
+<td>12(+1)</td>
+<td>4(-3)</td>
+<td>8(-1)</td>
+<td>3(-4)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Damage Vulnerabilities</strong> fuoco<br/>
+<strong>Condition Immunities</strong> blinded, deafened<br/>
+<strong>Senses</strong> blindsight 60 ft., passive Perception 9<br/>
+<strong>Languages</strong> —</p>
+<p><strong>Tratto Speciale</strong>:<br/>
+- <strong>Mimetismo Naturale</strong>: Quando immobile, il blight è indistinguibile da un cespuglio normale. Creature che cercano di individuarlo hanno svantaggio a Perception.</p>
+<p><strong>Azioni</strong>:<br/>
+- <strong>Rami Affilati</strong>: Attacco con arma da mischia: +4 to hit, reach 5 ft., un bersaglio. <em>Hit</em>: 1d4+2 piercing damage.</p>
+<hr/>
+<h3 id="stat-block-blight-rampicante-x1">Stat Block: Blight Rampicante (x1)</h3>
+<p><strong>Armor Class</strong> 12 (armatura naturale)<br/>
+<strong>Hit Points</strong> 22 (4d8+4)<br/>
+<strong>Speed</strong> 20 ft.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>STR</th>
+<th>DEX</th>
+<th>CON</th>
+<th>INT</th>
+<th>WIS</th>
+<th>CHA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>14(+2)</td>
+<td>8(-1)</td>
+<td>13(+1)</td>
+<td>5(-3)</td>
+<td>10(+0)</td>
+<td>3(-4)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Damage Vulnerabilities</strong> fuoco<br/>
+<strong>Condition Immunities</strong> blinded, deafened<br/>
+<strong>Senses</strong> blindsight 60 ft., passive Perception 10<br/>
+<strong>Languages</strong> —</p>
+<p><strong>Tratti Speciali</strong>:<br/>
+- <strong>Assorbimento della Terra</strong>: Se il blight è a contatto con terra o vegetazione, rigenera 3 HP all’inizio del suo turno.<br/>
+- <strong>Presa Spinosa</strong>: Quando il blight colpisce con le sue frustate, può tentare di afferrare (grapple) il bersaglio. Il bersaglio deve fare una prova Athletics DC 12 per liberarsi.</p>
+<p><strong>Azioni</strong>:<br/>
+- <strong>Frustate</strong>: Attacco con arma da mischia: +4 to hit, reach 10 ft., un bersaglio. <em>Hit</em>: 1d6+2 slashing damage + grapple (vedi Presa Spinosa).<br/>
+- <strong>Stritolare</strong> (Recharge 5-6): Se ha un bersaglio grappled, il blight stringe con violenza. Il bersaglio subisce 2d6+2 bludgeoning damage e deve fare un tiro salvezza STR DC 12 o essere restrained fino al prossimo turno del blight.</p>
+<hr/>
+<h3 id="stat-block-malachar-druido-corrotto-boss">Stat Block: Malachar, Druido Corrotto (Boss)</h3>
+<p><strong>Armor Class</strong> 14 (pelle di corteccia + DES)<br/>
+<strong>Hit Points</strong> 45 (7d8+14) [35 se il cerchio nel bosco è stato disattivato]<br/>
+<strong>Speed</strong> 30 ft.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>STR</th>
+<th>DEX</th>
+<th>CON</th>
+<th>INT</th>
+<th>WIS</th>
+<th>CHA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>10(+0)</td>
+<td>14(+2)</td>
+<td>14(+2)</td>
+<td>12(+1)</td>
+<td>16(+3)</td>
+<td>13(+1)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Saving Throws</strong> WIS +5, INT +3<br/>
+<strong>Skills</strong> Nature +5, Arcana +3, Deception +3, Stealth +4<br/>
+<strong>Damage Resistances</strong> poison<br/>
+<strong>Senses</strong> passive Perception 13<br/>
+<strong>Languages</strong> Common, Druidic, Sylvan</p>
+<p><strong>Tratti Speciali</strong>:<br/>
+- <strong>Incantatore</strong>: Malachar è un druido di 5° livello. La sua capacità da casting è Saggezza (spell save DC 13, +5 to hit con spell attacks). Ha preparati i seguenti spell:<br/>
+  - <strong>Cantrip</strong> (at will): <em>Shillelagh</em>, <em>Druidcraft</em>, <em>Thorn Whip</em><br/>
+  - <strong>1° livello</strong> (4 slot): <em>Entangle</em>, <em>Goodberry</em>, <em>Speak with Animals</em>, <em>Healing Word</em><br/>
+  - <strong>2° livello</strong> (3 slot): <em>Barkskin</em>, <em>Spike Growth</em>, <em>Pass without Trace</em><br/>
+  - <strong>3° livello</strong> (2 slot): <em>Call Lightning</em>, <em>Plant Growth</em><br/>
+- <strong>Forma Selvatica</strong> (2/riposo): Malachar può trasformarsi in un <strong>lupo</strong> o <strong>orso nero</strong> come azione bonus. Ha le statistiche della bestia ma mantiene INT, WIS, CHA.<br/>
+- <strong>Connessione al Cuore Verde</strong>: Mentre il rituale è attivo e Malachar è sulla piazza o sotto il palco, ha vantaggio ai tiri salvezza e le piante intorno lo aiutano (copertura +2 AC).</p>
+<p><strong>Azioni</strong>:<br/>
+- <strong>Bastone Druidico</strong> (Shillelagh attivo): Attacco con arma da mischia: +5 to hit, reach 5 ft., un bersaglio. <em>Hit</em>: 1d8+3 bludgeoning damage (magico).<br/>
+- <strong>Frusta di Spine</strong> (Thorn Whip): Attacco spell a distanza: +5 to hit, range 30 ft., un bersaglio. <em>Hit</em>: 2d6 piercing damage e il bersaglio viene tirato fino a 10 ft. verso Malachar.<br/>
+- <strong>Radici Avvinghianti</strong> (Entangle, 1° livello slot): Le piante in un’area di 20 ft. di raggio centrata su un punto entro 120 ft. si animano. Creature nell’area devono fare un tiro salvezza STR DC 13 o essere restrained. Dura 1 minuto (concentrazione).</p>
+<p><strong>Reazioni</strong>:<br/>
+- <strong>Corteccia Difensiva</strong> (1/giorno): Quando Malachar viene colpito, può usare la reazione per evocare corteccia protettiva, ottenendo resistenza a quel danno.</p>
+<p><strong>Tattica di Combattimento</strong>:<br/>
+- Malachar preferisce combattere usando il terreno a suo vantaggio: lancia <em>Entangle</em> per immobilizzare i PG, poi usa <em>Call Lightning</em> da distanza sicura.<br/>
+- Se i PG si avvicinano troppo, usa <em>Spike Growth</em> per creare una zona pericolosa e si sposta con <em>Pass without Trace</em>.<br/>
+- Come ultima risorsa, si trasforma in orso e combatte corpo a corpo.<br/>
+- Se ridotto sotto 10 HP, tenta di fuggire nel bosco o si arrende se è chiaro che ha perso.</p>
+<hr/>
+<h3 id="trappola-radici-animate-nel-granaio">Trappola: Radici Animate nel Granaio</h3>
+<p><strong>Percezione DC 13</strong> per notare le radici prima che si attivino.</p>
+<p><strong>Meccanica</strong>:<br/>
+- Quando un PG entra nell’area (zona centrale del granaio), le radici si animano e tentano di afferrare.<br/>
+- Ogni PG deve fare un tiro salvezza <strong>DEX DC 14</strong>.<br/>
+- <strong>Fallimento</strong>: Restrained + 1d6 piercing damage dalle spine. Deve usare un’azione per tentare di liberarsi (Athletics DC 13) o qualcuno può tagliare le radici (AC 12, 10 HP per set di radici).<br/>
+- <strong>Successo</strong>: Il PG schiva le radici ed è salvo per questo turno.</p>
+<p><strong>Disarmamento</strong>:<br/>
+- Prova di Nature DC 15 per identificare il seme corrotto centrale che controlla le radici.<br/>
+- Distruggendo il seme (AC 10, 1 HP), tutte le radici si disattivano immediatamente.</p>
+<p><strong>Vulnerabilità</strong>:<br/>
+- Le radici sono vulnerabili al fuoco (danno doppio).</p>
+<hr/>
+<h3 id="oggetti-magici-descrizioni-estese">Oggetti Magici: Descrizioni Estese</h3>
+<h4 id="flauto-dei-sussurri">Flauto dei Sussurri</h4>
+<ul>
+<li><strong>Type</strong>: Wondrous Item, Uncommon</li>
+<li><strong>Attunement</strong>: No</li>
+<li><strong>Peso</strong>: 1 lb</li>
+<li><strong>Descrizione</strong>: Questo flauto di legno di salice è decorato con intarsi di foglie e fiori. Quando suonato, emette note dolci che sembrano portare messaggi nel vento.</li>
+<li><strong>Effetti</strong>:</li>
+<li>1/giorno, suonando il flauto per 6 secondi, puoi inviare un messaggio magico (max 25 parole) a una creatura che conosci entro 1 miglio.</li>
+<li>La creatura sente il messaggio come un sussurro nella sua mente.</li>
+<li>La creatura può rispondere immediatamente con un messaggio della stessa lunghezza.</li>
+</ul>
+<h4 id="medaglia-del-guardiano-del-raccolto">Medaglia del Guardiano del Raccolto</h4>
+<ul>
+<li><strong>Type</strong>: Wondrous Item, Uncommon (richiede attunement)</li>
+<li><strong>Peso</strong>: —</li>
+<li><strong>Descrizione</strong>: Una medaglia d’argento con l’incisione di una spiga di grano circondata da foglie di quercia. Sul retro è inciso: “Protettore del Raccolto, Guardiano di Phandalin”.</li>
+<li><strong>Effetti</strong>:</li>
+<li>Resistenza ai danni da veleno.</li>
+<li>Vantaggio ai tiri salvezza contro effetti che drenano forza vitale, riducono i massimi HP, o causano exhaustion.</li>
+<li>Simbolo di rispetto: A Phandalin e nelle città vicine, chi riconosce la medaglia ti tratta con onore (+2 a Persuasion con cittadini comuni).</li>
+</ul>
+<h4 id="seme-magico">Seme Magico</h4>
+<ul>
+<li><strong>Type</strong>: Consumabile, Raro</li>
+<li><strong>Uso</strong>: Può essere piantato nel terreno come azione bonus. Cresce istantaneamente una barriera di rovi in un’area di 20 ft. di raggio (effetto <em>Entangle</em>, DC 13, dura 1 minuto).</li>
+<li><strong>Descrizione</strong>: Un piccolo seme verde brillante pulsante di energia naturale.</li>
+</ul>
+<h4 id="bacca-del-risveglio">Bacca del Risveglio</h4>
+<ul>
+<li><strong>Type</strong>: Consumabile, Non Comune</li>
+<li><strong>Uso</strong>: Come azione, puoi consumare la bacca. Guarisci 2d4+2 HP e rimuovi un effetto di veleno o malattia.</li>
+<li><strong>Descrizione</strong>: Una bacca blu elettrico con riflessi dorati, dono dello Spirito della Quercia.</li>
+</ul>
+<hr/>
+<h3 id="handout-appunti-di-malachar-se-trovati-nel-granaio">Handout: Appunti di Malachar (se trovati nel Granaio)</h3>
+<blockquote>
+<p><em>Giorno 12 - Preparativi Completati</em></p>
+<p><em>Il rituale è pronto. Ho sostituito il vecchio sciocco—nessuno sospetta nulla. La melodia di sincronizzazione è stata consegnata alla musicista (con la giusta “motivazione”). Il vino è stato preparato con l’Estratto di Radici—perfetto per amplificare il drenaggio.</em></p>
+<p><em>I cittadini ignari danzeranno sulla loro stessa tomba. Alla mezzanotte, quando la luna sarà allo zenith, il Cuore Verde si risveglierà. Secoli di sonno terminano stanotte.</em></p>
+<p><em>Il Circolo della Quercia credeva di poter sigillare il potere primordiale. Sciocchi. La natura non può essere imprigionata. Io la libererò.</em></p>
+<p><em>Il punto focale è sotto il palco della piazza—lì dove le radici convergono. Nessuno deve avvicinarsi prima della mezzanotte.</em></p>
+<p><em>— M.</em></p>
+</blockquote>
+<p>[Simboli druidici e schemi del rituale sono disegnati ai margini]</p>
+<hr/>
+<h3 id="mappa-phandalin-durante-la-festa">Mappa: Phandalin durante la Festa</h3>
+<div class="codehilite"><pre><span></span><code><span class="w">        </span><span class="n">BOSCO</span><span class="w"> </span><span class="n">SUSSURRANTE</span>
+<span class="w">              </span><span class="o">|</span>
+<span class="w">              </span><span class="o">|</span><span class="w"> </span><span class="p">(</span><span class="n">sentiero</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="n">min</span><span class="p">)</span>
+<span class="w">              </span><span class="o">|</span>
+<span class="w">    </span><span class="p">[</span><span class="n">Cerchio</span><span class="w"> </span><span class="n">Funghi</span><span class="p">]</span><span class="w"> </span><span class="o">---</span><span class="w"> </span><span class="p">[</span><span class="n">Quercia</span><span class="w"> </span><span class="n">Spirito</span><span class="p">]</span>
+<span class="w">              </span><span class="o">|</span>
+<span class="w">              </span><span class="o">|</span>
+<span class="w">              </span><span class="n">v</span>
+<span class="w">    </span><span class="o">+-------------------+</span>
+<span class="w">    </span><span class="o">|</span><span class="w">   </span><span class="n">PIAZZA</span><span class="w"> </span><span class="n">FESTA</span><span class="w">    </span><span class="o">|</span><span class="w">  </span><span class="err">←</span><span class="w"> </span><span class="n">HUB</span><span class="w"> </span><span class="n">CENTRALE</span>
+<span class="w">    </span><span class="o">|</span><span class="w">                   </span><span class="o">|</span>
+<span class="w">    </span><span class="o">|</span><span class="w">   </span><span class="p">[</span><span class="n">PALCO</span><span class="p">]</span><span class="w">         </span><span class="o">|</span>
+<span class="w">    </span><span class="o">|</span><span class="w">   </span><span class="p">(</span><span class="n">passaggio</span><span class="w"> </span><span class="err">↓</span><span class="p">)</span><span class="w">   </span><span class="o">|</span>
+<span class="w">    </span><span class="o">|</span><span class="w">                   </span><span class="o">|</span>
+<span class="w">    </span><span class="o">|</span><span class="w">  </span><span class="p">[</span><span class="n">Cittadini</span><span class="p">]</span><span class="w">      </span><span class="o">|</span>
+<span class="w">    </span><span class="o">|</span><span class="w">  </span><span class="p">[</span><span class="n">Decorazioni</span><span class="p">]</span><span class="w">    </span><span class="o">|</span>
+<span class="w">    </span><span class="o">+-------------------+</span>
+<span class="w">         </span><span class="o">|</span><span class="w">           </span><span class="o">|</span>
+<span class="w">         </span><span class="o">|</span><span class="w">           </span><span class="o">+----</span><span class="err">→</span><span class="w"> </span><span class="n">GRANAIO</span><span class="w"> </span><span class="n">ABBANDONATO</span>
+<span class="w">         </span><span class="o">|</span><span class="w">                  </span><span class="p">(</span><span class="mi">5</span><span class="w"> </span><span class="n">min</span><span class="w"> </span><span class="n">nord</span><span class="p">)</span>
+<span class="w">         </span><span class="o">|</span><span class="w">                  </span><span class="p">[</span><span class="n">Padre</span><span class="w"> </span><span class="n">Aldric</span><span class="w"> </span><span class="n">prigioniero</span><span class="p">]</span>
+<span class="w">         </span><span class="o">|</span>
+<span class="w">         </span><span class="o">+----</span><span class="err">→</span><span class="w"> </span><span class="n">Case</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">Taverna</span>
+<span class="w">                </span><span class="p">(</span><span class="n">Jorren</span><span class="p">)</span>
+</code></pre></div>
+<hr/>
+<h2 id="note-finali-del-dm">Note Finali del DM</h2>
+<h3 id="difficolta-e-bilanciamento">Difficoltà e Bilanciamento</h3>
+<ul>
+<li>Per un party di <strong>5 personaggi di livello 1</strong>, gli incontri sono moderati ma gestibili.</li>
+<li><strong>Se i PG sono sottodimensionati</strong> (meno di 4 pg), riduci i nemici del 30% (1 Blight invece di 2, Malachar con -10 HP).</li>
+<li><strong>Se i PG sono sovradimensionati</strong> (6+ pg), aggiungi 1-2 Blights Ramoscello agli scontri o aumenta gli HP di Malachar di +15.</li>
+</ul>
+<h3 id="gestione-del-tempo">Gestione del Tempo</h3>
+<ul>
+<li>L’avventura è progettata per circa 3 ore di gioco.</li>
+<li><strong>Prima ora</strong>: Esplorazione della Piazza (Scenario A) + primo scenario secondario (Bosco o Granaio).</li>
+<li><strong>Seconda ora</strong>: Secondo scenario secondario + raccolta prove e indizi.</li>
+<li><strong>Terza ora</strong>: Climax e confronto finale con Malachar.</li>
+<li><strong>Flessibilità</strong>: Se i PG sono veloci, aggiungi complessità (più PNG da interrogare, enigmi aggiuntivi). Se sono lenti, velocizza la progressione verso la mezzanotte (Malachar inizia prima).</li>
+</ul>
+<h3 id="variazioni-narrative">Variazioni Narrative</h3>
+<ul>
+<li><strong>Fail Forward</strong>: Anche se i PG falliscono prove, l’avventura deve continuare. Usa le complicazioni per rendere le cose più difficili ma non bloccare mai il progresso.</li>
+<li><strong>Escalation Graduale</strong>: Mostra segni visibili dell’avanzamento del rituale man mano che si avvicina la mezzanotte—le piante crescono, i cittadini si indeboliscono, la musica diventa ossessiva.</li>
+<li><strong>Scelte Morali</strong>: Se i PG scoprono Elena ricattata, devono decidere se proteggerla subito o usarla come esca per Malachar—non c’è risposta giusta.</li>
+</ul>
+<h3 id="sessioni-future">Sessioni Future</h3>
+<ul>
+<li><strong>Malachar fugge</strong>: Se Malachar scappa, può tornare con alleati più forti—druidi corrotti, piante senzienti, o persino cercare di risvegliare altre entità primordiali.</li>
+<li><strong>Il Circolo della Quercia</strong>: L’alleanza con i druidi può portare a missioni legate al ripristino dell’equilibrio naturale, protezione di luoghi sacri, o conflitti con altri druidi corrotti.</li>
+<li><strong>Il Cuore Verde</strong>: Anche se sigillato, l’entità potrebbe influenzare i sogni dei PG, comunicare telepaticamente, o attirare altre minacce interessate al suo potere.</li>
+</ul>
+<hr/>
+<p><strong>Fine Documento - Pronto per il Gioco!</strong></p>
+</div>
+
+    <script>
+        // Auto-adjust page heights for better printing
+        window.addEventListener('load', function() {
+            console.log('✅ HTML Homebrewery caricato');
+        });
+    </script>
+</body>
+</html>
